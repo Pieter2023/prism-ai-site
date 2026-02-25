@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+
+const categories = [...new Set(posts.map(p => p.data.category))];
+const title = 'Blog | Prism AI';
+const description = 'Insights on AI voicebots, business automation, and how Canadian businesses are using AI to grow faster and serve customers better.';
+const canonicalUrl = 'https://prismaiservices.netlify.app/blog/';
+---
+
+<BaseLayout title={title} description={description} canonicalUrl={canonicalUrl}>
+  <section class="blog-hero">
+    <div class="container">
+      <h1>Prism AI <span class="text-gradient">Blog</span></h1>
+      <p>The latest on AI voicebots, business automation, and the future of customer interaction.</p>
+    </div>
+  </section>
+
+  <section class="blog-listing">
+    <div class="container">
+      {posts.length === 0 ? (
+        <p class="no-posts">New articles coming soon. Stay tuned!</p>
+      ) : (
+        <div class="blog-grid">
+          {posts.map(post => (
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              publishDate={post.data.publishDate}
+              category={post.data.category}
+              slug={post.data.slug}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.blog-hero {
+  text-align: center;
+  padding: 4rem 0 2rem;
+}
+.blog-hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+.blog-hero p { color: var(--color-text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+.blog-listing { padding: 2rem 0 4rem; }
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+.no-posts { text-align: center; color: var(--color-text-muted); padding: 3rem 0; }
+@media (max-width: 768px) {
+  .blog-grid { grid-template-columns: 1fr; }
+}
+</style>

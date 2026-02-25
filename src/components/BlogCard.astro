@@ -1,0 +1,71 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  publishDate: Date;
+  category: string;
+  slug: string;
+}
+const { title, description, publishDate, category, slug } = Astro.props;
+const formattedDate = new Date(publishDate).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<a href={`/blog/${slug}/`} class="blog-card">
+  <div class="card-content">
+    <span class="card-category">{category}</span>
+    <h3 class="card-title">{title}</h3>
+    <p class="card-desc">{description}</p>
+    <div class="card-meta">
+      <time datetime={publishDate.toISOString()}>{formattedDate}</time>
+      <span class="read-more">Read article &rarr;</span>
+    </div>
+  </div>
+</a>
+
+<style>
+.blog-card {
+  display: block;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+.card-category {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #a855f7;
+  background: rgba(168,85,247,0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  margin-bottom: 0.75rem;
+}
+.card-title {
+  font-size: 1.2rem;
+  color: var(--color-text-heading);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.card-desc {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+.read-more { color: #6366f1; font-weight: 500; }
+</style>
