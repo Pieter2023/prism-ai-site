@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="PRISM Resources & Products | Prism AI"
+  description="Access practical AI resources for Canadian businesses, including checklists, playbooks, and the full AI Business Audit."
+>
+  <section class="products-hero">
+    <div class="container">
+      <div class="hero-badge">Practical Resources</div>
+      <h1>Tools to Help You Implement AI<br /><span class="text-gradient">Without the Guesswork</span></h1>
+      <p class="hero-sub">
+        Start small with practical templates, or go deeper with a full AI Business Audit tailored to your operations.
+      </p>
+    </div>
+  </section>
+
+  <section class="products-section">
+    <div class="container">
+      <div class="products-grid">
+        <article class="product-card">
+          <div class="product-meta">Digital Download</div>
+          <h2>SMB Automation Audit Checklist</h2>
+          <p class="product-desc">A focused checklist to quickly identify where automation can save time and remove bottlenecks.</p>
+          <div class="price">7 CAD</div>
+          <a class="btn-secondary" href="https://buy.stripe.com/6oU7sKbgP6H87etb4j2Nq00">Buy Now</a>
+        </article>
+
+        <article class="product-card">
+          <div class="product-meta">Digital Download</div>
+          <h2>Lead Follow-Up Automation Playbook</h2>
+          <p class="product-desc">Step-by-step system to automate lead follow-up and reduce missed opportunities.</p>
+          <div class="price">7 CAD</div>
+          <a class="btn-secondary" href="https://buy.stripe.com/8x27sKckTe9AfKZ3BR2Nq01">Buy Now</a>
+        </article>
+
+        <article class="product-card featured">
+          <div class="product-meta">Flagship Offer</div>
+          <h2>AI Business Audit</h2>
+          <p class="product-desc">Comprehensive readiness audit with strategic recommendations and clear next actions.</p>
+          <div class="price">97 CAD</div>
+          <div class="product-actions">
+            <a class="btn-primary" href="https://buy.stripe.com/8x27sK5WvghI56l5JZ2Nq03">Buy Audit</a>
+            <a class="inline-link" href="/audit">See audit details</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="scorecard-callout">
+        <h3>Not ready to buy yet?</h3>
+        <p>Get your <strong>free AI readiness scorecard</strong> in about 5 minutes and see your top opportunity first.</p>
+        <a href="/scorecard" class="btn-primary">Take the Free Scorecard</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .products-hero {
+    padding: 7rem 0 4rem;
+    text-align: center;
+    background: radial-gradient(ellipse at top, rgba(108, 60, 225, 0.15) 0%, transparent 55%);
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: rgba(108, 60, 225, 0.12);
+    border: 1px solid rgba(108, 60, 225, 0.3);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-primary-light);
+    margin-bottom: 1.5rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.3rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .hero-sub {
+    max-width: 680px;
+    margin: 0 auto;
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  .products-section {
+    padding: 1rem 0 5rem;
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .product-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .product-card.featured {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(var(--color-bg-card), var(--color-bg-card)) padding-box,
+      linear-gradient(135deg, rgba(108, 60, 225, 0.95), rgba(139, 92, 246, 0.8), rgba(6, 182, 212, 0.7)) border-box;
+    box-shadow: 0 12px 30px rgba(108, 60, 225, 0.22);
+  }
+  .product-meta {
+    color: var(--color-primary-light);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .product-card h2 {
+    font-size: 1.3rem;
+    margin: 0;
+  }
+  .product-desc {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .price {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--color-text-heading);
+    margin-top: auto;
+  }
+  .product-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .inline-link {
+    color: var(--color-secondary);
+    font-size: 0.95rem;
+  }
+
+  .scorecard-callout {
+    margin-top: 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(108, 60, 225, 0.14), rgba(6, 182, 212, 0.1));
+    border: 1px solid rgba(108, 60, 225, 0.3);
+    border-radius: var(--radius);
+    padding: 2rem;
+  }
+  .scorecard-callout h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+  .scorecard-callout p {
+    color: var(--color-text-muted);
+    max-width: 640px;
+    margin: 0 auto 1.25rem;
+  }
+</style>
