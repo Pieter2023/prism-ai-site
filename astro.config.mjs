@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
+import netlify from '@astrojs/netlify';
 
 export default defineConfig({
   site: 'https://prismaiservices.netlify.app',
@@ -8,5 +9,6 @@ export default defineConfig({
     react(),
     sitemap(),
   ],
-  output: 'static',
+  output: 'hybrid',
+  adapter: netlify(),
 });
