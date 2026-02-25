@@ -9,19 +9,42 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   <!-- Hero -->
   <section class="audit-hero">
     <div class="container">
-      <div class="hero-badge">AI Business Audit</div>
-      <h1>Find Out Exactly Where AI<br /><span class="text-gradient">Can Work For Your Business</span></h1>
+      <div class="hero-badge">AI Readiness</div>
+      <h1>Find Out Where AI Can Work<br /><span class="text-gradient">For Your Business</span></h1>
       <p class="hero-sub">
-        Not sure where to start with AI? Our structured audit tells you exactly what to automate first,
-        what's not worth touching, and what the realistic ROI looks like — in plain English.
+        Not sure where to start with AI? Choose the option that fits where you are right now.
       </p>
-      <div class="hero-actions">
-        <a href="https://buy.stripe.com/bJe4gy98HaXodCR1tJ2Nq02" class="btn-primary btn-lg">
-          Start Your Audit — $950 CAD
-        </a>
-        <a href="#what-you-get" class="btn-secondary">See What's Included</a>
+
+      <!-- Two option cards -->
+      <div class="option-cards">
+        <div class="option-card free">
+          <div class="option-badge">Free</div>
+          <h2>Quick AI Scorecard</h2>
+          <p>8 questions. Instant score. Find out how AI-ready your business is right now — with personalised recommendations.</p>
+          <ul class="option-list">
+            <li>✓ Takes under 5 minutes</li>
+            <li>✓ Instant result + grade</li>
+            <li>✓ Personalised top opportunity</li>
+            <li>✓ No payment required</li>
+          </ul>
+          <a href="/scorecard" class="btn-secondary btn-lg">Get My Free Score →</a>
+        </div>
+
+        <div class="option-card paid">
+          <div class="option-badge paid-badge">$497 CAD</div>
+          <h2>Full AI Business Audit</h2>
+          <p>Comprehensive assessment across operations, tech stack, AI readiness, and goals — with a personalized report and strategy call.</p>
+          <ul class="option-list">
+            <li>✓ 25-question deep assessment</li>
+            <li>✓ Personalised AI Readiness Report</li>
+            <li>✓ Top 3 automation opportunities + ROI</li>
+            <li>✓ 30-min strategy call included</li>
+            <li>✓ Prioritised roadmap</li>
+          </ul>
+          <a href="https://buy.stripe.com/8x27sK5WvghI56l5JZ2Nq03" class="btn-primary btn-lg">Start Full Audit — $497 CAD</a>
+          <span class="option-note">One-time · No subscription · 48h report turnaround</span>
+        </div>
       </div>
-      <p class="hero-note">One-time payment · No subscription · Results within 48 hours</p>
     </div>
   </section>
 

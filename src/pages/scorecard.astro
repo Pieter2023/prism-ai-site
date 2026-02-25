@@ -1,0 +1,417 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Free AI Readiness Scorecard — Prism AI"
+  description="Find out how AI-ready your business is in under 5 minutes. Get your instant score and personalised recommendations — free."
+>
+  <section class="scorecard-section">
+    <div class="container scorecard-container">
+
+      <!-- Intro state -->
+      <div id="sc-intro">
+        <div class="sc-badge">Free · 5 Minutes · Instant Result</div>
+        <h1>How AI-Ready Is<br /><span class="text-gradient">Your Business?</span></h1>
+        <p class="sc-sub">Answer 8 quick questions and get your instant AI Readiness Score — plus a personalised breakdown of where you're leaving time and money on the table.</p>
+        <button class="btn-primary btn-lg" onclick="startScorecard()">Get My Free Score →</button>
+        <p class="sc-note">No payment required · Takes under 5 minutes</p>
+      </div>
+
+      <!-- Quiz state -->
+      <div id="sc-quiz" style="display:none">
+        <div class="sc-progress-wrap">
+          <div class="sc-progress-bar" id="sc-progress-bar" style="width:0%"></div>
+        </div>
+        <p class="sc-progress-label" id="sc-progress-label">Question 1 of 8</p>
+
+        <div id="sc-question-wrap"></div>
+
+        <div class="sc-nav">
+          <button class="btn-secondary" id="sc-btn-prev" style="display:none" onclick="scPrev()">← Back</button>
+          <button class="btn-primary" id="sc-btn-next" onclick="scNext()">Next →</button>
+          <button class="btn-primary" id="sc-btn-submit" style="display:none" onclick="scSubmit()">Get My Score →</button>
+        </div>
+      </div>
+
+      <!-- Contact capture state -->
+      <div id="sc-contact" style="display:none">
+        <h2>Almost there!</h2>
+        <p class="sc-sub">Enter your details to see your score and get your personalised recommendations.</p>
+        <div class="sc-contact-form">
+          <div class="field-group">
+            <label>Your name *</label>
+            <input type="text" id="sc-name" placeholder="e.g. Jane Smith" required />
+          </div>
+          <div class="field-group">
+            <label>Company name *</label>
+            <input type="text" id="sc-company" placeholder="e.g. Acme Corp" required />
+          </div>
+          <div class="field-group">
+            <label>Email address *</label>
+            <input type="email" id="sc-email" placeholder="e.g. jane@acme.com" required />
+          </div>
+          <button class="btn-primary btn-lg" onclick="scShowResult()">Show My Score →</button>
+        </div>
+      </div>
+
+      <!-- Result state -->
+      <div id="sc-result" style="display:none">
+        <div id="sc-score-display"></div>
+        <div id="sc-breakdown"></div>
+        <div id="sc-cta-block"></div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+const QUESTIONS = [
+  {
+    id: 'lead_response',
+    text: 'How quickly does your business respond to a new lead or enquiry?',
+    options: [
+      { label: 'Within 5 minutes — automatically', score: 4 },
+      { label: 'Within 1 hour — manually', score: 3 },
+      { label: 'Same day — when we get to it', score: 2 },
+      { label: 'Next day or longer', score: 1 },
+      { label: 'No consistent process', score: 0 },
+    ]
+  },
+  {
+    id: 'followup',
+    text: 'What happens after the first contact with a lead?',
+    options: [
+      { label: 'Automated sequence kicks in immediately', score: 4 },
+      { label: 'Sales person manually follows up', score: 2 },
+      { label: 'We follow up if we remember', score: 1 },
+      { label: 'We mostly wait for them to come back', score: 0 },
+    ]
+  },
+  {
+    id: 'reporting',
+    text: 'How do you track business performance (pipeline, revenue, ops)?',
+    options: [
+      { label: 'Live dashboard — updates automatically', score: 4 },
+      { label: 'Regular reports built manually', score: 2 },
+      { label: 'Spreadsheets we update sometimes', score: 1 },
+      { label: 'Mostly in my head', score: 0 },
+    ]
+  },
+  {
+    id: 'repetitive_tasks',
+    text: 'How much of your team\'s time goes to repetitive, manual tasks?',
+    options: [
+      { label: 'Almost none — most things are automated', score: 4 },
+      { label: 'A few hours per week', score: 3 },
+      { label: 'Several hours per day', score: 1 },
+      { label: 'Most of the day is manual work', score: 0 },
+    ]
+  },
+  {
+    id: 'tools',
+    text: 'Which best describes your current tech stack?',
+    options: [
+      { label: 'Connected tools that talk to each other', score: 4 },
+      { label: 'Good tools but not well integrated', score: 2 },
+      { label: 'Basic tools — email, spreadsheets, phone', score: 1 },
+      { label: 'Mostly paper or very manual', score: 0 },
+    ]
+  },
+  {
+    id: 'ai_usage',
+    text: 'Are you currently using AI in your business?',
+    options: [
+      { label: 'Yes — actively using AI tools in workflows', score: 4 },
+      { label: 'Experimenting with some tools', score: 3 },
+      { label: 'Used ChatGPT occasionally but not systematically', score: 2 },
+      { label: 'Not really — not sure where to start', score: 1 },
+      { label: 'No and I\'m skeptical', score: 0 },
+    ]
+  },
+  {
+    id: 'data',
+    text: 'How accessible and organised is your business data?',
+    options: [
+      { label: 'Clean, centralised, easy to query', score: 4 },
+      { label: 'Mostly organised with some gaps', score: 3 },
+      { label: 'Spread across multiple systems', score: 1 },
+      { label: 'Scattered — hard to find what I need', score: 0 },
+    ]
+  },
+  {
+    id: 'priority',
+    text: 'Which area would benefit most from automation in your business?',
+    options: [
+      { label: 'Lead generation & follow-up', score: 0, tag: 'leads' },
+      { label: 'Operations & internal workflows', score: 0, tag: 'ops' },
+      { label: 'Reporting & business intelligence', score: 0, tag: 'reporting' },
+      { label: 'Customer communication & support', score: 0, tag: 'comms' },
+    ]
+  },
+];
+
+const MAX_SCORE = QUESTIONS.slice(0, 7).reduce((sum, q) => sum + Math.max(...q.options.map(o => o.score)), 0);
+
+let current = 0;
+let answers = {};
+
+function startScorecard() {
+  document.getElementById('sc-intro').style.display = 'none';
+  document.getElementById('sc-quiz').style.display = 'block';
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[current];
+  const pct = (current / QUESTIONS.length) * 100;
+  document.getElementById('sc-progress-bar').style.width = pct + '%';
+  document.getElementById('sc-progress-label').textContent = `Question ${current + 1} of ${QUESTIONS.length}`;
+  document.getElementById('sc-btn-prev').style.display = current > 0 ? 'inline-flex' : 'none';
+  document.getElementById('sc-btn-next').style.display = current < QUESTIONS.length - 1 ? 'inline-flex' : 'none';
+  document.getElementById('sc-btn-submit').style.display = current === QUESTIONS.length - 1 ? 'inline-flex' : 'none';
+
+  const selected = answers[q.id];
+  const html = `
+    <div class="sc-question">
+      <h2 class="sc-q-text">${q.text}</h2>
+      <div class="sc-options">
+        ${q.options.map((opt, i) => `
+          <button class="sc-option ${selected === i ? 'selected' : ''}"
+            onclick="selectOption(${i})" data-idx="${i}">
+            ${opt.label}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  document.getElementById('sc-question-wrap').innerHTML = html;
+}
+
+function selectOption(idx) {
+  const q = QUESTIONS[current];
+  answers[q.id] = idx;
+  document.querySelectorAll('.sc-option').forEach((el, i) => {
+    el.classList.toggle('selected', i === idx);
+  });
+}
+
+function scNext() {
+  if (answers[QUESTIONS[current].id] === undefined) {
+    document.getElementById('sc-question-wrap').querySelector('.sc-options').classList.add('shake');
+    setTimeout(() => document.getElementById('sc-question-wrap').querySelector('.sc-options')?.classList.remove('shake'), 500);
+    return;
+  }
+  current++;
+  renderQuestion();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scPrev() {
+  current--;
+  renderQuestion();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scSubmit() {
+  if (answers[QUESTIONS[current].id] === undefined) return;
+  document.getElementById('sc-quiz').style.display = 'none';
+  document.getElementById('sc-contact').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function calcScore() {
+  let total = 0;
+  QUESTIONS.slice(0, 7).forEach(q => {
+    const idx = answers[q.id];
+    if (idx !== undefined) total += q.options[idx].score;
+  });
+  return total;
+}
+
+function getScoreLabel(score, max) {
+  const pct = (score / max) * 100;
+  if (pct >= 80) return { label: 'AI Leader', color: '#10B981', desc: 'You\'re already ahead of the curve. The opportunity now is to go deeper — more sophisticated automation, better data intelligence, and compounding gains.', grade: 'A' };
+  if (pct >= 60) return { label: 'AI Ready', color: '#6C3CE1', desc: 'Good foundation in place. You\'re doing some things well but there are clear gaps where automation could save significant time and money.', grade: 'B' };
+  if (pct >= 40) return { label: 'AI Aware', color: '#F59E0B', desc: 'You\'re aware of the opportunity but haven\'t fully acted on it yet. Several quick wins are available that could pay for themselves within weeks.', grade: 'C' };
+  return { label: 'AI Opportunity', color: '#EF4444', desc: 'Significant untapped opportunity. Manual processes are likely costing you more than you realise in time, deals, and team capacity.', grade: 'D' };
+}
+
+function getPriorityTag() {
+  const idx = answers['priority'];
+  if (idx === undefined) return 'operations';
+  return QUESTIONS[7].options[idx].tag;
+}
+
+async function scShowResult() {
+  const name = document.getElementById('sc-name').value.trim();
+  const company = document.getElementById('sc-company').value.trim();
+  const email = document.getElementById('sc-email').value.trim();
+
+  if (!name || !company || !email) {
+    alert('Please fill in all fields to see your score.');
+    return;
+  }
+
+  const score = calcScore();
+  const { label, color, desc, grade } = getScoreLabel(score, MAX_SCORE);
+  const pct = Math.round((score / MAX_SCORE) * 100);
+  const priority = getPriorityTag();
+
+  const priorityRecs = {
+    leads: 'Your top opportunity is <strong>lead follow-up automation</strong>. An automated sequence responding within 5 minutes and following up over 14 days could significantly improve your close rate with zero extra effort.',
+    ops: 'Your top opportunity is <strong>workflow & ops automation</strong>. Removing manual handoffs and repetitive tasks from your team\'s day is where you\'ll see the fastest ROI.',
+    reporting: 'Your top opportunity is <strong>automated reporting</strong>. Real-time dashboards built on your existing data — no more manual reports, always up to date.',
+    comms: 'Your top opportunity is <strong>customer communication automation</strong>. Automated acknowledgements, follow-ups, and updates that feel personal but run without you.',
+  };
+
+  document.getElementById('sc-contact').style.display = 'none';
+  document.getElementById('sc-result').style.display = 'block';
+
+  document.getElementById('sc-score-display').innerHTML = `
+    <div class="sc-result-hero">
+      <div class="sc-grade-circle" style="border-color:${color};color:${color}">${grade}</div>
+      <h2 class="sc-result-label" style="color:${color}">${label}</h2>
+      <div class="sc-score-bar-wrap">
+        <div class="sc-score-bar-fill" style="width:${pct}%;background:${color}"></div>
+      </div>
+      <p class="sc-score-pct">${pct}% AI Readiness Score</p>
+      <p class="sc-result-desc">${desc}</p>
+    </div>
+  `;
+
+  document.getElementById('sc-breakdown').innerHTML = `
+    <div class="sc-breakdown-card">
+      <h3>Your Top Opportunity</h3>
+      <p>${priorityRecs[priority]}</p>
+    </div>
+  `;
+
+  const ctaHtml = pct >= 70
+    ? `
+      <div class="sc-cta-block good">
+        <h3>You're in good shape — now go deeper</h3>
+        <p>Get a full AI Business Audit to identify the specific workflows worth automating, with a prioritised roadmap and strategy call.</p>
+        <a href="https://buy.stripe.com/8x27sK5WvghI56l5JZ2Nq03" class="btn-primary btn-lg">Get the Full Audit — $497 CAD</a>
+        <span class="cta-note">Comprehensive report + 30-min strategy call</span>
+      </div>
+    `
+    : `
+      <div class="sc-cta-block opportunity">
+        <h3>You have significant automation opportunity</h3>
+        <p>A full AI Business Audit will map your exact workflows, quantify the ROI, and give you a step-by-step plan to fix it — with a strategy call included.</p>
+        <a href="https://buy.stripe.com/8x27sK5WvghI56l5JZ2Nq03" class="btn-primary btn-lg">Get the Full Audit — $497 CAD</a>
+        <span class="cta-note">Personalised report + 30-min strategy call · Most popular next step</span>
+        <p class="sc-or">or</p>
+        <a href="/" class="btn-secondary">Learn more about Prism AI →</a>
+      </div>
+    `;
+
+  document.getElementById('sc-cta-block').innerHTML = ctaHtml;
+
+  // Fire and forget — submit to API
+  const answerDetails = {};
+  QUESTIONS.forEach(q => {
+    const idx = answers[q.id];
+    answerDetails[q.id] = idx !== undefined ? q.options[idx].label : '—';
+  });
+
+  fetch('/api/scorecard-submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, company, email, score, pct, grade, label, answers: answerDetails, priority }),
+  }).catch(() => {});
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+<style>
+.scorecard-section { padding: 5rem 0 6rem; min-height: 80vh; }
+.scorecard-container { max-width: 640px; margin: 0 auto; }
+#sc-intro { text-align: center; padding: 4rem 0; }
+.sc-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: rgba(108, 60, 225, 0.12);
+  border: 1px solid rgba(108, 60, 225, 0.3);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary-light);
+  margin-bottom: 1.5rem;
+}
+#sc-intro h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 1.5rem; }
+.sc-sub { color: var(--color-text-muted); font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem; }
+.sc-note { font-size: 0.85rem; color: var(--color-text-muted); margin-top: 1rem; }
+.btn-lg { font-size: 1.1rem; padding: 0.9rem 2.2rem; }
+.sc-progress-wrap { height: 6px; background: var(--color-border); border-radius: 999px; overflow: hidden; margin-bottom: 0.5rem; }
+.sc-progress-bar { height: 100%; background: linear-gradient(90deg, var(--color-primary), var(--color-secondary)); border-radius: 999px; transition: width 0.3s ease; }
+.sc-progress-label { font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 2rem; }
+.sc-question { margin-bottom: 2rem; }
+.sc-q-text { font-size: 1.35rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.4; }
+.sc-options { display: flex; flex-direction: column; gap: 0.75rem; }
+.sc-option {
+  padding: 1rem 1.25rem;
+  border: 2px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-bg-card);
+  color: var(--color-text-heading);
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  font-family: inherit;
+}
+.sc-option:hover { border-color: var(--color-primary-light); }
+.sc-option.selected { border-color: var(--color-primary); background: rgba(108,60,225,0.08); font-weight: 600; }
+.sc-options.shake { animation: shake 0.4s; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+.sc-nav { display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border); }
+.sc-contact-form { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem; }
+.field-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.field-group label { font-weight: 600; font-size: 0.95rem; }
+.field-group input {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg-card);
+  color: var(--color-text-heading);
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+.field-group input:focus { outline: none; border-color: var(--color-primary-light); }
+.sc-result-hero { text-align: center; padding: 2rem 0; }
+.sc-grade-circle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 80px; height: 80px; border-radius: 50%;
+  border: 4px solid; font-size: 2rem; font-weight: 800;
+  margin-bottom: 1rem;
+}
+.sc-result-label { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
+.sc-score-bar-wrap { height: 12px; background: var(--color-border); border-radius: 999px; overflow: hidden; margin: 0 auto 0.75rem; max-width: 320px; }
+.sc-score-bar-fill { height: 100%; border-radius: 999px; transition: width 1s ease; }
+.sc-score-pct { font-size: 1rem; color: var(--color-text-muted); margin-bottom: 1.5rem; }
+.sc-result-desc { color: var(--color-text-muted); line-height: 1.7; font-size: 1.05rem; max-width: 520px; margin: 0 auto 2rem; }
+.sc-breakdown-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.sc-breakdown-card h3 { font-size: 1.1rem; margin-bottom: 0.75rem; }
+.sc-breakdown-card p { color: var(--color-text-muted); line-height: 1.6; }
+.sc-cta-block {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(108,60,225,0.3);
+  background: linear-gradient(135deg, rgba(108,60,225,0.1), rgba(6,182,212,0.07));
+}
+.sc-cta-block h3 { font-size: 1.3rem; margin-bottom: 0.75rem; }
+.sc-cta-block p { color: var(--color-text-muted); margin-bottom: 1.5rem; line-height: 1.6; }
+.cta-note { display: block; font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.75rem; }
+.sc-or { color: var(--color-text-muted); margin: 1.25rem 0; font-size: 0.9rem; }
+</style>
