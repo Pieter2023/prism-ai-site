@@ -8,7 +8,7 @@ interface Props {
   ctaLink?: string;
 }
 
-const { headline, subline, statValue, statLabel, ctaText, ctaLink = '#contact' } = Astro.props;
+const { headline, subline, statValue, statLabel, ctaText, ctaLink = '#talk-to-ai' } = Astro.props;
 ---
 
 <section class="hero">
@@ -22,7 +22,7 @@ const { headline, subline, statValue, statLabel, ctaText, ctaLink = '#contact' }
     <h1 class="hero-headline">{headline}</h1>
     <p class="hero-subline">{subline}</p>
     <div class="hero-actions">
-      <a href={ctaLink} class="btn-primary">{ctaText}</a>
+      <a href={ctaLink} class="btn-primary" onclick="if(window.startAICall){event.preventDefault();startAICall();}">{ctaText}</a>
       <a href="#solution" class="btn-secondary">Learn More</a>
     </div>
   </div>

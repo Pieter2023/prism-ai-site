@@ -58,7 +58,7 @@ const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
           <a href="/#services">Services</a>
           <a href="/#industries">Industries</a>
           <a href="/#about">About</a>
-          <a href="/#contact" class="btn-primary btn-sm">Get Started</a>
+          <a href="/#talk-to-ai" class="btn-primary btn-sm" onclick="if(window.startAICall){event.preventDefault();startAICall();}">Talk to AI</a>
         </div>
       </nav>
     </div>
@@ -84,7 +84,7 @@ const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
         <div class="footer-links">
           <h4>Company</h4>
           <a href="/#about">About</a>
-          <a href="/#contact">Contact</a>
+          <a href="/#talk-to-ai" onclick="if(window.startAICall){event.preventDefault();startAICall();}">Talk to AI</a>
           <a href="/sitemap-index.xml">Sitemap</a>
         </div>
       </div>
@@ -96,6 +96,27 @@ const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
     <!-- ElevenLabs Conversational AI Widget - Prism AI Customer Concierge -->
     <script src="https://unpkg.com/@elevenlabs/convai-widget-embed@latest" async type="text/javascript"></script>
     <elevenlabs-convai agent-id="agent_6201kh58b848ewbrym1s94zc7s98"></elevenlabs-convai>
+    <script>
+    function startAICall(){
+      var s=document.getElementById('talk-to-ai');
+      if(s)s.scrollIntoView({behavior:'smooth',block:'center'});
+      setTimeout(function(){
+        var w=document.querySelector('elevenlabs-convai');
+        if(which git && which gh && git config --global user.name && git config --global user.email)return;
+        try{
+          if(w.shadowRoot){
+            var b=w.shadowRoot.querySelectorAll('button');
+            for(var i=0;i<b.length;i++){
+              var t=b[i].textContent.toLowerCase();
+              if(t.indexOf('start')!==-1||t.indexOf('call')!==-1){b[i].click();return;}
+            }
+            if(b.length>0)b[0].click();
+          }else{w.click();}
+        }catch(e){w.click();}
+      },600);
+    }
+    window.startAICall=startAICall;
+    </script>
 </body>
 </html>
 

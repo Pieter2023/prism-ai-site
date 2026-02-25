@@ -58,7 +58,7 @@ const jsonLd = {
         to intelligent chatbots, we help you save 15+ hours per week and grow faster.
       </p>
       <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Get Your Free Consultation</a>
+        <a href="#talk-to-ai" class="btn-primary" onclick="if(window.startAICall){event.preventDefault();startAICall();}">Talk to Our AI Concierge</a>
         <a href="#services" class="btn-secondary">Explore Services</a>
       </div>
       <div class="hero-stats">
@@ -135,16 +135,44 @@ const jsonLd = {
     </div>
   </section>
 
-  <!-- CTA -->
-  <section id="contact" class="cta-home">
-    <div class="container">
-      <div class="cta-card-home">
-        <h2>Ready to Automate the Chaos?</h2>
-        <p>Book a free 30-minute consultation. We'll map your biggest time sinks and show you exactly how AI can fix them.</p>
-        <a href="https://calendly.com" class="btn-primary">Get Your Free Consultation</a>
+  <!-- How It Works -- AI Call Process -->
+<section id="talk-to-ai" class="how-it-works-section">
+  <div class="container">
+    <h2 class="section-title">Talk to Our AI &mdash; It's That Easy</h2>
+    <p class="section-sub">No forms. No waiting. No phone tag. Just click and talk.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>Click &ldquo;Start a Call&rdquo;</h3>
+        <p>Your browser connects instantly &mdash; no downloads, no sign-ups, no phone number needed.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>Tell Our AI What You Need</h3>
+        <p>Our AI concierge asks smart follow-up questions to understand your business, pain points, and goals.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>Get Your Custom Plan</h3>
+        <p>We email you a tailored summary with recommendations, pricing guidance, and next steps &mdash; within minutes.</p>
       </div>
     </div>
-  </section>
+    <div class="ai-call-cta">
+      <div class="ai-call-card">
+        <div class="ai-call-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <h3>Ready to see how AI can transform your business?</h3>
+        <p>Our AI concierge is available 24/7. The call takes 2&ndash;3 minutes and you'll have a clear picture of what's possible.</p>
+        <button class="btn-primary btn-lg" onclick="startAICall();">
+          Start Your Free AI Call
+        </button>
+        <span class="cta-note">Free &bull; 2&ndash;3 minutes &bull; No commitment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 </BaseLayout>
 
 <style>
@@ -297,4 +325,19 @@ const jsonLd = {
   @media (max-width: 768px) {
     .hero-stats { flex-direction: column; align-items: center; gap: 1.5rem; }
   }
+.how-it-works-section { padding: 5rem 0; }
+.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 3rem 0; }
+.step-card { text-align: center; padding: 2rem 1.5rem; border: 1px solid var(--color-border); border-radius: var(--radius); background: rgba(108, 60, 225, 0.05); transition: transform 0.2s, border-color 0.2s; }
+.step-card:hover { transform: translateY(-4px); border-color: var(--color-primary-light); }
+.step-number { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); color: white; font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+.step-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+.step-card p { color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6; }
+.ai-call-cta { margin-top: 3rem; }
+.ai-call-card { text-align: center; background: linear-gradient(135deg, rgba(108, 60, 225, 0.15), rgba(6, 182, 212, 0.1)); border: 1px solid rgba(108, 60, 225, 0.3); border-radius: var(--radius); padding: 3rem 2rem; max-width: 600px; margin: 0 auto; }
+.ai-call-icon { color: var(--color-primary-light); margin-bottom: 1.5rem; }
+.ai-call-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+.ai-call-card p { color: var(--color-text-muted); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+.btn-lg { font-size: 1.15rem; padding: 1rem 2.5rem; cursor: pointer; animation: pulse-glow 2s ease-in-out infinite; }
+@keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(108, 60, 225, 0.4); } 50% { box-shadow: 0 0 20px 4px rgba(108, 60, 225, 0.3); } }
+.cta-note { display: block; margin-top: 1rem; font-size: 0.85rem; color: var(--color-text-muted); }
 </style>
