@@ -26,7 +26,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   name: 'Prism AI Services',
-  description: 'Custom AI automation solutions for Canadian businesses. Workflow automation, chatbots, lead generation, voice agents, and more.',
+  description: 'Custom AI automation solutions for SMBs. Workflow automation, chatbots, lead generation, voice agents, and more. Stop doing manually what a system can do for you.',
   url: 'https://prismaiservices.netlify.app',
   address: {
     '@type': 'PostalAddress',
@@ -44,8 +44,8 @@ const jsonLd = {
 ---
 
 <BaseLayout
-  title="Prism AI | Custom AI Automation for Canadian Businesses"
-  description="Prism AI builds custom AI solutions for Canadian businesses — workflow automation, chatbots, lead generation, voice agents, and more. Serving Kelowna, Vancouver, Toronto & beyond."
+  title="Prism AI | Automate the Chaos. Scale with AI."
+  description="Prism AI builds custom AI automation for SMBs — workflow automation, chatbots, lead generation, voice agents, and more. Stop doing manually what a system can do for you."
   jsonLd={jsonLd}
 >
   <!-- Hero -->
@@ -54,8 +54,9 @@ const jsonLd = {
       <div class="hero-badge">AI-Powered Business Automation</div>
       <h1>Automate the Chaos.<br /><span class="text-gradient">Scale with AI.</span></h1>
       <p class="hero-sub">
-        Custom AI solutions built for Canadian businesses. From workflow automation
-        to intelligent chatbots, we help you save 15+ hours per week and grow faster.
+        Custom AI solutions built for SMBs who are done doing things manually.
+        From workflow automation to intelligent chatbots — we help you save 15+ hours
+        per week and grow faster.
       </p>
       <div class="hero-actions">
         <a href="#talk-to-ai" class="btn-primary" onclick="if(window.startAICall){event.preventDefault();startAICall();}">Talk to Our AI Concierge</a>
@@ -82,7 +83,7 @@ const jsonLd = {
   <section id="services">
     <div class="container">
       <h2 class="section-title">Our AI Services</h2>
-      <p class="section-sub">Tailored solutions for every industry and location across Canada.</p>
+      <p class="section-sub">Tailored solutions for service businesses, agencies, and SMBs.</p>
       <div class="services-grid">
         {Object.entries(serviceGroups).map(([serviceName, serviceEntries]) => (
           <div class="card service-card">
