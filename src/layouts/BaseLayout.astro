@@ -96,13 +96,13 @@ const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
     <!-- ElevenLabs Conversational AI Widget - Prism AI Customer Concierge -->
     <script src="https://unpkg.com/@elevenlabs/convai-widget-embed@latest" async type="text/javascript"></script>
     <elevenlabs-convai agent-id="agent_6201kh58b848ewbrym1s94zc7s98"></elevenlabs-convai>
-    <script>
+    <script is:inline>
     function startAICall(){
       var s=document.getElementById('talk-to-ai');
       if(s)s.scrollIntoView({behavior:'smooth',block:'center'});
       setTimeout(function(){
         var w=document.querySelector('elevenlabs-convai');
-        if(which git && which gh && git config --global user.name && git config --global user.email)return;
+        if(!w)return;
         try{
           if(w.shadowRoot){
             var b=w.shadowRoot.querySelectorAll('button');
