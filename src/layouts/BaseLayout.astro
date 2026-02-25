@@ -1,0 +1,184 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  jsonLd?: object;
+}
+
+const { title, description, canonical, jsonLd } = Astro.props;
+const siteUrl = 'https://prismaiservices.netlify.app';
+const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Prism AI Services" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- JSON-LD Structured Data -->
+  {jsonLd && (
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  )}
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo">
+          <span class="text-gradient">Prism AI</span>
+        </a>
+        <div class="nav-links">
+          <a href="/#services">Services</a>
+          <a href="/#industries">Industries</a>
+          <a href="/#about">About</a>
+          <a href="/#contact" class="btn-primary btn-sm">Get Started</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="text-gradient footer-logo">Prism AI</span>
+          <p>Automate the Chaos. Custom AI solutions for Canadian businesses.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <a href="/services/ai-workflow-automation-real-estate-kelowna">AI Workflow Automation</a>
+          <a href="/services/custom-chatbot-development-healthcare-vancouver">Custom Chatbots</a>
+          <a href="/services/ai-lead-generation-ecommerce-toronto">AI Lead Generation</a>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <a href="/#about">About</a>
+          <a href="/#contact">Contact</a>
+          <a href="/sitemap-index.xml">Sitemap</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {new Date().getFullYear()} Prism AI Services. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 15, 26, 0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 0;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .nav-links a {
+    color: var(--color-text-muted);
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover {
+    color: var(--color-text-heading);
+  }
+  .btn-sm {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .site-footer {
+    background: var(--color-bg-card);
+    border-top: 1px solid var(--color-border);
+    padding: 4rem 0 2rem;
+    margin-top: 4rem;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  .footer-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .footer-brand p {
+    color: var(--color-text-muted);
+    max-width: 300px;
+  }
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .footer-links h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .footer-links a {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+  .footer-bottom {
+    border-top: 1px solid var(--color-border);
+    padding-top: 2rem;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>

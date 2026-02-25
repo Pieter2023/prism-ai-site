@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page Not Found | Prism AI" description="The page you're looking for doesn't exist.">
+  <section class="not-found">
+    <div class="container">
+      <h1>404</h1>
+      <p>The page you're looking for doesn't exist or has been moved.</p>
+      <a href="/" class="btn-primary">Back to Home</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    text-align: center;
+    padding: 10rem 0;
+  }
+  .not-found h1 {
+    font-size: 6rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+  }
+  .not-found p {
+    color: var(--color-text-muted);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+</style>

@@ -1,0 +1,300 @@
+---
+/**
+ * Homepage for Prism AI Services.
+ * Lists all pSEO service pages with internal links for crawlability.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPseoEntries } from '../lib/sheets';
+
+const entries = await getPseoEntries();
+
+// Group entries by head_term for the services section
+const serviceGroups = entries.reduce((acc, entry) => {
+  if (!acc[entry.head_term]) acc[entry.head_term] = [];
+  acc[entry.head_term].push(entry);
+  return acc;
+}, {} as Record<string, typeof entries>);
+
+// Group entries by industry
+const industryGroups = entries.reduce((acc, entry) => {
+  if (!acc[entry.industry]) acc[entry.industry] = [];
+  acc[entry.industry].push(entry);
+  return acc;
+}, {} as Record<string, typeof entries>);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Prism AI Services',
+  description: 'Custom AI automation solutions for Canadian businesses. Workflow automation, chatbots, lead generation, voice agents, and more.',
+  url: 'https://prismaiservices.netlify.app',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Kelowna',
+    addressRegion: 'BC',
+    addressCountry: 'CA',
+  },
+  areaServed: [
+    { '@type': 'Place', name: 'Kelowna, BC' },
+    { '@type': 'Place', name: 'Vancouver, BC' },
+    { '@type': 'Place', name: 'British Columbia' },
+    { '@type': 'Place', name: 'Canada' },
+  ],
+};
+---
+
+<BaseLayout
+  title="Prism AI | Custom AI Automation for Canadian Businesses"
+  description="Prism AI builds custom AI solutions for Canadian businesses — workflow automation, chatbots, lead generation, voice agents, and more. Serving Kelowna, Vancouver, Toronto & beyond."
+  jsonLd={jsonLd}
+>
+  <!-- Hero -->
+  <section class="home-hero">
+    <div class="container">
+      <div class="hero-badge">AI-Powered Business Automation</div>
+      <h1>Automate the Chaos.<br /><span class="text-gradient">Scale with AI.</span></h1>
+      <p class="hero-sub">
+        Custom AI solutions built for Canadian businesses. From workflow automation
+        to intelligent chatbots, we help you save 15+ hours per week and grow faster.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get Your Free Consultation</a>
+        <a href="#services" class="btn-secondary">Explore Services</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">73%</span>
+          <span class="stat-desc">Average time saved</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">3.2x</span>
+          <span class="stat-desc">Lead conversion boost</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">24/7</span>
+          <span class="stat-desc">Always-on automation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title">Our AI Services</h2>
+      <p class="section-sub">Tailored solutions for every industry and location across Canada.</p>
+      <div class="services-grid">
+        {Object.entries(serviceGroups).map(([serviceName, serviceEntries]) => (
+          <div class="card service-card">
+            <h3>{serviceName}</h3>
+            <p class="service-count">{serviceEntries.length} specialized solutions</p>
+            <div class="service-links">
+              {serviceEntries.slice(0, 3).map((e) => (
+                <a href={`/services/${e.slug}`} class="service-link">
+                  {e.industry} — {e.location}
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries -->
+  <section id="industries" class="industries-section">
+    <div class="container">
+      <h2 class="section-title">Industries We Serve</h2>
+      <div class="industry-grid">
+        {Object.entries(industryGroups).map(([industry, indEntries]) => (
+          <div class="card industry-card">
+            <h3>{industry}</h3>
+            <ul>
+              {indEntries.map((e) => (
+                <li><a href={`/services/${e.slug}`}>{e.head_term} in {e.location}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- All Pages Index (for crawlability) -->
+  <section class="index-section">
+    <div class="container">
+      <h2 class="section-title">All Service Pages</h2>
+      <div class="index-grid">
+        {entries.map((e) => (
+          <a href={`/services/${e.slug}`} class="index-link">
+            <strong>{e.head_term}</strong>
+            <span>{e.industry} · {e.location}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="cta-home">
+    <div class="container">
+      <div class="cta-card-home">
+        <h2>Ready to Automate the Chaos?</h2>
+        <p>Book a free 30-minute consultation. We'll map your biggest time sinks and show you exactly how AI can fix them.</p>
+        <a href="https://calendly.com" class="btn-primary">Get Your Free Consultation</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .home-hero {
+    padding: 7rem 0 5rem;
+    text-align: center;
+    background: radial-gradient(ellipse at top, rgba(108, 60, 225, 0.15) 0%, transparent 55%);
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: rgba(108, 60, 225, 0.12);
+    border: 1px solid rgba(108, 60, 225, 0.3);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-primary-light);
+    margin-bottom: 2rem;
+  }
+  .home-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .hero-sub {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-primary-light);
+  }
+  .stat-desc {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .section-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+  .section-sub {
+    text-align: center;
+    color: var(--color-text-muted);
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .service-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .service-count {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+  }
+  .service-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .service-link {
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+    padding: 0.375rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .industries-section { background: var(--color-bg-card); }
+  .industry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .industry-card h3 { margin-bottom: 1rem; }
+  .industry-card ul { list-style: none; }
+  .industry-card li {
+    padding: 0.375rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .industry-card li a { font-size: 0.9rem; }
+
+  .index-section { padding: 4rem 0; }
+  .index-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+  .index-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    transition: border-color 0.2s;
+  }
+  .index-link:hover { border-color: var(--color-primary-light); }
+  .index-link strong { font-size: 0.95rem; color: var(--color-text-heading); }
+  .index-link span { font-size: 0.8rem; color: var(--color-text-muted); }
+
+  .cta-home { padding: 5rem 0; }
+  .cta-card-home {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(108, 60, 225, 0.15), rgba(6, 182, 212, 0.1));
+    border: 1px solid rgba(108, 60, 225, 0.3);
+    border-radius: var(--radius);
+    padding: 4rem 2rem;
+  }
+  .cta-card-home h2 { font-size: 2rem; margin-bottom: 1rem; }
+  .cta-card-home p {
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 768px) {
+    .hero-stats { flex-direction: column; align-items: center; gap: 1.5rem; }
+  }
+</style>

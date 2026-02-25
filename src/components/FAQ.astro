@@ -1,0 +1,44 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FAQItem[];
+  heading?: string;
+}
+
+const { items, heading = 'Frequently Asked Questions' } = Astro.props;
+---
+
+<section class="faq-section" id="faq">
+  <div class="container">
+    <h2>{heading}</h2>
+    <div class="faq-list">
+      {items.map((item) => (
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 class="faq-question" itemprop="name">{item.question}</h3>
+          <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">{item.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    padding: 4rem 0;
+  }
+  .faq-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+</style>

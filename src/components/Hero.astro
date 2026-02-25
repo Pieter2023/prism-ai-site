@@ -1,0 +1,63 @@
+---
+interface Props {
+  headline: string;
+  subline: string;
+  statValue?: string;
+  statLabel?: string;
+  ctaText: string;
+  ctaLink?: string;
+}
+
+const { headline, subline, statValue, statLabel, ctaText, ctaLink = '#contact' } = Astro.props;
+---
+
+<section class="hero">
+  <div class="container">
+    {statValue && statLabel && (
+      <div class="stat-badge">
+        <span class="stat-value">{statValue}</span>
+        <span>{statLabel}</span>
+      </div>
+    )}
+    <h1 class="hero-headline">{headline}</h1>
+    <p class="hero-subline">{subline}</p>
+    <div class="hero-actions">
+      <a href={ctaLink} class="btn-primary">{ctaText}</a>
+      <a href="#solution" class="btn-secondary">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 6rem 0 4rem;
+    text-align: center;
+    background: radial-gradient(ellipse at top, rgba(108, 60, 225, 0.12) 0%, transparent 60%);
+  }
+  .hero-headline {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 800;
+    max-width: 800px;
+    margin: 1.5rem auto;
+    line-height: 1.15;
+  }
+  .hero-subline {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .stat-badge {
+    margin-bottom: 1rem;
+  }
+  .stat-value {
+    font-weight: 800;
+  }
+</style>
