@@ -3,6 +3,896 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
+  title="Free AI Readiness Scorecard - Prism AI"
+  description="Find out how AI-ready your business is in under 5 minutes. Get your instant score and personalised recommendations - free."
+>
+  <section class="scorecard-section">
+    <div class="container scorecard-container">
+
+      <!-- Intro state -->
+      <div id="sc-intro" class="sc-fade-in">
+        <div class="sc-badge"><span class="sc-badge-dot"></span> Free &middot; 5 Minutes &middot; Instant Result</div>
+        <h1>How AI-Ready Is<br /><span class="text-gradient">Your Business?</span></h1>
+        <p class="sc-sub">Answer 8 quick questions and get your instant AI Readiness Score &mdash; plus a personalised breakdown of where you're leaving time and money on the table.</p>
+        <button class="btn-primary btn-lg sc-start-btn" onclick="startScorecard()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Get My Free Score
+        </button>
+        <p class="sc-note">No payment required &middot; Takes under 5 minutes</p>
+        <div class="sc-trust-row">
+          <div class="sc-trust-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>500+ businesses scored</span>
+          </div>
+          <div class="sc-trust-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>Instant personalised report</span>
+          </div>
+          <div class="sc-trust-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>100% free, no strings</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiz state -->
+      <div id="sc-quiz" style="display:none">
+        <div class="sc-quiz-header">
+          <div class="sc-step-dots" id="sc-step-dots"></div>
+          <div class="sc-progress-wrap">
+            <div class="sc-progress-bar" id="sc-progress-bar" style="width:0%"></div>
+          </div>
+          <p class="sc-progress-label" id="sc-progress-label">Question 1 of 8</p>
+        </div>
+
+        <div id="sc-question-wrap" class="sc-question-animate"></div>
+
+        <div class="sc-nav">
+          <button class="btn-secondary sc-nav-btn" id="sc-btn-prev" style="display:none" onclick="scPrev()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back
+          </button>
+          <button class="btn-primary sc-nav-btn" id="sc-btn-next" onclick="scNext()">
+            Next
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <button class="btn-primary sc-nav-btn sc-submit-btn" id="sc-btn-submit" style="display:none" onclick="scSubmit()">
+            Get My Score
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Contact capture state -->
+      <div id="sc-contact" style="display:none" class="sc-fade-in">
+        <div class="sc-contact-hero">
+          <div class="sc-lock-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h2>Your score is ready!</h2>
+          <p class="sc-sub">Enter your details below to unlock your personalised AI Readiness Report.</p>
+        </div>
+        <div class="sc-contact-form">
+          <div class="field-group">
+            <label for="sc-name">Your name *</label>
+            <input type="text" id="sc-name" placeholder="e.g. Jane Smith" required />
+          </div>
+          <div class="field-group">
+            <label for="sc-company">Company name *</label>
+            <input type="text" id="sc-company" placeholder="e.g. Acme Corp" required />
+          </div>
+          <div class="field-group">
+            <label for="sc-email">Email address *</label>
+            <input type="email" id="sc-email" placeholder="e.g. jane@acme.com" required />
+          </div>
+          <button class="btn-primary btn-lg sc-reveal-btn" onclick="scShowResult()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Unlock My Report
+          </button>
+          <p class="sc-privacy-note">We never spam or share your data. Unsubscribe anytime.</p>
+        </div>
+      </div>
+
+      <!-- Result state -->
+      <div id="sc-result" style="display:none">
+        <div id="sc-score-display"></div>
+        <div id="sc-breakdown"></div>
+        <div id="sc-cta-block"></div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+var QUESTIONS = [
+  {
+    id: 'lead_response',
+    iconSvg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+    category: 'Lead Response',
+    text: 'How quickly does your business respond to a new lead or enquiry?',
+    options: [
+      { label: 'Within 5 minutes - automatically', score: 4 },
+      { label: 'Within 1 hour - manually', score: 3 },
+      { label: 'Same day - when we get to it', score: 2 },
+      { label: 'Next day or longer', score: 1 },
+      { label: 'No consistent process', score: 0 }
+    ]
+  },
+  {
+    id: 'followup',
+    iconSvg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>',
+    category: 'Follow-Up',
+    text: 'What happens after the first contact with a lead?',
+    options: [
+      { label: 'Automated sequence kicks in immediately', score: 4 },
+      { label: 'Sales person manually follows up', score: 2 },
+      { label: 'We follow up if we remember', score: 1 },
+      { label: 'We mostly wait for them to come back', score: 0 }
+    ]
+  },
+  {
+    id: 'reporting',
+    iconSvg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+    category: 'Reporting',
+    text: 'How do you track business performance (pipeline, revenue, ops)?',
+    options: [
+      { label: 'Live dashboard - updates automatically', score: 4 },
+      { label: 'Regular reports built manually', score: 2 },
+      { label: 'Spreadsheets we update sometimes', score: 1 },
+      { label: 'Mostly in my head', score: 0 }
+    ]
+  },
+  {
+    id: 'repetitive_tasks',
+    iconSvg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
+    category: 'Operations',
+    text: 'How much of your team\'s time goes to repetitive, manual tasks?',
+    options: [
+      { label: 'Almost none - most things are automated', score: 4 },
+      { label: 'A few hours per week', score: 3 },
+      { label: 'Several hours per day', score: 1 },
+      { label: 'Most of the day is manual work', score: 0 }
+    ]
+  },
+  {
+    id: 'tools',
+    iconSvg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+    category: 'Tech Stack',
+    text: 'Which best describes your current tech stack?',
+    options: [
+      { label: 'Connected tools that talk to each other', score: 4 },
+      { label: 'Good tools but not well integrated', score: 2 },
+      { label: 'Basic tools - email, spreadsheets, phone', score: 1 },
+      { label: 'Mostly paper or very manual', score: 0 }
+    ]
+  },
+  {
+    id: 'ai_usage',
+    iconSvg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>',
+    category: 'AI Adoption',
+    text: 'Are you currently using AI in your business?',
+    options: [
+      { label: 'Yes - actively using AI tools in workflows', score: 4 },
+      { label: 'Experimenting with some tools', score: 3 },
+      { label: 'Used ChatGPT occasionally but not systematically', score: 2 },
+      { label: 'Not really - not sure where to start', score: 1 },
+      { label: 'No and I\'m skeptical', score: 0 }
+    ]
+  },
+  {
+    id: 'data',
+    iconSvg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>',
+    category: 'Data Quality',
+    text: 'How accessible and organised is your business data?',
+    options: [
+      { label: 'Clean, centralised, easy to query', score: 4 },
+      { label: 'Mostly organised with some gaps', score: 3 },
+      { label: 'Spread across multiple systems', score: 1 },
+      { label: 'Scattered - hard to find what I need', score: 0 }
+    ]
+  },
+  {
+    id: 'priority',
+    iconSvg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+    category: 'Priority Area',
+    text: 'Which area would benefit most from automation in your business?',
+    options: [
+      { label: 'Lead generation & follow-up', score: 0, tag: 'leads' },
+      { label: 'Operations & internal workflows', score: 0, tag: 'ops' },
+      { label: 'Reporting & business intelligence', score: 0, tag: 'reporting' },
+      { label: 'Customer communication & support', score: 0, tag: 'comms' }
+    ]
+  }
+];
+
+var MAX_SCORE = QUESTIONS.slice(0, 7).reduce(function(sum, q) {
+  return sum + Math.max.apply(null, q.options.map(function(o) { return o.score; }));
+}, 0);
+
+var current = 0;
+var answers = {};
+
+function buildStepDots() {
+  var container = document.getElementById('sc-step-dots');
+  var html = '';
+  for (var i = 0; i < QUESTIONS.length; i++) {
+    html += '<div class="sc-dot' + (i === 0 ? ' active' : '') + '" data-step="' + i + '">';
+    html += '<span class="sc-dot-inner">' + (i + 1) + '</span>';
+    html += '</div>';
+  }
+  container.innerHTML = html;
+}
+
+function updateStepDots() {
+  var dots = document.querySelectorAll('.sc-dot');
+  for (var i = 0; i < dots.length; i++) {
+    var dot = dots[i];
+    if (i === current) {
+      dot.classList.add('active');
+    } else {
+      dot.classList.remove('active');
+    }
+    if (answers[QUESTIONS[i].id] !== undefined && i !== current) {
+      dot.classList.add('completed');
+    } else {
+      dot.classList.remove('completed');
+    }
+  }
+}
+
+function startScorecard() {
+  var intro = document.getElementById('sc-intro');
+  intro.classList.add('sc-fade-out');
+  setTimeout(function() {
+    intro.style.display = 'none';
+    var quiz = document.getElementById('sc-quiz');
+    quiz.style.display = 'block';
+    quiz.classList.add('sc-fade-in');
+    buildStepDots();
+    renderQuestion();
+  }, 300);
+}
+
+function renderQuestion(direction) {
+  var q = QUESTIONS[current];
+  var pct = ((current + 1) / QUESTIONS.length) * 100;
+  document.getElementById('sc-progress-bar').style.width = pct + '%';
+  document.getElementById('sc-progress-label').textContent = 'Question ' + (current + 1) + ' of ' + QUESTIONS.length;
+  document.getElementById('sc-btn-prev').style.display = current > 0 ? 'inline-flex' : 'none';
+  document.getElementById('sc-btn-next').style.display = current < QUESTIONS.length - 1 ? 'inline-flex' : 'none';
+  document.getElementById('sc-btn-submit').style.display = current === QUESTIONS.length - 1 ? 'inline-flex' : 'none';
+
+  updateStepDots();
+
+  var selected = answers[q.id];
+  var letters = 'ABCDEFGHIJ';
+  var wrap = document.getElementById('sc-question-wrap');
+
+  var html = '<div class="sc-question">';
+  html += '<div class="sc-category-badge">' + q.iconSvg + ' ' + q.category + '</div>';
+  html += '<h2 class="sc-q-text">' + q.text + '</h2>';
+  html += '<div class="sc-options">';
+  for (var i = 0; i < q.options.length; i++) {
+    var opt = q.options[i];
+    var sel = selected === i ? ' selected' : '';
+    html += '<button class="sc-option' + sel + '" onclick="selectOption(' + i + ')" data-idx="' + i + '">';
+    html += '<span class="sc-option-letter">' + letters[i] + '</span>';
+    html += '<span class="sc-option-label">' + opt.label + '</span>';
+    html += '<span class="sc-option-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>';
+    html += '</button>';
+  }
+  html += '</div></div>';
+
+  wrap.innerHTML = html;
+  wrap.classList.remove('sc-slide-in');
+  requestAnimationFrame(function() {
+    wrap.classList.add('sc-slide-in');
+  });
+}
+
+function selectOption(idx) {
+  var q = QUESTIONS[current];
+  answers[q.id] = idx;
+  var opts = document.querySelectorAll('.sc-option');
+  for (var i = 0; i < opts.length; i++) {
+    if (i === idx) {
+      opts[i].classList.add('selected');
+      opts[i].classList.add('sc-pop');
+      (function(el) {
+        setTimeout(function() { el.classList.remove('sc-pop'); }, 300);
+      })(opts[i]);
+    } else {
+      opts[i].classList.remove('selected');
+    }
+  }
+  updateStepDots();
+
+  // Auto-advance after short delay
+  if (current < QUESTIONS.length - 1) {
+    setTimeout(function() {
+      current++;
+      renderQuestion('next');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 500);
+  }
+}
+
+function scNext() {
+  if (answers[QUESTIONS[current].id] === undefined) {
+    var opts = document.querySelector('.sc-options');
+    opts.classList.add('shake');
+    setTimeout(function() { opts.classList.remove('shake'); }, 500);
+    return;
+  }
+  current++;
+  renderQuestion('next');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scPrev() {
+  current--;
+  renderQuestion('prev');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scSubmit() {
+  if (answers[QUESTIONS[current].id] === undefined) return;
+  document.getElementById('sc-quiz').classList.add('sc-fade-out');
+  setTimeout(function() {
+    document.getElementById('sc-quiz').style.display = 'none';
+    var contact = document.getElementById('sc-contact');
+    contact.style.display = 'block';
+    contact.classList.add('sc-fade-in');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 300);
+}
+
+function calcScore() {
+  var total = 0;
+  for (var i = 0; i < 7; i++) {
+    var q = QUESTIONS[i];
+    var idx = answers[q.id];
+    if (idx !== undefined) total += q.options[idx].score;
+  }
+  return total;
+}
+
+function getScoreLabel(score, max) {
+  var pct = (score / max) * 100;
+  if (pct >= 80) return { label: 'AI Leader', color: '#10B981', desc: 'You\'re already ahead of the curve. The opportunity now is to go deeper - more sophisticated automation, better data intelligence, and compounding gains.', grade: 'A' };
+  if (pct >= 60) return { label: 'AI Ready', color: '#6C3CE1', desc: 'Good foundation in place. You\'re doing some things well but there are clear gaps where automation could save significant time and money.', grade: 'B' };
+  if (pct >= 40) return { label: 'AI Aware', color: '#F59E0B', desc: 'You\'re aware of the opportunity but haven\'t fully acted on it yet. Several quick wins are available that could pay for themselves within weeks.', grade: 'C' };
+  return { label: 'AI Opportunity', color: '#EF4444', desc: 'Significant untapped opportunity. Manual processes are likely costing you more than you realise in time, deals, and team capacity.', grade: 'D' };
+}
+
+function getPriorityTag() {
+  var idx = answers['priority'];
+  if (idx === undefined) return 'operations';
+  return QUESTIONS[7].options[idx].tag;
+}
+
+function animateCounter(el, target, duration) {
+  var start = 0;
+  function step(timestamp) {
+    if (!start) start = timestamp;
+    var progress = Math.min((timestamp - start) / duration, 1);
+    var eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(eased * target) + '%';
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function scShowResult() {
+  var name = document.getElementById('sc-name').value.trim();
+  var company = document.getElementById('sc-company').value.trim();
+  var email = document.getElementById('sc-email').value.trim();
+
+  if (!name || !company || !email) {
+    if (!name) document.getElementById('sc-name').classList.add('field-error');
+    if (!company) document.getElementById('sc-company').classList.add('field-error');
+    if (!email) document.getElementById('sc-email').classList.add('field-error');
+    setTimeout(function() {
+      var errs = document.querySelectorAll('.field-error');
+      for (var i = 0; i < errs.length; i++) errs[i].classList.remove('field-error');
+    }, 2000);
+    return;
+  }
+
+  var score = calcScore();
+  var info = getScoreLabel(score, MAX_SCORE);
+  var pct = Math.round((score / MAX_SCORE) * 100);
+  var priority = getPriorityTag();
+
+  var priorityRecs = {
+    leads: {
+      title: 'Lead Follow-Up Automation',
+      icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+      text: 'An automated sequence responding within 5 minutes and following up over 14 days could significantly improve your close rate with zero extra effort.'
+    },
+    ops: {
+      title: 'Workflow & Ops Automation',
+      icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
+      text: 'Removing manual handoffs and repetitive tasks from your team\'s day is where you\'ll see the fastest ROI.'
+    },
+    reporting: {
+      title: 'Automated Reporting',
+      icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+      text: 'Real-time dashboards built on your existing data - no more manual reports, always up to date.'
+    },
+    comms: {
+      title: 'Customer Communication Automation',
+      icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+      text: 'Automated acknowledgements, follow-ups, and updates that feel personal but run without you.'
+    }
+  };
+
+  document.getElementById('sc-contact').classList.add('sc-fade-out');
+  setTimeout(function() {
+    document.getElementById('sc-contact').style.display = 'none';
+    var result = document.getElementById('sc-result');
+    result.style.display = 'block';
+    result.classList.add('sc-fade-in');
+
+    var rec = priorityRecs[priority];
+    var circumference = Math.round(2 * Math.PI * 52);
+    var offset = Math.round(circumference * (1 - pct / 100));
+
+    var scoreHtml = '<div class="sc-result-hero">';
+    scoreHtml += '<div class="sc-grade-ring" style="--ring-color:' + info.color + '">';
+    scoreHtml += '<svg class="sc-ring-svg" viewBox="0 0 120 120">';
+    scoreHtml += '<circle cx="60" cy="60" r="52" fill="none" stroke="var(--color-border)" stroke-width="8"/>';
+    scoreHtml += '<circle class="sc-ring-progress" cx="60" cy="60" r="52" fill="none" stroke="' + info.color + '" stroke-width="8" stroke-linecap="round" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + circumference + '" style="--target-offset:' + offset + '"/>';
+    scoreHtml += '</svg>';
+    scoreHtml += '<div class="sc-grade-center"><span class="sc-grade-letter" style="color:' + info.color + '">' + info.grade + '</span></div>';
+    scoreHtml += '</div>';
+    scoreHtml += '<h2 class="sc-result-label" style="color:' + info.color + '">' + info.label + '</h2>';
+    scoreHtml += '<p class="sc-score-pct-animated" id="sc-pct-counter" style="color:' + info.color + '">0%</p>';
+    scoreHtml += '<p class="sc-score-subtitle">AI Readiness Score</p>';
+    scoreHtml += '<p class="sc-result-desc">' + info.desc + '</p>';
+    scoreHtml += '</div>';
+
+    document.getElementById('sc-score-display').innerHTML = scoreHtml;
+
+    setTimeout(function() {
+      animateCounter(document.getElementById('sc-pct-counter'), pct, 1500);
+    }, 400);
+
+    var breakdownHtml = '<div class="sc-breakdown-card">';
+    breakdownHtml += '<div class="sc-breakdown-icon">' + rec.icon + '</div>';
+    breakdownHtml += '<div class="sc-breakdown-content">';
+    breakdownHtml += '<h3>Your #1 Opportunity: ' + rec.title + '</h3>';
+    breakdownHtml += '<p>' + rec.text + '</p>';
+    breakdownHtml += '</div></div>';
+
+    document.getElementById('sc-breakdown').innerHTML = breakdownHtml;
+
+    var ctaHtml = '';
+    if (pct >= 70) {
+      ctaHtml = '<div class="sc-cta-block good">';
+      ctaHtml += '<h3>You\'re in great shape - now go deeper</h3>';
+      ctaHtml += '<p>Get a full AI Business Audit to identify the specific workflows worth automating, with a prioritised roadmap and strategy call.</p>';
+      ctaHtml += '<a href="https://buy.stripe.com/8x27sK5WvghI56l5JZ2Nq03" class="btn-primary btn-lg sc-cta-btn">Get the Full Audit - $497 CAD <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>';
+      ctaHtml += '<span class="cta-note">Comprehensive report + 30-min strategy call</span>';
+      ctaHtml += '</div>';
+    } else {
+      ctaHtml = '<div class="sc-cta-block opportunity">';
+      ctaHtml += '<div class="sc-cta-urgency"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Don\'t leave money on the table</span></div>';
+      ctaHtml += '<h3>You have significant automation opportunity</h3>';
+      ctaHtml += '<p>A full AI Business Audit will map your exact workflows, quantify the ROI, and give you a step-by-step plan to fix it - with a strategy call included.</p>';
+      ctaHtml += '<a href="https://buy.stripe.com/8x27sK5WvghI56l5JZ2Nq03" class="btn-primary btn-lg sc-cta-btn">Get the Full Audit - $497 CAD <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>';
+      ctaHtml += '<span class="cta-note">Personalised report + 30-min strategy call</span>';
+      ctaHtml += '<p class="sc-or">or</p>';
+      ctaHtml += '<a href="/" class="btn-secondary">Learn more about Prism AI</a>';
+      ctaHtml += '</div>';
+    }
+
+    document.getElementById('sc-cta-block').innerHTML = ctaHtml;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 300);
+
+  // Fire and forget - submit to API
+  var answerDetails = {};
+  for (var i = 0; i < QUESTIONS.length; i++) {
+    var q = QUESTIONS[i];
+    var idx = answers[q.id];
+    answerDetails[q.id] = idx !== undefined ? q.options[idx].label : '-';
+  }
+
+  fetch('/api/scorecard-submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: name, company: company, email: email, score: score, pct: pct, grade: info.grade, label: info.label, answers: answerDetails, priority: priority })
+  }).catch(function() {});
+}
+</script>
+
+<style>
+/* -----------------------------------------------
+   SCORECARD QUIZ - PRISM AI
+   ----------------------------------------------- */
+
+.scorecard-section { padding: 4rem 0 6rem; min-height: 80vh; }
+.scorecard-container { max-width: 680px; margin: 0 auto; }
+
+/* -- Animations -- */
+.sc-fade-in { animation: scFadeIn 0.5s ease both; }
+.sc-fade-out { animation: scFadeOut 0.3s ease both; }
+@keyframes scFadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scFadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-12px); } }
+
+.sc-slide-in { animation: scSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes scSlideIn { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+
+.sc-pop { animation: scPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+@keyframes scPop { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
+
+@keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.shake { animation: shake 0.4s; }
+
+@keyframes ringFill {
+  to { stroke-dashoffset: var(--target-offset); }
+}
+
+/* -- Intro -- */
+#sc-intro { text-align: center; padding: 3rem 0; }
+.sc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.2rem;
+  background: rgba(108, 60, 225, 0.12);
+  border: 1px solid rgba(108, 60, 225, 0.25);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary-light);
+  margin-bottom: 1.75rem;
+}
+.sc-badge-dot {
+  width: 7px; height: 7px;
+  background: var(--color-success);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+#sc-intro h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 1.25rem; line-height: 1.2; }
+.sc-sub { color: var(--color-text-muted); font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem; max-width: 540px; margin-left: auto; margin-right: auto; }
+.sc-note { font-size: 0.85rem; color: var(--color-text-muted); margin-top: 1rem; }
+
+.sc-start-btn {
+  font-size: 1.15rem;
+  padding: 1rem 2.5rem;
+  gap: 0.6rem;
+  box-shadow: 0 4px 20px rgba(108, 60, 225, 0.35);
+}
+.sc-start-btn:hover {
+  box-shadow: 0 8px 32px rgba(108, 60, 225, 0.5);
+}
+
+.sc-trust-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+.sc-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+/* -- Quiz header -- */
+.sc-quiz-header { margin-bottom: 2rem; }
+
+.sc-step-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.sc-dot {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 2px solid var(--color-border);
+  color: var(--color-text-muted);
+  transition: all 0.3s ease;
+  background: transparent;
+}
+.sc-dot.active {
+  border-color: var(--color-primary);
+  background: rgba(108, 60, 225, 0.15);
+  color: var(--color-primary-light);
+  transform: scale(1.15);
+}
+.sc-dot.completed {
+  border-color: var(--color-success);
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--color-success);
+}
+.sc-dot-inner { pointer-events: none; }
+
+.sc-progress-wrap {
+  height: 8px;
+  background: var(--color-border);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+.sc-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  border-radius: 999px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 12px rgba(108, 60, 225, 0.4);
+}
+.sc-progress-label { font-size: 0.85rem; color: var(--color-text-muted); text-align: center; margin-bottom: 1.5rem; }
+
+/* -- Category Badge -- */
+.sc-category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.9rem;
+  background: rgba(108, 60, 225, 0.1);
+  border: 1px solid rgba(108, 60, 225, 0.2);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-primary-light);
+  margin-bottom: 1rem;
+}
+.sc-category-badge svg {
+  flex-shrink: 0;
+}
+
+/* -- Question -- */
+.sc-question { margin-bottom: 1rem; }
+.sc-q-text { font-size: 1.35rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.4; }
+
+/* -- Options -- */
+.sc-options { display: flex; flex-direction: column; gap: 0.65rem; }
+
+.sc-option {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  padding: 0.9rem 1.1rem;
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-bg-card);
+  color: var(--color-text-heading);
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+}
+.sc-option::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(108, 60, 225, 0.06), rgba(6, 182, 212, 0.04));
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.sc-option:hover {
+  border-color: var(--color-primary-light);
+  transform: translateX(4px);
+  box-shadow: 0 2px 12px rgba(108, 60, 225, 0.12);
+}
+.sc-option:hover::before { opacity: 1; }
+
+.sc-option.selected {
+  border-color: var(--color-primary);
+  background: rgba(108, 60, 225, 0.1);
+  box-shadow: 0 0 0 1px rgba(108, 60, 225, 0.3), 0 4px 16px rgba(108, 60, 225, 0.15);
+}
+.sc-option.selected .sc-option-letter {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+.sc-option.selected .sc-option-check { opacity: 1; transform: scale(1); }
+
+.sc-option-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px; height: 30px;
+  min-width: 30px;
+  border-radius: 8px;
+  border: 2px solid var(--color-border);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  transition: all 0.2s;
+  position: relative;
+  z-index: 1;
+}
+.sc-option-label { flex: 1; position: relative; z-index: 1; font-weight: 500; }
+
+.sc-option-check {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.2s ease;
+  color: var(--color-primary-light);
+  position: relative;
+  z-index: 1;
+}
+
+/* -- Navigation -- */
+.sc-nav {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+.sc-nav-btn { gap: 0.4rem; }
+.sc-submit-btn { background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); }
+
+/* -- Contact form -- */
+.sc-contact-hero { text-align: center; margin-bottom: 1.5rem; }
+.sc-lock-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px; height: 56px;
+  background: rgba(108, 60, 225, 0.12);
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+#sc-contact h2 { font-size: 1.8rem; margin-bottom: 0.75rem; }
+
+.sc-contact-form { display: flex; flex-direction: column; gap: 1.1rem; max-width: 440px; margin: 0 auto; }
+.field-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.field-group label { font-weight: 600; font-size: 0.9rem; color: var(--color-text-muted); }
+.field-group input {
+  padding: 0.8rem 1rem;
+  border: 2px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-bg-card);
+  color: var(--color-text-heading);
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.field-group input:focus {
+  outline: none;
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 3px rgba(108, 60, 225, 0.15);
+}
+.field-group input.field-error {
+  border-color: #EF4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+  animation: shake 0.4s;
+}
+
+/* -- Reveal button -- */
+.sc-reveal-btn { width: 100%; justify-content: center; gap: 0.6rem; margin-top: 0.5rem; }
+.sc-privacy-note { text-align: center; font-size: 0.82rem; color: var(--color-text-muted); margin-top: 0.75rem; }
+
+/* -- Results -- */
+.sc-result-hero { text-align: center; padding: 2rem 0; }
+
+.sc-grade-ring {
+  position: relative;
+  width: 130px; height: 130px;
+  margin: 0 auto 1.5rem;
+}
+.sc-ring-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.sc-ring-progress {
+  animation: ringFill 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  filter: drop-shadow(0 0 8px var(--ring-color));
+}
+.sc-grade-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sc-grade-letter { font-size: 2.5rem; font-weight: 800; }
+
+.sc-result-label { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+
+.sc-score-pct-animated { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.25rem; }
+.sc-score-subtitle { font-size: 0.95rem; color: var(--color-text-muted); margin-bottom: 1.5rem; }
+.sc-result-desc { color: var(--color-text-muted); line-height: 1.7; font-size: 1.05rem; max-width: 520px; margin: 0 auto 2rem; }
+
+/* -- Breakdown cards -- */
+.sc-breakdown-card {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.sc-breakdown-icon {
+  font-size: 1.8rem;
+  min-width: 48px; height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(108, 60, 225, 0.1);
+  border-radius: 12px;
+  color: var(--color-primary-light);
+}
+.sc-breakdown-content h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+.sc-breakdown-content p { color: var(--color-text-muted); line-height: 1.6; font-size: 0.95rem; }
+
+/* -- CTA Block -- */
+.sc-cta-block {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(108, 60, 225, 0.25);
+  background: linear-gradient(135deg, rgba(108, 60, 225, 0.08), rgba(6, 182, 212, 0.05));
+}
+.sc-cta-block h3 { font-size: 1.3rem; margin-bottom: 0.75rem; }
+.sc-cta-block p { color: var(--color-text-muted); margin-bottom: 1.5rem; line-height: 1.6; }
+.sc-cta-btn {
+  gap: 0.5rem;
+  box-shadow: 0 4px 20px rgba(108, 60, 225, 0.35);
+}
+.sc-cta-btn:hover {
+  box-shadow: 0 8px 32px rgba(108, 60, 225, 0.5);
+}
+.cta-note { display: block; font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.75rem; }
+.sc-or { color: var(--color-text-muted); margin: 1.25rem 0; font-size: 0.9rem; }
+.sc-cta-urgency {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+
+/* -- Responsive -- */
+@media (max-width: 640px) {
+  .scorecard-container { padding: 0 1rem; }
+  .sc-step-dots { gap: 0.3rem; }
+  .sc-dot { width: 26px; height: 26px; font-size: 0.65rem; }
+  .sc-trust-row { flex-direction: column; align-items: center; gap: 0.75rem; }
+  .sc-grade-ring { width: 110px; height: 110px; }
+  .sc-option { padding: 0.8rem 1rem; }
+  .sc-breakdown-card { flex-direction: column; text-align: center; }
+  .sc-breakdown-icon { margin: 0 auto; }
+  .sc-cta-block { padding: 2rem 1.25rem; }
+}
+
+.btn-lg { font-size: 1.1rem; padding: 0.9rem 2.2rem; }
+</style>
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
   title="Free AI Readiness Scorecard â Prism AI"
   description="Find out how AI-ready your business is in under 5 minutes. Get your instant score and personalised recommendations â free."
 >
