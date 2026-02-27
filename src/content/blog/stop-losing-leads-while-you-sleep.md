@@ -1,14 +1,14 @@
 ---
 title: "Stop Losing Leads While You Sleep: The After-Hours Revenue Leak Costing Canadian Service Businesses Thousands"
-description: "Most service businesses lose their best leads between 5pm and 9am. Here is exactly what is happening, at it is costing you, and how AI automation seals the gap permanently."
+description: "Most service businesses lose their best leads between 5pm and 9am. Here is exactly what is happening, what it is costing you, and how AI automation seals the gap permanently."
 publishDate: 2026-02-26
-author: "Pieter van der Walt"
+author: Prism AI - AI Team
 category: AI Automation
 tags: [lead-generation, ai-automation, service-business, ai-voice-agents, business-growth]
 slug: stop-losing-leads-while-you-sleep
 ---
 
-
+## The After-Hours Revenue Leak Costing Canadian Service Businesses Thousands
 
 Here is a scenario that plays out thousands of times a day across Canada:
 
@@ -142,14 +142,22 @@ That is why we built the **free AI Readiness Scorecard**  a 5-minute, 8-question
 
 No forms, no sales calls, no commitment. Just an honest picture of where you stand and what is possible.
 
-**[Take the Free AI Readiness Scorecard](https://prismaiservices.ca/scorecard)**
+**[Take the Free AI Readiness Scorecard](https://prismaiservices.netlify.app/scorecard)**
 
 **Or, if you would rather just talk it through:**
 
 Hit the button below and have a 2-3 minute conversation with our AI concierge. Tell it about your business. It will tell you exactly what we would focus on first  and what it is worth to you.
 
-**[Start a Free AI Call](https://prismaiservices.ca/#voice-agent)**
+**[Start a Free AI Call](https://prismaiservices.netlify.app/#voice-agent)**
+
+## Related Reads and Next Steps
+
+If you want to go deeper on this topic, these pages are the best next click:
+
+- [Why AI Voice Agents Are Replacing Hold Music](/blog/ai-voice-agents-replacing-hold-music/) for a practical breakdown of how modern voice agents work
+- [AI Workflow Automation for Real Estate in Kelowna, BC](/services/ai-workflow-automation-real-estate-kelowna/) if you run a local service team with after-hours lead leakage
+- [Free AI Readiness Scorecard](/scorecard/) for a 5-minute assessment of where your response gaps are today
 
 ---
 
-*Prism AI helps Canadian service businesses automate their lead response, follow-up, and intake systems so they capture more revenue without adding headcount. Learn more at [prismaiservices.ca](https://prismaiservices.ca) or take the free [AI Readiness Scorecard](https://prismaiservices.ca/scorecard).*
+*Prism AI helps Canadian service businesses automate their lead response, follow-up, and intake systems so they capture more revenue without adding headcount. Learn more at [prismaiservices.netlify.app](https://prismaiservices.netlify.app) or take the free [AI Readiness Scorecard](https://prismaiservices.netlify.app/scorecard).*
