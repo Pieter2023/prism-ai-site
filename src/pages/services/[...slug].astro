@@ -97,7 +97,7 @@ const jsonLd = {
       <span>/</span>
       <a href="/#services">Services</a>
       <span>/</span>
-      <span class="current">{entry.head_term} for {entry.industry}</span>
+      <span class="current">{entry.head_term}</span>
     </div>
   </nav>
 
@@ -172,7 +172,7 @@ const jsonLd = {
 
   <!-- FAQ Section -->
   {faqItems.length > 0 && (
-    <FAQ items={faqItems} heading={`${entry.head_term} FAQ for ${entry.industry}`} />
+    <FAQ items={faqItems} heading={`${entry.head_term} FAQ`} />
   )}
 
   <!-- CTA Section -->

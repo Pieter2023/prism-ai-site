@@ -8,9 +8,7 @@ tags: [lead-generation, ai-automation, service-business, ai-voice-agents, busine
 slug: stop-losing-leads-while-you-sleep
 ---
 
-# Stop Losing Leads While You Sleep
 
-## The After-Hours Revenue Leak Costing Canadian Service Businesses Thousands
 
 Here is a scenario that plays out thousands of times a day across Canada:
 
