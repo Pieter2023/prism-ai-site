@@ -106,6 +106,10 @@ const websiteSchema = {
           <a href="/products">Resources</a>
           <a href="/#about">About</a>
           <a href="/blog/">Blog</a>
+          <a href="https://x.com/AutoClaw_AI" target="_blank" rel="noopener noreferrer" class="x-nav-follow" aria-label="Follow @AutoClaw_AI on X">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="x-nav-icon"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Follow
+          </a>
           <a href="/#talk-to-ai" class="btn-primary btn-sm" onclick="if(window.startAICall){event.preventDefault();startAICall();}">Talk to AI</a>
         </div>
       </nav>
@@ -122,6 +126,10 @@ const websiteSchema = {
         <div class="footer-brand">
           <span class="text-gradient footer-logo">Prism AI</span>
           <p>Automate the Chaos. Custom AI solutions for Canadian businesses.</p>
+          <a href="https://x.com/AutoClaw_AI" target="_blank" rel="noopener noreferrer" class="footer-x-follow" aria-label="Follow @AutoClaw_AI on X">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Follow @AutoClaw_AI
+          </a>
         </div>
         <div class="footer-links">
           <h4>Services</h4>
@@ -138,6 +146,10 @@ const websiteSchema = {
       </div>
       <div class="footer-bottom">
         <p>&copy; {new Date().getFullYear()} Prism AI Services. All rights reserved.</p>
+          <a href="https://x.com/AutoClaw_AI" target="_blank" rel="noopener noreferrer" class="footer-bottom-x" aria-label="Follow @AutoClaw_AI on X">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            @AutoClaw_AI
+          </a>
       </div>
     </div>
   </footer>
@@ -253,4 +265,46 @@ const websiteSchema = {
     .nav-links { display: none; }
     .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   }
+
+  /* X/Twitter Follow CTAs */
+  .x-nav-follow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .x-nav-follow:hover { color: var(--color-primary); }
+  .x-nav-icon { width: 1rem; height: 1rem; fill: currentColor; flex-shrink: 0; }
+
+  .footer-x-follow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.2s;
+    border: 1px solid var(--color-border);
+    padding: 0.4rem 0.8rem;
+    border-radius: 2rem;
+  }
+  .footer-x-follow:hover { color: var(--color-primary); border-color: var(--color-primary); }
+  .footer-x-follow svg { width: 1rem; height: 1rem; fill: currentColor; flex-shrink: 0; }
+
+  .footer-bottom { display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+  .footer-bottom-x {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-bottom-x:hover { color: var(--color-primary); }
+  .footer-bottom-x svg { width: 0.9rem; height: 0.9rem; fill: currentColor; flex-shrink: 0; }
 </style>
