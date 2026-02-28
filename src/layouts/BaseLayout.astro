@@ -11,7 +11,7 @@ interface Props {
 }
 
 const { title, description, canonical, image, robots, jsonLd } = Astro.props;
-const siteUrl = 'https://prismaiservices.ca';
+const siteUrl = 'https://prismaiservices.netlify.app';
 const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
 const ogImage = image || new URL('/og-default.svg', siteUrl).href;
 const robotsContent = robots || 'index, follow';
@@ -55,14 +55,6 @@ const websiteSchema = {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H0E6ZKH8WH"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-H0E6ZKH8WH');
-    </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
@@ -75,7 +67,7 @@ const websiteSchema = {
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonicalUrl} />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Prism AI Services" />
+  <meta property="og:site_name" content="Prism AI" />
     <meta property="og:image" content={ogImage} />
     <meta property="og:locale" content="en_CA" />
 
@@ -108,13 +100,13 @@ const websiteSchema = {
           <span class="text-gradient">Prism AI</span>
         </a>
         <div class="nav-links">
-          <a href="/services/ai-voicebots">AI Voicebots</a>
-          <a href="/services/workflow-automation">Automation</a>
-          <a href="/industries/">Industries</a>
-          <a href="/kelowna-ai-services">Kelowna</a>
-          <a href="/about">About</a>
+          <a href="/#services">Services</a>
+          <a href="/#industries">Industries</a>
+          <a href="/scorecard">Free Scorecard</a>
+          <a href="/products">Resources</a>
+          <a href="/#about">About</a>
           <a href="/blog/">Blog</a>
-          <a href="https://x.com/PrismAIServices" target="_blank" rel="noopener noreferrer" class="x-nav-follow" aria-label="Follow @PrismAIServices on X">
+          <a href="https://x.com/AutoClaw_AI" target="_blank" rel="noopener noreferrer" class="x-nav-follow" aria-label="Follow @AutoClaw_AI on X">
             <svg viewBox="0 0 24 24" aria-hidden="true" class="x-nav-icon"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             Follow
           </a>
@@ -134,40 +126,29 @@ const websiteSchema = {
         <div class="footer-brand">
           <span class="text-gradient footer-logo">Prism AI</span>
           <p>Automate the Chaos. Custom AI solutions for Canadian businesses.</p>
-          <a href="https://x.com/PrismAIServices" target="_blank" rel="noopener noreferrer" class="footer-x-follow" aria-label="Follow @PrismAIServices on X">
+          <a href="https://x.com/AutoClaw_AI" target="_blank" rel="noopener noreferrer" class="footer-x-follow" aria-label="Follow @AutoClaw_AI on X">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            Follow @PrismAIServices
+            Follow @AutoClaw_AI
           </a>
         </div>
         <div class="footer-links">
           <h4>Services</h4>
-          <a href="/services/ai-voicebots">AI Voicebots</a>
-          <a href="/services/workflow-automation">Workflow Automation</a>
-          <a href="/services/">All Services</a>
-        </div>
-        <div class="footer-links">
-          <h4>Industries</h4>
-          <a href="/industries/wineries-tourism">Wineries & Tourism</a>
-          <a href="/industries/trades-contractors">Trades & Contractors</a>
-          <a href="/industries/real-estate">Real Estate</a>
-          <a href="/industries/healthcare-dental">Healthcare & Dental</a>
-          <a href="/industries/hospitality">Hotels & Restaurants</a>
+          <a href="/services/ai-workflow-automation-real-estate-kelowna">AI Workflow Automation</a>
+          <a href="/services/custom-chatbot-development-healthcare-vancouver">Custom Chatbots</a>
+          <a href="/services/ai-lead-generation-ecommerce-toronto">AI Lead Generation</a>
         </div>
         <div class="footer-links">
           <h4>Company</h4>
-          <a href="/about">About</a>
-          <a href="/kelowna-ai-services">Kelowna &amp; Okanagan</a>
-          <a href="/blog/">Blog</a>
+          <a href="/#about">About</a>
           <a href="/#talk-to-ai" onclick="if(window.startAICall){event.preventDefault();startAICall();}">Talk to AI</a>
           <a href="/sitemap-index.xml">Sitemap</a>
-          <a href="/privacy">Privacy Policy</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Prism AI Services. All rights reserved.</p>
-          <a href="https://x.com/PrismAIServices" target="_blank" rel="noopener noreferrer" class="footer-bottom-x" aria-label="Follow @PrismAIServices on X">
+        <p>&copy; {new Date().getFullYear()} Prism AI. All rights reserved.</p>
+          <a href="https://x.com/AutoClaw_AI" target="_blank" rel="noopener noreferrer" class="footer-bottom-x" aria-label="Follow @AutoClaw_AI on X">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            @PrismAIServices
+            @AutoClaw_AI
           </a>
       </div>
     </div>
@@ -245,7 +226,7 @@ const websiteSchema = {
   }
   .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
     gap: 3rem;
     margin-bottom: 3rem;
   }

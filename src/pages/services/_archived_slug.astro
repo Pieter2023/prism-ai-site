@@ -51,7 +51,7 @@ const jsonLd = {
       description: entry.meta_description,
       provider: {
         '@type': 'LocalBusiness',
-        name: 'Prism AI Services',
+        name: 'Prism AI',
         url: siteUrl,
         address: {
           '@type': 'PostalAddress',
@@ -72,6 +72,16 @@ const jsonLd = {
         acceptedAnswer: { '@type': 'Answer', text: f.answer },
       })),
     }] : []),
+    {
+      '@type': 'WebPage',
+      '@id': `${pageUrl}#webpage`,
+      name: entry.meta_title,
+      url: pageUrl,
+      speakable: {
+        '@type': 'SpeakableSpecification',
+        cssSelector: ['.quick-answer p']
+      }
+    },
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
@@ -109,6 +119,19 @@ const jsonLd = {
     statLabel={entry.stat_label}
     ctaText={entry.cta_text}
   />
+
+  <!-- GEO: Direct answer summary -->
+  <section class="quick-answer" aria-label="Quick answer">
+    <div class="container">
+      <div class="quick-answer-card">
+        <h2>Quick answer:</h2>
+        <p>
+          Prism AI provides {entry.head_term.toLowerCase()} for {entry.industry.toLowerCase()} businesses in {entry.location},
+          helping teams in Canada reduce manual admin, respond faster to leads, and improve conversion outcomes.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <!-- Pain Point Section -->
   <section class="pain-section">
@@ -197,6 +220,27 @@ const jsonLd = {
   .breadcrumb a:hover { color: var(--color-primary-light); }
   .breadcrumb span { margin: 0 0.5rem; }
   .breadcrumb .current { color: var(--color-text); }
+
+  .quick-answer {
+    padding-top: 1.5rem;
+  }
+  .quick-answer-card {
+    max-width: 900px;
+    margin: 0 auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    background: rgba(6, 182, 212, 0.08);
+  }
+  .quick-answer-card h2 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-secondary);
+  }
+  .quick-answer-card p {
+    margin: 0;
+    line-height: 1.7;
+  }
 
   .pain-section { background: var(--color-bg-card); }
   .pain-grid {
