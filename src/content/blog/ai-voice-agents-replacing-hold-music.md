@@ -8,7 +8,7 @@ tags: ["voicebots", "customer-service", "ai-automation"]
 slug: "ai-voice-agents-replacing-hold-music"
 ---
 
-Every year, North Americans spend roughly 900 million hours on hold. For businesses, that translates to lost customers, frustrated callers, and missed revenue. But a quiet revolution is underway: AI voice agents are stepping in to answer calls instantly, around the clock, with no hold music required.
+Every year, North Americans spend an estimated 900 million hours on hold. For businesses, that translates to lost customers, frustrated callers, and missed revenue. But a quiet revolution is underway: AI voice agents are stepping in to answer calls instantly, around the clock, with no hold music required.
 
 ## At a Glance
 
@@ -66,3 +66,9 @@ If you are considering AI voice automation, start by measuring your current resp
 - Take the [Free AI Readiness Scorecard](/scorecard/) to identify your highest-impact automation opportunities
 - See how this plays out in practice in [Stop Losing Leads While You Sleep](/blog/stop-losing-leads-while-you-sleep/)
 - If you are ready to implement, start a quick consult from the [homepage AI concierge](/#voice-agent)
+
+## Sources and Further Reading
+
+- [The New Science of Sales Force Productivity (Harvard Business Review)](https://hbr.org/2011/09/the-new-science-of-sales-force-productivity)
+- [Local Consumer Review Survey (BrightLocal)](https://www.brightlocal.com/research/local-consumer-review-survey/)
+- [Consumer response-time expectations research summary (HubSpot)](https://blog.hubspot.com/service/customer-service-response-time)

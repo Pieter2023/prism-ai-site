@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const pageUrl = 'https://prismaiservices.netlify.app/services/ai-lead-follow-up-real-estate-kelowna/';
+const faqItems = [
+  {
+    question: 'How can Kelowna real estate teams use AI for lead follow-up?',
+    answer: 'AI follow-up can send immediate responses, qualify buying or selling intent, and trigger next-step nudges across SMS and email until the lead books a call.'
+  },
+  {
+    question: 'Will AI follow-up feel robotic to prospects?',
+    answer: 'Not when configured correctly. Messaging can mirror your brand tone and hand over to an agent as soon as a lead is ready for a live conversation.'
+  },
+  {
+    question: 'What KPIs improve first with AI follow-up?',
+    answer: 'Teams typically see faster first response time, higher contact rates, and more qualified appointments from inbound enquiries.'
+  }
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      name: 'AI Lead Follow-Up for Real Estate in Kelowna',
+      provider: { '@type': 'Organization', name: 'Prism AI', url: 'https://prismaiservices.netlify.app' },
+      areaServed: { '@type': 'City', name: 'Kelowna' },
+      serviceType: 'Real estate lead follow-up automation',
+      url: pageUrl,
+      description: 'Prism AI helps Kelowna real estate teams automate lead follow-up and convert more enquiries into booked appointments.'
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } }))
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${pageUrl}#webpage`,
+      name: 'AI Lead Follow-Up for Real Estate in Kelowna | Prism AI',
+      url: pageUrl,
+      speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.quick-answer p'] }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="AI Lead Follow-Up for Real Estate in Kelowna | Prism AI"
+  description="Prism AI helps Kelowna real estate teams automate lead follow-up with fast response workflows that increase appointment conversion."
+  canonical={pageUrl}
+  jsonLd={jsonLd}
+>
+  <section class="container page">
+    <h1>AI Lead Follow-Up for Real Estate in Kelowna</h1>
+    <div class="quick-answer"><p>Prism AI builds lead follow-up automation for Kelowna real estate teams so enquiries get immediate, consistent responses that move prospects toward booked calls and viewings.</p></div>
+
+    <h2>What is AI lead follow-up?</h2>
+    <p>It is an automated response and nurture workflow that engages leads within seconds, captures buyer or seller intent, and escalates high-intent prospects to your team quickly.</p>
+
+    <h2>How does it work for Kelowna real estate businesses?</h2>
+    <p>We design a sequence for inbound channels (forms, calls, chat), qualify intent and timeline, and sync handoff triggers to your CRM and calendar so agents spend time on ready-to-act leads.</p>
+
+    <h2>Practical rollout steps</h2>
+    <ul>
+      <li>Define qualification fields (budget, timeline, location)</li>
+      <li>Set follow-up cadence for first 7 days</li>
+      <li>Configure hot-lead handoff to agent notifications</li>
+      <li>Track conversion-to-appointment weekly</li>
+    </ul>
+
+    <p>Use the <a href="/scorecard">free AI readiness scorecard</a> to benchmark your current follow-up gap.</p>
+  </section>
+
+  <FAQ items={faqItems} heading="AI Real Estate Follow-Up FAQ for Kelowna" />
+</BaseLayout>
+
+<style>
+.page{padding:3rem 0 2rem;max-width:860px}
+.quick-answer{border:1px solid var(--color-border);padding:1rem 1.25rem;border-radius:12px;background:rgba(6,182,212,.08);margin:1rem 0 1.5rem}
+</style>
