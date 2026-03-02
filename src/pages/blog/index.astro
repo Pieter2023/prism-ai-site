@@ -10,7 +10,7 @@ const posts = (await getCollection('blog')).sort(
 const categories = [...new Set(posts.map(p => p.data.category))];
 const title = 'Blog | Prism AI';
 const description = 'Insights on AI voicebots, business automation, and how Canadian businesses are using AI to grow faster and serve customers better.';
-const canonicalUrl = 'https://prismaiservices.netlify.app/blog/';
+const canonicalUrl = 'https://prismaiservices.ca/blog/';
 ---
 
 <BaseLayout title={title} description={description} canonicalUrl={canonicalUrl}>

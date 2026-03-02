@@ -11,7 +11,7 @@ interface Props {
 }
 
 const { title, description, canonical, image, robots, jsonLd } = Astro.props;
-const siteUrl = 'https://prismaiservices.netlify.app';
+const siteUrl = 'https://prismaiservices.ca';
 const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
 const ogImage = image || new URL('/og-default.svg', siteUrl).href;
 const robotsContent = robots || 'index, follow';

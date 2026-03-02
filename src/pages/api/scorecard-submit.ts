@@ -36,7 +36,7 @@ export const POST: APIRoute = async ({ request }) => {
 
 <br/>
 <p style="color:#6C3CE1;font-weight:bold">→ Reply directly to this email to follow up with ${data.name}.</p>
-<p style="font-size:0.85em;color:#999">Prism AI · prismaiservices.netlify.app/scorecard</p>
+<p style="font-size:0.85em;color:#999">Prism AI · prismaiservices.ca/scorecard</p>
     `.trim();
 
     const res = await fetch('https://api.resend.com/emails', {
