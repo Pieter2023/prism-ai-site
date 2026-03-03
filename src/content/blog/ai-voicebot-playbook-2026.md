@@ -4,7 +4,7 @@ description: "The 2026 AI voicebot trends that matter in Canada: real-time speec
 publishDate: 2026-03-03
 author: "Prism AI"
 category: "AI Voicebots"
-tags: ["voicebots", "ai-automation", "customer-experience", "south-africa", "contact-centre"]
+tags: ["voicebots", "ai-automation", "customer-experience", "canada", "contact-centre"]
 slug: "ai-voicebot-playbook-2026"
 ---
 
