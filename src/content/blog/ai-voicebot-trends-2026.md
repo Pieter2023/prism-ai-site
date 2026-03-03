@@ -88,6 +88,8 @@ Usually no. Smaller teams benefit most from immediate response automation becaus
 
 - Read: [Why AI Voice Agents Are Replacing Hold Music](/blog/ai-voice-agents-replacing-hold-music/)
 - Read: [Stop Losing Leads While You Sleep](/blog/stop-losing-leads-while-you-sleep/)
+- Implement: [AI Lead Qualification for HVAC in Kelowna](/services/ai-lead-qualification-hvac-kelowna/)
+- Implement: [AI Workflow Automation for Accounting in Kelowna](/services/ai-workflow-automation-accounting-kelowna/)
 - Act: [Take the Free AI Readiness Scorecard](/scorecard/)
 
 ## Sources and Further Reading

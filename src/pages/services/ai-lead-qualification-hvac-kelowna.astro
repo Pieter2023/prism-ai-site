@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const pageUrl = 'https://prismaiservices.netlify.app/services/ai-lead-qualification-hvac-kelowna/';
+const faqItems = [
+  { question: 'How does AI lead qualification help Kelowna HVAC companies?', answer: 'It captures call details, urgency, property type, and budget signals quickly so your team can prioritize the right opportunities.' },
+  { question: 'Can AI separate emergency calls from routine enquiries?', answer: 'Yes. Priority logic can route emergencies instantly while normal requests follow your standard booking flow.' },
+  { question: 'What should we track after rollout?', answer: 'Track qualified lead rate, first response speed, booked-job conversion, and response performance by channel.' }
+];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Service', name: 'AI Lead Qualification for HVAC in Kelowna', provider: { '@type': 'Organization', name: 'Prism AI', url: 'https://prismaiservices.netlify.app' }, areaServed: { '@type': 'City', name: 'Kelowna' }, serviceType: 'HVAC lead qualification automation', url: pageUrl, description: 'Prism AI helps Kelowna HVAC teams qualify inbound leads faster and convert high-intent requests into booked jobs.' },
+    { '@type': 'FAQPage', mainEntity: faqItems.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })) },
+    { '@type': 'WebPage', '@id': `${pageUrl}#webpage`, name: 'AI Lead Qualification for HVAC in Kelowna | Prism AI', url: pageUrl, speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.quick-answer p'] } }
+  ]
+};
+---
+
+<BaseLayout title="AI Lead Qualification for HVAC in Kelowna | Prism AI" description="Prism AI helps Kelowna HVAC businesses automate lead qualification and prioritize urgent high-value jobs faster." canonical={pageUrl} jsonLd={jsonLd}>
+  <section class="container page">
+    <h1>AI Lead Qualification for HVAC in Kelowna</h1>
+    <div class="quick-answer"><p>Prism AI builds lead qualification workflows for Kelowna HVAC teams so every inbound call is scored quickly, urgent opportunities are prioritized, and technicians focus on high-value jobs.</p></div>
+    <h2>What is AI lead qualification?</h2>
+    <p>It is a structured intake system that collects key demand signals and ranks leads for immediate action, scheduled follow-up, or nurture.</p>
+    <h2>How does it work for Kelowna HVAC operations?</h2>
+    <p>We map your service categories and urgency criteria, then deploy automated intake that captures context and routes opportunities into your booking and dispatch workflow.</p>
+    <h2>Deployment checklist</h2>
+    <ul><li>Define qualification criteria by service line</li><li>Set emergency escalation and SLA thresholds</li><li>Integrate booking and CRM handoff</li><li>Review lead-quality reporting every week</li></ul>
+    <p>Get started with the <a href="/scorecard">free AI readiness scorecard</a> and see where response leakage is costing revenue.</p>
+  </section>
+  <FAQ items={faqItems} heading="AI HVAC Lead Qualification FAQ for Kelowna" />
+</BaseLayout>
+
+<style>.page{padding:3rem 0 2rem;max-width:860px}.quick-answer{border:1px solid var(--color-border);padding:1rem 1.25rem;border-radius:12px;background:rgba(6,182,212,.08);margin:1rem 0 1.5rem}</style>
