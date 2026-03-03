@@ -142,14 +142,14 @@ That is why we built the **free AI Readiness Scorecard**  a 5-minute, 8-question
 
 No forms, no sales calls, no commitment. Just an honest picture of where you stand and what is possible.
 
-**[Take the Free AI Readiness Scorecard](https://prismaiservices.netlify.app/scorecard)**
+**[Take the Free AI Readiness Scorecard](https://prismaiservices.ca/scorecard)**
 
 **Or, if you would rather just talk it through:**
 
 Hit the button below and have a 2-3 minute conversation with our AI concierge. Tell it about your business. It will tell you exactly what we would focus on first  and what it is worth to you.
 
-**[Start a Free AI Call](https://prismaiservices.netlify.app/#voice-agent)**
+**[Start a Free AI Call](https://prismaiservices.ca/#voice-agent)**
 
 ---
 
-*Prism AI helps Canadian service businesses automate their lead response, follow-up, and intake systems so they capture more revenue without adding headcount. Learn more at [prismaiservices.netlify.app](https://prismaiservices.netlify.app) or take the free [AI Readiness Scorecard](https://prismaiservices.netlify.app/scorecard).*
+*Prism AI helps Canadian service businesses automate their lead response, follow-up, and intake systems so they capture more revenue without adding headcount. Learn more at [prismaiservices.ca](https://prismaiservices.ca) or take the free [AI Readiness Scorecard](https://prismaiservices.ca/scorecard).*
