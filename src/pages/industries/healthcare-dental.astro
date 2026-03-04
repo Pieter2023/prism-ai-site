@@ -1,0 +1,269 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const siteUrl = 'https://prismaiservices.ca';
+const pageUrl = new URL('/industries/healthcare-dental', siteUrl).href;
+
+const faqItems = [
+  {
+    question: 'Is the AI voicebot PIPEDA and PIPA compliant for handling patient data?',
+    answer: 'Yes. Patient privacy is our top priority. All our systems are built to comply with PIPEDA (federal) and BC\'s Personal Information Protection Act (PIPA). Patient data is encrypted in transit and at rest, processed within Canadian infrastructure, access-controlled, and never shared with third parties. We provide a full compliance documentation package for your records.',
+  },
+  {
+    question: 'Can the AI handle appointment booking and reminders?',
+    answer: 'Absolutely. The AI voicebot books appointments by checking your real-time schedule, confirms with patients via voice or text, sends automated reminders at 48 hours and 2 hours before the appointment, and handles rescheduling. Clinics using our system typically see a 35-45% reduction in no-shows.',
+  },
+  {
+    question: 'How does the after-hours triage work?',
+    answer: 'The AI answers after-hours calls and asks structured triage questions based on your clinical protocols. Urgent symptoms (chest pain, severe bleeding, difficulty breathing) are immediately routed to your on-call provider or directed to 911. Non-urgent concerns are logged and scheduled for the next available appointment. All interactions are documented for clinical records.',
+  },
+  {
+    question: 'Does it integrate with our practice management software?',
+    answer: 'We integrate with major practice management and EHR systems including Dentrix, Open Dental, OSCAR, Telus Health, Jane App, and Juvonno. If your system has an API, we can connect to it. Patient data syncs automatically — no duplicate entry.',
+  },
+  {
+    question: 'What does setup look like for a medical or dental practice?',
+    answer: 'We start with a free 4-week pilot. During discovery, we map your patient intake process, appointment types, triage protocols, and compliance requirements. Build takes about 2 weeks. We handle all technical setup — your staff doesn\'t need to be tech-savvy. Plans start at $497 CAD/month after the pilot.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'AI Voicebots & Automation for Healthcare and Dental Practices',
+  description: 'PIPEDA-compliant AI appointment booking, patient intake automation, and after-hours triage for Kelowna healthcare and dental practices.',
+  provider: { '@type': 'Organization', name: 'Prism AI Services', url: siteUrl },
+  areaServed: [
+    { '@type': 'City', name: 'Kelowna' },
+    { '@type': 'City', name: 'West Kelowna' },
+    { '@type': 'City', name: 'Penticton' },
+    { '@type': 'City', name: 'Vernon' },
+  ],
+  serviceType: 'AI Automation for Healthcare and Dental',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Industries', item: new URL('/industries/', siteUrl).href },
+    { '@type': 'ListItem', position: 3, name: 'Healthcare & Dental', item: pageUrl },
+  ],
+};
+---
+
+<BaseLayout
+  title="AI for Kelowna Healthcare & Dental | PIPEDA-Compliant Automation | Prism AI"
+  description="PIPEDA-compliant AI voicebots and automation for Kelowna healthcare and dental practices. Reduce no-shows by 40%, automate patient intake, and provide after-hours triage support."
+  canonical={pageUrl}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <nav class="breadcrumb">
+    <div class="container">
+      <a href="/">Home</a> <span>/</span> <a href="/industries/">Industries</a> <span>/</span> <span class="current">Healthcare & Dental</span>
+    </div>
+  </nav>
+
+  <section class="vert-hero">
+    <div class="container">
+      <div class="hero-badge">AI for Healthcare & Dental · Kelowna, BC</div>
+      <h1>Your Front Desk Is Overwhelmed. <span class="text-gradient">Your Patients Shouldn't Be.</span></h1>
+      <p class="hero-sub">
+        Kelowna's growing population means more patients, longer phone queues, and more no-shows.
+        Our PIPEDA-compliant AI handles appointment booking, patient intake, and after-hours triage
+        — so your staff can focus on patient care instead of phone calls.
+      </p>
+      <div class="hero-actions">
+        <a href="#talk-to-ai" class="btn-primary" onclick="if(window.startAICall){event.preventDefault();startAICall();}">Talk to Our AI — Free</a>
+        <a href="#faq" class="btn-secondary">Compliance & Privacy</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pain-section">
+    <div class="container">
+      <h2 class="section-title">The Clinic Capacity Crisis</h2>
+      <div class="pain-grid">
+        <div class="pain-card card">
+          <div class="pain-stat">23%</div>
+          <h3>Average No-Show Rate</h3>
+          <p>Missed appointments cost Canadian clinics thousands monthly. Each empty slot is revenue lost and another patient who could have been seen waiting longer.</p>
+        </div>
+        <div class="pain-card card">
+          <div class="pain-stat">40+</div>
+          <h3>Calls Per Day to Front Desk</h3>
+          <p>Reception staff juggle appointment booking, insurance questions, prescription refills, and walk-in patients simultaneously. Calls get put on hold, then abandoned.</p>
+        </div>
+        <div class="pain-card card">
+          <div class="pain-stat">35%</div>
+          <h3>After-Hours Inquiries</h3>
+          <p>Over a third of patient calls come outside business hours. Without AI, those patients either show up at the ER or call a different clinic in the morning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="solutions-section">
+    <div class="container">
+      <h2 class="section-title">PIPEDA-Compliant AI for Patient Care</h2>
+      <p class="section-sub">Every feature built with Canadian privacy law as the foundation — not an afterthought.</p>
+      <div class="solutions-grid">
+        <div class="solution-card card">
+          <h3>AI Appointment Booking</h3>
+          <p>Patients call and the AI books appointments by checking your live schedule — matching appointment type, provider, and time preference. Sends confirmation texts and automated reminders at 48 hours and 2 hours before.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>No-Show Reduction</h3>
+          <p>Automated multi-channel reminders (voice, text, email) with easy rescheduling options. Waitlist management fills cancelled slots automatically. Clinics see 35-45% fewer no-shows.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Patient Intake Automation</h3>
+          <p>New patients complete intake forms digitally before arriving — medical history, insurance info, consent forms. Data flows directly into your EHR. Less clipboard time, more care time.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>After-Hours Triage</h3>
+          <p>AI voicebot follows your clinical protocols to assess urgency. True emergencies route to on-call or 911. Non-urgent concerns get logged and scheduled. Every interaction documented for your records.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Prescription & Refill Management</h3>
+          <p>Automate refill requests, pharmacy coordination, and patient notifications. Reduce phone tag between patients, your clinic, and pharmacies.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Patient Recall Campaigns</h3>
+          <p>Automated reminders for routine check-ups, dental cleanings, annual physicals, and follow-up care. Keep patients on schedule and chairs full.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compliance Callout -->
+  <section class="compliance-section">
+    <div class="container">
+      <div class="compliance-card">
+        <h2>Privacy & Compliance Built In</h2>
+        <div class="compliance-grid">
+          <div class="compliance-item">
+            <h3>PIPEDA Compliant</h3>
+            <p>Federal privacy law compliance with proper consent management, data minimization, and breach notification protocols.</p>
+          </div>
+          <div class="compliance-item">
+            <h3>BC PIPA Compliant</h3>
+            <p>Provincial privacy act compliance for private-sector healthcare organizations operating in British Columbia.</p>
+          </div>
+          <div class="compliance-item">
+            <h3>Canadian Data Residency</h3>
+            <p>All patient data processed and stored within Canadian infrastructure. No cross-border data transfers.</p>
+          </div>
+          <div class="compliance-item">
+            <h3>Encryption & Access Control</h3>
+            <p>End-to-end encryption in transit and at rest. Role-based access controls. Full audit logging for compliance reviews.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-section">
+    <div class="container">
+      <h2 class="section-title">How It Works for Clinics</h2>
+      <div class="how-grid">
+        <div class="how-step">
+          <div class="how-num">1</div>
+          <h3>Clinical Workflow Review</h3>
+          <p>We map your patient journey — booking, intake, care, follow-up — and identify every touchpoint where AI can reduce admin burden while maintaining compliance.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">2</div>
+          <h3>Build & Integrate</h3>
+          <p>Custom AI built to your appointment types, triage protocols, and practice management system. Full PIPEDA/PIPA compliance documentation provided.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">3</div>
+          <h3>Go Live & Monitor</h3>
+          <p>Soft launch with monitoring. We review interactions, tune responses, and optimize for patient satisfaction and clinical accuracy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <FAQ items={faqItems} heading="Questions from Kelowna Healthcare & Dental Practices" />
+    </div>
+  </section>
+
+  <section id="talk-to-ai" class="vert-cta">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Ready to Reduce No-Shows and Phone Queue Wait Times?</h2>
+        <p>Try our AI right now — or start with a free 4-week pilot with full PIPEDA compliance documentation.</p>
+        <button class="btn-primary btn-lg" onclick="startAICall();">Talk to AI — Free</button>
+        <span class="cta-note">Free · 2 minutes · No commitment</span>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: 1rem 0; font-size: 0.85rem; color: var(--color-text-muted); }
+  .breadcrumb a { color: var(--color-text-muted); }
+  .breadcrumb a:hover { color: var(--color-primary-light); }
+  .breadcrumb .current { color: var(--color-text); }
+  .vert-hero { padding: 5rem 0 4rem; text-align: center; background: radial-gradient(ellipse at top, rgba(108, 60, 225, 0.15) 0%, transparent 55%); }
+  .hero-badge { display: inline-block; padding: 0.5rem 1.25rem; background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 999px; font-size: 0.9rem; font-weight: 600; color: var(--color-secondary); margin-bottom: 2rem; }
+  .vert-hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; }
+  .hero-sub { font-size: 1.15rem; color: var(--color-text-muted); max-width: 660px; margin: 0 auto 2.5rem; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .section-title { font-size: 2rem; text-align: center; margin-bottom: 0.75rem; }
+  .section-sub { text-align: center; color: var(--color-text-muted); margin-bottom: 3rem; font-size: 1.1rem; }
+  .pain-section { padding: 5rem 0; background: var(--color-bg-card); }
+  .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
+  .pain-card { padding: 2rem; text-align: center; }
+  .pain-stat { font-size: 2.5rem; font-weight: 800; color: var(--color-accent); margin-bottom: 0.75rem; }
+  .pain-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+  .pain-card p { color: var(--color-text-muted); line-height: 1.7; font-size: 0.95rem; }
+  .solutions-section { padding: 5rem 0; }
+  .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .solution-card { padding: 2rem; transition: border-color 0.2s; }
+  .solution-card:hover { border-color: var(--color-primary-light); }
+  .solution-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; color: var(--color-primary-light); }
+  .solution-card p { color: var(--color-text-muted); line-height: 1.7; font-size: 0.95rem; }
+
+  .compliance-section { padding: 5rem 0; background: var(--color-bg-card); }
+  .compliance-card { max-width: 900px; margin: 0 auto; }
+  .compliance-card h2 { font-size: 2rem; text-align: center; margin-bottom: 2rem; }
+  .compliance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+  .compliance-item { padding: 1.5rem; border: 1px solid var(--color-border); border-radius: var(--radius); background: rgba(6, 182, 212, 0.05); }
+  .compliance-item h3 { font-size: 1rem; color: var(--color-secondary); margin-bottom: 0.5rem; }
+  .compliance-item p { color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+  .how-section { padding: 5rem 0; }
+  .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 2rem; }
+  .how-step { text-align: center; padding: 2rem 1.5rem; }
+  .how-num { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); color: white; font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+  .how-step h3 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+  .how-step p { color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6; }
+  .faq-section { padding: 5rem 0; background: var(--color-bg-card); }
+  .vert-cta { padding: 5rem 0; }
+  .cta-card { text-align: center; background: linear-gradient(135deg, rgba(108, 60, 225, 0.15), rgba(6, 182, 212, 0.1)); border: 1px solid rgba(108, 60, 225, 0.3); border-radius: var(--radius); padding: 4rem 2rem; max-width: 650px; margin: 0 auto; }
+  .cta-card h2 { font-size: 1.75rem; margin-bottom: 1rem; }
+  .cta-card p { color: var(--color-text-muted); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .btn-lg { font-size: 1.15rem; padding: 1rem 2.5rem; cursor: pointer; }
+  .cta-note { display: block; margin-top: 1rem; font-size: 0.85rem; color: var(--color-text-muted); }
+  @media (max-width: 768px) { .pain-grid, .solutions-grid, .how-grid, .compliance-grid { grid-template-columns: 1fr; } }
+</style>

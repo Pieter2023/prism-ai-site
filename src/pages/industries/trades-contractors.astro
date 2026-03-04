@@ -1,0 +1,233 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const siteUrl = 'https://prismaiservices.ca';
+const pageUrl = new URL('/industries/trades-contractors', siteUrl).href;
+
+const faqItems = [
+  {
+    question: 'How does the AI voicebot handle emergency vs. non-emergency calls?',
+    answer: 'We train the voicebot to distinguish between urgent calls (burst pipe, no heat, electrical emergency) and routine inquiries (quote requests, scheduling). Emergency calls can be routed directly to your on-call phone, while routine calls are handled by the AI — booking appointments, taking details, and sending you a summary.',
+  },
+  {
+    question: 'Will the AI sound natural to my customers?',
+    answer: 'Yes. Our voicebots use advanced natural language AI that sounds conversational, not robotic. We customize the voice, tone, and vocabulary to match your brand. Callers often don\'t realize they\'re speaking with AI — they just know their call got answered on the first ring.',
+  },
+  {
+    question: 'Can the AI give quotes or just take messages?',
+    answer: 'We can train the AI to provide ballpark estimates based on your pricing structure for common jobs (e.g., "a standard hot water tank replacement typically runs $X-$Y"). For detailed quotes, the AI collects all necessary information — job type, address, urgency, photos — and sends it to you so you can quote accurately from the truck.',
+  },
+  {
+    question: 'How does it work with my existing scheduling?',
+    answer: 'We integrate with whatever you\'re currently using — Google Calendar, Jobber, Housecall Pro, ServiceTitan, or even a shared spreadsheet. The AI checks your real-time availability before booking, and all new jobs sync automatically. No double-bookings.',
+  },
+  {
+    question: 'What does it cost to get started?',
+    answer: 'We offer a free 4-week pilot — we build and deploy one voicebot or automation workflow at no cost, with predefined success metrics. After that, plans start at $497 CAD/month. No long-term contracts. Most trades businesses see ROI within the first month from captured calls alone.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'AI Voicebots & Automation for Trades and Contractors',
+  description: '24/7 AI receptionists, automated dispatch, and workflow automation for Kelowna trades businesses — HVAC, plumbing, electrical, roofing, and more.',
+  provider: { '@type': 'Organization', name: 'Prism AI Services', url: siteUrl },
+  areaServed: [
+    { '@type': 'City', name: 'Kelowna' },
+    { '@type': 'City', name: 'West Kelowna' },
+    { '@type': 'City', name: 'Penticton' },
+    { '@type': 'City', name: 'Vernon' },
+  ],
+  serviceType: 'AI Automation for Trades and Contractors',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Industries', item: new URL('/industries/', siteUrl).href },
+    { '@type': 'ListItem', position: 3, name: 'Trades & Contractors', item: pageUrl },
+  ],
+};
+---
+
+<BaseLayout
+  title="AI for Kelowna Trades & Contractors | 24/7 AI Receptionist | Prism AI"
+  description="Stop missing calls on the job site. AI voicebots and workflow automation for Kelowna HVAC, plumbing, electrical, roofing, and trades businesses. 24/7 call answering, automated dispatch, and quote follow-up."
+  canonical={pageUrl}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <nav class="breadcrumb">
+    <div class="container">
+      <a href="/">Home</a> <span>/</span> <a href="/industries/">Industries</a> <span>/</span> <span class="current">Trades & Contractors</span>
+    </div>
+  </nav>
+
+  <section class="vert-hero">
+    <div class="container">
+      <div class="hero-badge">AI for Trades & Contractors · Kelowna, BC</div>
+      <h1>Every Missed Call Is a <span class="text-gradient">Lost Job.</span></h1>
+      <p class="hero-sub">
+        You're on a roof in West Kelowna. Your phone's ringing. A homeowner needs an emergency plumber in Penticton.
+        By the time you call back, they've already booked someone else. Our AI answers every call, books every job, and
+        never drops a wrench.
+      </p>
+      <div class="hero-actions">
+        <a href="#talk-to-ai" class="btn-primary" onclick="if(window.startAICall){event.preventDefault();startAICall();}">Talk to Our AI — Free</a>
+        <a href="#faq" class="btn-secondary">Common Questions</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pain-section">
+    <div class="container">
+      <h2 class="section-title">The Real Cost of Missed Calls</h2>
+      <div class="pain-grid">
+        <div class="pain-card card">
+          <div class="pain-stat">62%</div>
+          <h3>Calls Missed During Jobs</h3>
+          <p>Most trades businesses miss the majority of incoming calls while crews are on-site. Each missed call is a potential $500-$5,000 job walking to your competitor.</p>
+        </div>
+        <div class="pain-card card">
+          <div class="pain-stat">8 hrs</div>
+          <h3>Weekly on Phone Tag</h3>
+          <p>Playing phone tag with customers, calling back after hours, and manually scheduling takes your best people away from revenue-generating work.</p>
+        </div>
+        <div class="pain-card card">
+          <div class="pain-stat">$4,200</div>
+          <h3>Average Monthly Revenue Lost</h3>
+          <p>One missed call per day at an average job value of $800 means over $4,000/month in lost revenue — more than the cost of solving it permanently.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="solutions-section">
+    <div class="container">
+      <h2 class="section-title">AI That Works as Hard as You Do</h2>
+      <p class="section-sub">Built for the realities of running a trades business in the Okanagan.</p>
+      <div class="solutions-grid">
+        <div class="solution-card card">
+          <h3>24/7 AI Receptionist</h3>
+          <p>Answers every call on the first ring — day, night, weekends. Captures caller info, job details, urgency level, and address. Routes emergencies to your phone instantly.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Automated Job Scheduling</h3>
+          <p>The AI checks your real-time availability and books jobs directly into Jobber, Housecall Pro, ServiceTitan, or Google Calendar. No double-bookings, no back-and-forth.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Quote Follow-Up Sequences</h3>
+          <p>Sent a quote and heard nothing? Automated follow-up emails and texts at day 2, 5, and 10 keep you top-of-mind without you lifting a finger.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Dispatch Automation</h3>
+          <p>New emergency job? AI evaluates crew locations and availability, assigns the closest available tech, and sends them job details with address and scope — all automatically.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Invoice & Payment Automation</h3>
+          <p>Job complete? Automatically generate and send invoices, payment reminders, and receipt confirmations. Integrate with QuickBooks, FreshBooks, or Wave.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Review Collection</h3>
+          <p>Automatically request Google reviews 24 hours after job completion. Happy customers leave reviews while the experience is fresh — boosting your Map Pack ranking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-section">
+    <div class="container">
+      <h2 class="section-title">How It Works for Trades</h2>
+      <div class="how-grid">
+        <div class="how-step">
+          <div class="how-num">1</div>
+          <h3>Tell Us Your Workflow</h3>
+          <p>We learn how you take calls, schedule jobs, dispatch crews, and follow up. Every trades business is different — we build around yours.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">2</div>
+          <h3>We Build Your AI</h3>
+          <p>Custom voicebot trained on your services, pricing, service area, and scheduling rules. Integrates with your existing tools — no rip-and-replace.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">3</div>
+          <h3>Start Catching Every Call</h3>
+          <p>Go live, monitor results, and watch your callback rate drop to zero. We optimize continuously based on real call data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <FAQ items={faqItems} heading="Questions from Kelowna Trades & Contractors" />
+    </div>
+  </section>
+
+  <section id="talk-to-ai" class="vert-cta">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Stop Losing Jobs to Voicemail</h2>
+        <p>Try our AI right now — or start with a free 4-week pilot and see exactly how many calls you've been missing.</p>
+        <button class="btn-primary btn-lg" onclick="startAICall();">Talk to AI — Free</button>
+        <span class="cta-note">Free · 2 minutes · No commitment</span>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: 1rem 0; font-size: 0.85rem; color: var(--color-text-muted); }
+  .breadcrumb a { color: var(--color-text-muted); }
+  .breadcrumb a:hover { color: var(--color-primary-light); }
+  .breadcrumb .current { color: var(--color-text); }
+  .vert-hero { padding: 5rem 0 4rem; text-align: center; background: radial-gradient(ellipse at top, rgba(108, 60, 225, 0.15) 0%, transparent 55%); }
+  .hero-badge { display: inline-block; padding: 0.5rem 1.25rem; background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 999px; font-size: 0.9rem; font-weight: 600; color: var(--color-secondary); margin-bottom: 2rem; }
+  .vert-hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; }
+  .hero-sub { font-size: 1.15rem; color: var(--color-text-muted); max-width: 660px; margin: 0 auto 2.5rem; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .section-title { font-size: 2rem; text-align: center; margin-bottom: 0.75rem; }
+  .section-sub { text-align: center; color: var(--color-text-muted); margin-bottom: 3rem; font-size: 1.1rem; }
+  .pain-section { padding: 5rem 0; background: var(--color-bg-card); }
+  .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
+  .pain-card { padding: 2rem; text-align: center; }
+  .pain-stat { font-size: 2.5rem; font-weight: 800; color: var(--color-accent); margin-bottom: 0.75rem; }
+  .pain-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+  .pain-card p { color: var(--color-text-muted); line-height: 1.7; font-size: 0.95rem; }
+  .solutions-section { padding: 5rem 0; }
+  .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .solution-card { padding: 2rem; transition: border-color 0.2s; }
+  .solution-card:hover { border-color: var(--color-primary-light); }
+  .solution-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; color: var(--color-primary-light); }
+  .solution-card p { color: var(--color-text-muted); line-height: 1.7; font-size: 0.95rem; }
+  .how-section { padding: 5rem 0; background: var(--color-bg-card); }
+  .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 2rem; }
+  .how-step { text-align: center; padding: 2rem 1.5rem; }
+  .how-num { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); color: white; font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+  .how-step h3 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+  .how-step p { color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6; }
+  .faq-section { padding: 5rem 0; }
+  .vert-cta { padding: 5rem 0; background: var(--color-bg-card); }
+  .cta-card { text-align: center; background: linear-gradient(135deg, rgba(108, 60, 225, 0.15), rgba(6, 182, 212, 0.1)); border: 1px solid rgba(108, 60, 225, 0.3); border-radius: var(--radius); padding: 4rem 2rem; max-width: 650px; margin: 0 auto; }
+  .cta-card h2 { font-size: 1.75rem; margin-bottom: 1rem; }
+  .cta-card p { color: var(--color-text-muted); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .btn-lg { font-size: 1.15rem; padding: 1rem 2.5rem; cursor: pointer; }
+  .cta-note { display: block; margin-top: 1rem; font-size: 0.85rem; color: var(--color-text-muted); }
+  @media (max-width: 768px) { .pain-grid, .solutions-grid, .how-grid { grid-template-columns: 1fr; } }
+</style>

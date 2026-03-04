@@ -1,0 +1,288 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const siteUrl = 'https://prismaiservices.ca';
+const pageUrl = new URL('/industries/wineries-tourism', siteUrl).href;
+
+const faqItems = [
+  {
+    question: 'Can an AI voicebot handle tasting room reservations in multiple languages?',
+    answer: 'Yes. Our AI voicebots support English, French, Mandarin, and other languages commonly spoken by Okanagan tourists. The bot can book tasting room slots, answer questions about wine varieties, provide directions, and even upsell wine club memberships — all in the caller\'s preferred language, 24/7.',
+  },
+  {
+    question: 'How does AI automation help during peak tourism season?',
+    answer: 'Peak season in the Okanagan means a flood of inquiries, bookings, and logistics. Our automations handle reservation confirmations, send pre-visit information, manage waitlists, trigger follow-up emails for wine club sign-ups, and sync bookings across platforms like Tock, OpenTable, and your POS — so your seasonal staff can focus on guest experience instead of admin.',
+  },
+  {
+    question: 'Is my customer data secure under Canadian privacy law?',
+    answer: 'Absolutely. All our systems are built to comply with PIPEDA (federal) and BC\'s PIPA. Customer data is processed within Canadian infrastructure, encrypted in transit and at rest, and never shared with third parties. We provide full data handling documentation for your records.',
+  },
+  {
+    question: 'What does a typical winery AI setup cost?',
+    answer: 'Most wineries and tourism operators start with our 4-week free pilot to prove ROI before committing. After that, plans start at $497 CAD/month for a single AI voicebot or automation workflow. Multi-location or complex setups are quoted custom. No long-term contracts — cancel anytime.',
+  },
+  {
+    question: 'How long does it take to get set up?',
+    answer: 'We can have a winery voicebot or booking automation live within 2 weeks. The process starts with a discovery call to map your current workflow, then we build and test before going live. We handle all the technical setup — no IT team required on your end.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'AI Voicebots & Automation for Wineries and Tourism',
+  description: 'Multilingual AI voice concierges, automated tasting room bookings, and wine club management for Okanagan wineries and tourism operators.',
+  provider: { '@type': 'Organization', name: 'Prism AI Services', url: siteUrl },
+  areaServed: [
+    { '@type': 'City', name: 'Kelowna' },
+    { '@type': 'City', name: 'West Kelowna' },
+    { '@type': 'City', name: 'Penticton' },
+    { '@type': 'City', name: 'Vernon' },
+  ],
+  serviceType: 'AI Automation for Wineries and Tourism',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Industries', item: new URL('/industries/', siteUrl).href },
+    { '@type': 'ListItem', position: 3, name: 'Wineries & Tourism', item: pageUrl },
+  ],
+};
+---
+
+<BaseLayout
+  title="AI for Okanagan Wineries & Tourism | Voicebots & Automation | Prism AI"
+  description="Multilingual AI voicebots and workflow automation built for Okanagan wineries and tourism operators. Automate tasting room bookings, wine club management, and guest inquiries 24/7."
+  canonical={pageUrl}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb">
+    <div class="container">
+      <a href="/">Home</a> <span>/</span> <a href="/industries/">Industries</a> <span>/</span> <span class="current">Wineries & Tourism</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="vert-hero">
+    <div class="container">
+      <div class="hero-badge">AI for Wineries & Tourism · Okanagan Valley</div>
+      <h1>Never Miss a Booking. <span class="text-gradient">Even at 11pm on a Saturday.</span></h1>
+      <p class="hero-sub">
+        The Okanagan welcomes over 2 million visitors a year. Your tasting room phone shouldn't go to voicemail
+        when they're trying to book. Our AI voicebots handle reservations, answer questions in multiple languages,
+        and keep your wine club growing — while your team focuses on pouring.
+      </p>
+      <div class="hero-actions">
+        <a href="#talk-to-ai" class="btn-primary" onclick="if(window.startAICall){event.preventDefault();startAICall();}">Talk to Our AI — Free</a>
+        <a href="#faq" class="btn-secondary">Common Questions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain Points -->
+  <section class="pain-section">
+    <div class="container">
+      <h2 class="section-title">Sound Familiar?</h2>
+      <div class="pain-grid">
+        <div class="pain-card card">
+          <div class="pain-stat">67%</div>
+          <h3>Calls Go Unanswered</h3>
+          <p>During peak season, most wineries miss the majority of phone inquiries — each one a potential tasting room booking or wine club sign-up lost forever.</p>
+        </div>
+        <div class="pain-card card">
+          <div class="pain-stat">5 hrs</div>
+          <h3>Weekly on Manual Bookings</h3>
+          <p>Staff spend hours managing reservations across phone, email, and multiple platforms instead of creating memorable guest experiences.</p>
+        </div>
+        <div class="pain-card card">
+          <div class="pain-stat">30%</div>
+          <h3>International Guests Lost</h3>
+          <p>Mandarin, French, and German-speaking tourists can't get help in their language — so they book with the winery that has multilingual support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions -->
+  <section class="solutions-section">
+    <div class="container">
+      <h2 class="section-title">AI That Understands Wine Country</h2>
+      <p class="section-sub">Purpose-built for the unique workflows of Okanagan wineries and tourism operators.</p>
+      <div class="solutions-grid">
+        <div class="solution-card card">
+          <h3>Multilingual Voice Concierge</h3>
+          <p>AI voicebot that answers calls in English, French, Mandarin, and more. Books tasting room reservations, provides directions, and answers FAQs about your wines and events — 24/7.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Automated Booking Management</h3>
+          <p>Sync reservations across Tock, OpenTable, your website, and phone. Automatic confirmations, reminders, and waitlist management — no double-bookings, no no-shows.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Wine Club Automation</h3>
+          <p>Automated welcome sequences, renewal reminders, referral programs, and personalized recommendations based on purchase history. Grow your club without growing your admin.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Guest Follow-Up Sequences</h3>
+          <p>After a visit, automatically send thank-you emails, wine club invitations, review requests, and event invitations — personalized to what they tasted and purchased.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Event & Tour Coordination</h3>
+          <p>Automate group tour bookings, event RSVPs, catering coordination, and day-of logistics. Handle seasonal event spikes without temporary staff.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Inventory & POS Sync</h3>
+          <p>Connect your point-of-sale with your online store, wine club, and booking system. Real-time inventory updates prevent overselling and improve order fulfillment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-section">
+    <div class="container">
+      <h2 class="section-title">How It Works for Wineries</h2>
+      <div class="how-grid">
+        <div class="how-step">
+          <div class="how-num">1</div>
+          <h3>Map Your Guest Journey</h3>
+          <p>We walk through how guests find you, book, visit, and follow up — identifying every point where AI can save time or capture revenue.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">2</div>
+          <h3>Build & Train Your AI</h3>
+          <p>We build your voicebot with your wine list, hours, booking rules, and brand voice. It knows the difference between a Pinot Noir and a Pinot Gris.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">3</div>
+          <h3>Launch & Optimize</h3>
+          <p>Go live with monitoring. We review call transcripts, optimize responses, and add capabilities as your needs evolve through the seasons.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <FAQ items={faqItems} heading="Questions from Okanagan Wineries & Tourism Operators" />
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="talk-to-ai" class="vert-cta">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Ready to Stop Missing Bookings?</h2>
+        <p>Try our AI concierge right now — or start with a free 4-week pilot to see real results before you commit.</p>
+        <button class="btn-primary btn-lg" onclick="startAICall();">Talk to AI — Free</button>
+        <span class="cta-note">Free · 2 minutes · No commitment</span>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: 1rem 0; font-size: 0.85rem; color: var(--color-text-muted); }
+  .breadcrumb a { color: var(--color-text-muted); }
+  .breadcrumb a:hover { color: var(--color-primary-light); }
+  .breadcrumb .current { color: var(--color-text); }
+
+  .vert-hero {
+    padding: 5rem 0 4rem;
+    text-align: center;
+    background: radial-gradient(ellipse at top, rgba(108, 60, 225, 0.15) 0%, transparent 55%);
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: rgba(6, 182, 212, 0.12);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin-bottom: 2rem;
+  }
+  .vert-hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    max-width: 660px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  .section-title { font-size: 2rem; text-align: center; margin-bottom: 0.75rem; }
+  .section-sub { text-align: center; color: var(--color-text-muted); margin-bottom: 3rem; font-size: 1.1rem; }
+
+  .pain-section { padding: 5rem 0; background: var(--color-bg-card); }
+  .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
+  .pain-card { padding: 2rem; text-align: center; }
+  .pain-stat { font-size: 2.5rem; font-weight: 800; color: var(--color-accent); margin-bottom: 0.75rem; }
+  .pain-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+  .pain-card p { color: var(--color-text-muted); line-height: 1.7; font-size: 0.95rem; }
+
+  .solutions-section { padding: 5rem 0; }
+  .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .solution-card { padding: 2rem; transition: border-color 0.2s; }
+  .solution-card:hover { border-color: var(--color-primary-light); }
+  .solution-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; color: var(--color-primary-light); }
+  .solution-card p { color: var(--color-text-muted); line-height: 1.7; font-size: 0.95rem; }
+
+  .how-section { padding: 5rem 0; background: var(--color-bg-card); }
+  .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 2rem; }
+  .how-step { text-align: center; padding: 2rem 1.5rem; }
+  .how-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 48px; height: 48px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white; font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;
+  }
+  .how-step h3 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+  .how-step p { color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+  .faq-section { padding: 5rem 0; }
+
+  .vert-cta { padding: 5rem 0; background: var(--color-bg-card); }
+  .cta-card {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(108, 60, 225, 0.15), rgba(6, 182, 212, 0.1));
+    border: 1px solid rgba(108, 60, 225, 0.3);
+    border-radius: var(--radius);
+    padding: 4rem 2rem;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+  .cta-card h2 { font-size: 1.75rem; margin-bottom: 1rem; }
+  .cta-card p { color: var(--color-text-muted); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .btn-lg { font-size: 1.15rem; padding: 1rem 2.5rem; cursor: pointer; }
+  .cta-note { display: block; margin-top: 1rem; font-size: 0.85rem; color: var(--color-text-muted); }
+
+  @media (max-width: 768px) {
+    .pain-grid, .solutions-grid, .how-grid { grid-template-columns: 1fr; }
+  }
+</style>

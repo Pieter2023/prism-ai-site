@@ -1,0 +1,233 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const siteUrl = 'https://prismaiservices.ca';
+const pageUrl = new URL('/industries/hospitality', siteUrl).href;
+
+const faqItems = [
+  {
+    question: 'Can the AI concierge handle reservations in multiple languages?',
+    answer: 'Yes. Our AI voicebots support English, French, Mandarin, Japanese, German, and other languages common among Okanagan tourists. The concierge can take restaurant reservations, answer questions about your menu and hours, handle room booking inquiries, and provide local recommendations — all in the caller\'s preferred language, 24/7.',
+  },
+  {
+    question: 'How does automated review management work?',
+    answer: 'After a guest checks out or finishes a meal, our system automatically sends a review request via text or email. Positive experiences are directed to Google and TripAdvisor. We also draft personalized AI responses to all reviews (which you approve before posting), incorporating local keywords that boost your search ranking.',
+  },
+  {
+    question: 'Can you help with seasonal staffing challenges?',
+    answer: 'That\'s one of our core value propositions. AI handles the tasks that are hardest to staff — after-hours phone answering, reservation management, guest FAQs, and follow-up communications. Your seasonal staff can focus on in-person guest experience while AI handles the phones and admin.',
+  },
+  {
+    question: 'Does it work with our existing booking platform?',
+    answer: 'We integrate with all major hospitality platforms including OpenTable, Resy, Booking.com, Airbnb, your hotel PMS (Opera, Cloudbeds, etc.), and restaurant POS systems. Reservations, guest preferences, and availability sync in real-time.',
+  },
+  {
+    question: 'What does the 4-week pilot include?',
+    answer: 'Our free pilot includes one AI voicebot or automation workflow deployed at no cost. We set predefined success metrics — like calls answered, reservations booked, or review requests sent. You see real data before any financial commitment. After the pilot, plans start at $497 CAD/month.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'AI Voicebots & Automation for Hotels and Restaurants',
+  description: 'Multilingual AI reservation concierges, automated guest engagement, and review management for Okanagan hotels, restaurants, and hospitality businesses.',
+  provider: { '@type': 'Organization', name: 'Prism AI Services', url: siteUrl },
+  areaServed: [
+    { '@type': 'City', name: 'Kelowna' },
+    { '@type': 'City', name: 'West Kelowna' },
+    { '@type': 'City', name: 'Penticton' },
+    { '@type': 'City', name: 'Vernon' },
+  ],
+  serviceType: 'AI Automation for Hospitality',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Industries', item: new URL('/industries/', siteUrl).href },
+    { '@type': 'ListItem', position: 3, name: 'Hotels & Restaurants', item: pageUrl },
+  ],
+};
+---
+
+<BaseLayout
+  title="AI for Okanagan Hotels & Restaurants | Multilingual Concierge | Prism AI"
+  description="Multilingual AI reservation concierges and automation for Okanagan hotels, restaurants, and hospitality businesses. Handle peak season demand without extra staff."
+  canonical={pageUrl}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <nav class="breadcrumb">
+    <div class="container">
+      <a href="/">Home</a> <span>/</span> <a href="/industries/">Industries</a> <span>/</span> <span class="current">Hotels & Restaurants</span>
+    </div>
+  </nav>
+
+  <section class="vert-hero">
+    <div class="container">
+      <div class="hero-badge">AI for Hospitality · Okanagan Valley</div>
+      <h1>Peak Season Demand. <span class="text-gradient">Without Peak Season Payroll.</span></h1>
+      <p class="hero-sub">
+        The Okanagan draws visitors from around the world. When your phone rings off the hook in July
+        and your seasonal staff is stretched thin, our AI concierge handles reservations, answers guest
+        questions in their language, and keeps your reviews glowing — 24/7, 365 days.
+      </p>
+      <div class="hero-actions">
+        <a href="#talk-to-ai" class="btn-primary" onclick="if(window.startAICall){event.preventDefault();startAICall();}">Talk to Our AI — Free</a>
+        <a href="#faq" class="btn-secondary">Common Questions</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pain-section">
+    <div class="container">
+      <h2 class="section-title">The Hospitality Staffing Squeeze</h2>
+      <div class="pain-grid">
+        <div class="pain-card card">
+          <div class="pain-stat">72%</div>
+          <h3>Struggle to Find Seasonal Staff</h3>
+          <p>Okanagan hospitality businesses report critical staffing shortages every summer. Hiring costs spike while service quality drops at the worst possible time.</p>
+        </div>
+        <div class="pain-card card">
+          <div class="pain-stat">45%</div>
+          <h3>Reservation Calls After Hours</h3>
+          <p>International visitors calling from different time zones, locals planning weekends — nearly half your booking calls come when nobody's at the front desk.</p>
+        </div>
+        <div class="pain-card card">
+          <div class="pain-stat">4.1★</div>
+          <h3>Average Rating Without Management</h3>
+          <p>Hotels and restaurants that don't actively manage reviews plateau around 4.1 stars. Those with AI-managed review responses consistently reach 4.5+ and rank higher.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="solutions-section">
+    <div class="container">
+      <h2 class="section-title">AI That Speaks Your Guests' Language</h2>
+      <p class="section-sub">Purpose-built for Okanagan hospitality — from lakeside resorts to downtown bistros.</p>
+      <div class="solutions-grid">
+        <div class="solution-card card">
+          <h3>Multilingual AI Concierge</h3>
+          <p>Voice AI that answers calls and chats in English, French, Mandarin, Japanese, German, and more. Takes reservations, answers menu questions, provides directions, and recommends local activities.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Reservation Management</h3>
+          <p>AI books tables and rooms by checking real-time availability across OpenTable, Resy, Booking.com, and your PMS. Sends confirmations, handles modifications, and manages waitlists automatically.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Guest Pre-Arrival Sequences</h3>
+          <p>Automated pre-arrival emails with check-in instructions, upsell opportunities (room upgrades, spa packages, wine tours), dietary preference collection, and local guides tailored to their interests.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Review Collection & Response</h3>
+          <p>Post-checkout review requests timed for maximum response rate. AI drafts personalized responses to every review with local keywords — you approve before publishing. Boost your Google ranking while you sleep.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Event & Group Coordination</h3>
+          <p>Automate inquiries for weddings, corporate events, and group bookings. Collect requirements, provide package options, and schedule site visits — all without manual back-and-forth.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Guest Feedback Loop</h3>
+          <p>Mid-stay check-in messages catch issues before they become negative reviews. Automated satisfaction surveys after checkout feed into continuous improvement dashboards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-section">
+    <div class="container">
+      <h2 class="section-title">How It Works for Hospitality</h2>
+      <div class="how-grid">
+        <div class="how-step">
+          <div class="how-num">1</div>
+          <h3>Map Your Guest Journey</h3>
+          <p>We learn your booking flow, guest communication touchpoints, and operational pain points — from first inquiry to post-stay follow-up.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">2</div>
+          <h3>Build Your AI Concierge</h3>
+          <p>Custom voicebot trained on your property, menu, services, local area, and brand voice. Multilingual from day one. Integrated with your booking platforms.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">3</div>
+          <h3>Delight More Guests</h3>
+          <p>Go live with monitoring. We track reservation conversion, guest satisfaction, and review velocity — optimizing for the metrics that matter most to hospitality.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <FAQ items={faqItems} heading="Questions from Okanagan Hotels & Restaurants" />
+    </div>
+  </section>
+
+  <section id="talk-to-ai" class="vert-cta">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Ready for Peak Season Without the Staffing Panic?</h2>
+        <p>Try our AI concierge right now — or start with a free 4-week pilot before the summer rush hits.</p>
+        <button class="btn-primary btn-lg" onclick="startAICall();">Talk to AI — Free</button>
+        <span class="cta-note">Free · 2 minutes · No commitment</span>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: 1rem 0; font-size: 0.85rem; color: var(--color-text-muted); }
+  .breadcrumb a { color: var(--color-text-muted); }
+  .breadcrumb a:hover { color: var(--color-primary-light); }
+  .breadcrumb .current { color: var(--color-text); }
+  .vert-hero { padding: 5rem 0 4rem; text-align: center; background: radial-gradient(ellipse at top, rgba(108, 60, 225, 0.15) 0%, transparent 55%); }
+  .hero-badge { display: inline-block; padding: 0.5rem 1.25rem; background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 999px; font-size: 0.9rem; font-weight: 600; color: var(--color-secondary); margin-bottom: 2rem; }
+  .vert-hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; }
+  .hero-sub { font-size: 1.15rem; color: var(--color-text-muted); max-width: 660px; margin: 0 auto 2.5rem; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .section-title { font-size: 2rem; text-align: center; margin-bottom: 0.75rem; }
+  .section-sub { text-align: center; color: var(--color-text-muted); margin-bottom: 3rem; font-size: 1.1rem; }
+  .pain-section { padding: 5rem 0; background: var(--color-bg-card); }
+  .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
+  .pain-card { padding: 2rem; text-align: center; }
+  .pain-stat { font-size: 2.5rem; font-weight: 800; color: var(--color-accent); margin-bottom: 0.75rem; }
+  .pain-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+  .pain-card p { color: var(--color-text-muted); line-height: 1.7; font-size: 0.95rem; }
+  .solutions-section { padding: 5rem 0; }
+  .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .solution-card { padding: 2rem; transition: border-color 0.2s; }
+  .solution-card:hover { border-color: var(--color-primary-light); }
+  .solution-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; color: var(--color-primary-light); }
+  .solution-card p { color: var(--color-text-muted); line-height: 1.7; font-size: 0.95rem; }
+  .how-section { padding: 5rem 0; background: var(--color-bg-card); }
+  .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 2rem; }
+  .how-step { text-align: center; padding: 2rem 1.5rem; }
+  .how-num { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); color: white; font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+  .how-step h3 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+  .how-step p { color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6; }
+  .faq-section { padding: 5rem 0; }
+  .vert-cta { padding: 5rem 0; background: var(--color-bg-card); }
+  .cta-card { text-align: center; background: linear-gradient(135deg, rgba(108, 60, 225, 0.15), rgba(6, 182, 212, 0.1)); border: 1px solid rgba(108, 60, 225, 0.3); border-radius: var(--radius); padding: 4rem 2rem; max-width: 650px; margin: 0 auto; }
+  .cta-card h2 { font-size: 1.75rem; margin-bottom: 1rem; }
+  .cta-card p { color: var(--color-text-muted); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .btn-lg { font-size: 1.15rem; padding: 1rem 2.5rem; cursor: pointer; }
+  .cta-note { display: block; margin-top: 1rem; font-size: 0.85rem; color: var(--color-text-muted); }
+  @media (max-width: 768px) { .pain-grid, .solutions-grid, .how-grid { grid-template-columns: 1fr; } }
+</style>

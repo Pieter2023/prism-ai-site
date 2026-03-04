@@ -27,6 +27,27 @@
   to = "/services/"
   status = 301
 
+# 301 redirect legacy pages removed in Phase 3
+[[redirects]]
+  from = "/products"
+  to = "/services/"
+  status = 301
+
+[[redirects]]
+  from = "/scorecard"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/audit"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/audit/quiz"
+  to = "/"
+  status = 301
+
 # Redirect all 404s to custom 404 page
 [[redirects]]
   from = "/*"

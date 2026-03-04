@@ -1,0 +1,227 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const siteUrl = 'https://prismaiservices.ca';
+const pageUrl = new URL('/industries/', siteUrl).href;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Industries', item: pageUrl },
+  ],
+};
+
+const industries = [
+  {
+    title: 'Wineries & Tourism',
+    desc: 'Multilingual AI concierges, automated tasting room bookings, and wine club management for the Okanagan\'s 200+ wineries and tourism operators.',
+    href: '/industries/wineries-tourism',
+    icon: '🍷',
+  },
+  {
+    title: 'Trades & Contractors',
+    desc: '24/7 AI receptionists that catch every call while you\'re on the job site. Automated quoting, dispatch, and follow-up for HVAC, plumbing, electrical, and more.',
+    href: '/industries/trades-contractors',
+    icon: '🔧',
+  },
+  {
+    title: 'Real Estate',
+    desc: 'Instant lead qualification, automated showing scheduling, and CRM sync for Okanagan real estate teams handling relocation and vacation property inquiries.',
+    href: '/industries/real-estate',
+    icon: '🏠',
+  },
+  {
+    title: 'Healthcare & Dental',
+    desc: 'PIPEDA-compliant AI appointment booking, patient intake automation, and after-hours triage for Kelowna clinics and dental practices.',
+    href: '/industries/healthcare-dental',
+    icon: '🏥',
+  },
+  {
+    title: 'Hotels & Restaurants',
+    desc: 'AI reservation concierges, multilingual guest support, and automated review management for Okanagan hospitality businesses.',
+    href: '/industries/hospitality',
+    icon: '🏨',
+  },
+];
+---
+
+<BaseLayout
+  title="AI Solutions by Industry | Kelowna & Okanagan | Prism AI"
+  description="Industry-specific AI voicebots and workflow automation for Kelowna businesses. Tailored solutions for wineries, trades, real estate, healthcare, and hospitality."
+  canonical={pageUrl}
+  jsonLd={breadcrumbSchema}
+>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb">
+    <div class="container">
+      <a href="/">Home</a> <span>/</span> <span class="current">Industries</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="ind-hero">
+    <div class="container">
+      <div class="hero-badge">Industry-Specific AI Solutions · Kelowna, BC</div>
+      <h1>AI Built for How <span class="text-gradient">Your Industry</span> Actually Works</h1>
+      <p class="hero-sub">
+        Generic automation doesn't cut it. We build AI voicebots and workflow automations
+        tailored to the specific pain points, workflows, and regulations of your industry
+        — right here in the Okanagan.
+      </p>
+    </div>
+  </section>
+
+  <!-- Industries Grid -->
+  <section class="ind-grid-section">
+    <div class="container">
+      <div class="ind-grid">
+        {industries.map((ind) => (
+          <a href={ind.href} class="ind-card card">
+            <span class="ind-icon">{ind.icon}</span>
+            <h2>{ind.title}</h2>
+            <p>{ind.desc}</p>
+            <span class="ind-cta">Learn more &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Industry-Specific -->
+  <section class="why-section">
+    <div class="container">
+      <div class="why-card">
+        <h2>Why Industry-Specific Matters</h2>
+        <p>
+          A winery's booking workflow isn't the same as a plumber's dispatch system.
+          A dental practice's compliance requirements are different from a hotel's multilingual needs.
+          We don't do cookie-cutter. Every AI solution we build starts with deep understanding
+          of your industry's specific challenges, then applies the right technology to solve them.
+        </p>
+        <div class="why-stats">
+          <div class="why-stat">
+            <span class="stat-num">3x</span>
+            <span class="stat-label">faster adoption with industry-fit AI</span>
+          </div>
+          <div class="why-stat">
+            <span class="stat-num">40%</span>
+            <span class="stat-label">higher ROI vs. generic automation</span>
+          </div>
+          <div class="why-stat">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">BC PIPA & PIPEDA compliant</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="ind-cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Not Sure Where to Start?</h2>
+        <p>Talk to our AI concierge — it'll ask about your industry and recommend the right solution in under 2 minutes.</p>
+        <button class="btn-primary btn-lg" onclick="startAICall();">Talk to AI — Free</button>
+        <span class="cta-note">Free · 2 minutes · No commitment</span>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumb {
+    padding: 1rem 0;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+  .breadcrumb a { color: var(--color-text-muted); }
+  .breadcrumb a:hover { color: var(--color-primary-light); }
+  .breadcrumb .current { color: var(--color-text); }
+
+  .ind-hero {
+    padding: 5rem 0 4rem;
+    text-align: center;
+    background: radial-gradient(ellipse at top, rgba(108, 60, 225, 0.15) 0%, transparent 55%);
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: rgba(6, 182, 212, 0.12);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin-bottom: 2rem;
+  }
+  .ind-hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .ind-grid-section { padding: 4rem 0; }
+  .ind-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  .ind-card {
+    text-decoration: none;
+    color: inherit;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .ind-card:hover {
+    border-color: var(--color-primary-light);
+    transform: translateY(-4px);
+    color: inherit;
+  }
+  .ind-icon { font-size: 2.5rem; }
+  .ind-card h2 { font-size: 1.35rem; margin: 0; }
+  .ind-card p { color: var(--color-text-muted); line-height: 1.7; flex: 1; font-size: 0.95rem; }
+  .ind-cta { color: var(--color-secondary); font-weight: 600; font-size: 0.95rem; }
+
+  .why-section { background: var(--color-bg-card); padding: 5rem 0; }
+  .why-card { max-width: 800px; margin: 0 auto; text-align: center; }
+  .why-card h2 { font-size: 2rem; margin-bottom: 1.25rem; }
+  .why-card p { color: var(--color-text-muted); font-size: 1.05rem; line-height: 1.8; margin-bottom: 3rem; }
+  .why-stats { display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; }
+  .why-stat { display: flex; flex-direction: column; gap: 0.25rem; }
+  .stat-num { font-size: 2rem; font-weight: 800; color: var(--color-primary-light); }
+  .stat-label { font-size: 0.85rem; color: var(--color-text-muted); max-width: 180px; }
+
+  .ind-cta-section { padding: 5rem 0; }
+  .cta-card {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(108, 60, 225, 0.15), rgba(6, 182, 212, 0.1));
+    border: 1px solid rgba(108, 60, 225, 0.3);
+    border-radius: var(--radius);
+    padding: 4rem 2rem;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+  .cta-card h2 { font-size: 1.75rem; margin-bottom: 1rem; }
+  .cta-card p { color: var(--color-text-muted); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .btn-lg { font-size: 1.15rem; padding: 1rem 2.5rem; cursor: pointer; }
+  .cta-note { display: block; margin-top: 1rem; font-size: 0.85rem; color: var(--color-text-muted); }
+
+  @media (max-width: 768px) {
+    .ind-grid { grid-template-columns: 1fr; }
+    .why-stats { flex-direction: column; align-items: center; }
+  }
+</style>

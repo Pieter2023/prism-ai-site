@@ -1,0 +1,232 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const siteUrl = 'https://prismaiservices.ca';
+const pageUrl = new URL('/industries/real-estate', siteUrl).href;
+
+const faqItems = [
+  {
+    question: 'How fast does the AI respond to new leads?',
+    answer: 'Instantly. When a lead comes in — from your website, Realtor.ca, social media, or a phone call — the AI responds within seconds. It qualifies the lead (budget, timeline, property preferences, pre-approval status), schedules a showing or callback, and syncs everything to your CRM. No more 4-hour response delays that lose you listings.',
+  },
+  {
+    question: 'Can the AI handle after-hours property inquiries?',
+    answer: 'Yes. Our voicebot answers property inquiries 24/7 — providing listing details, neighborhood information, booking showings, and collecting buyer preferences. Weekend and evening calls (when most serious buyers call) are handled immediately instead of going to voicemail.',
+  },
+  {
+    question: 'Does it integrate with my real estate CRM?',
+    answer: 'We integrate with all major real estate CRMs including Follow Up Boss, Sierra Interactive, kvCORE, LionDesk, and even custom or brokerage-specific systems. New leads, notes, showing schedules, and follow-up tasks sync automatically.',
+  },
+  {
+    question: 'How does it help with the Okanagan relocation market?',
+    answer: 'A huge portion of Okanagan real estate inquiries come from out-of-province buyers (Alberta, Ontario, international). Our AI handles time-zone differences, provides area information (neighborhoods, schools, amenities), and nurtures long-distance leads with automated drip sequences until they\'re ready for a virtual or in-person showing.',
+  },
+  {
+    question: 'What does the free pilot include?',
+    answer: 'Our 4-week free pilot includes one AI voicebot or automation workflow built to your specifications, with predefined success metrics (e.g., lead response time, calls captured, showings booked). You see real results before any commitment. Plans start at $497 CAD/month after the pilot.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'AI Voicebots & Automation for Real Estate',
+  description: 'Instant lead qualification, automated showing scheduling, and CRM automation for Okanagan real estate agents and teams.',
+  provider: { '@type': 'Organization', name: 'Prism AI Services', url: siteUrl },
+  areaServed: [
+    { '@type': 'City', name: 'Kelowna' },
+    { '@type': 'City', name: 'West Kelowna' },
+    { '@type': 'City', name: 'Penticton' },
+    { '@type': 'City', name: 'Vernon' },
+  ],
+  serviceType: 'AI Automation for Real Estate',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Industries', item: new URL('/industries/', siteUrl).href },
+    { '@type': 'ListItem', position: 3, name: 'Real Estate', item: pageUrl },
+  ],
+};
+---
+
+<BaseLayout
+  title="AI for Okanagan Real Estate | Lead Qualification & Automation | Prism AI"
+  description="Instant AI lead qualification, automated showing scheduling, and CRM automation for Kelowna and Okanagan real estate agents. Never lose a lead to slow response time again."
+  canonical={pageUrl}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <nav class="breadcrumb">
+    <div class="container">
+      <a href="/">Home</a> <span>/</span> <a href="/industries/">Industries</a> <span>/</span> <span class="current">Real Estate</span>
+    </div>
+  </nav>
+
+  <section class="vert-hero">
+    <div class="container">
+      <div class="hero-badge">AI for Real Estate · Okanagan Valley</div>
+      <h1>The Agent Who Responds First <span class="text-gradient">Wins the Listing.</span></h1>
+      <p class="hero-sub">
+        In the Okanagan real estate market, leads go cold in minutes. Our AI qualifies buyers instantly,
+        books showings automatically, and keeps your pipeline full — while you're at the showing, not on the phone.
+      </p>
+      <div class="hero-actions">
+        <a href="#talk-to-ai" class="btn-primary" onclick="if(window.startAICall){event.preventDefault();startAICall();}">Talk to Our AI — Free</a>
+        <a href="#faq" class="btn-secondary">Common Questions</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pain-section">
+    <div class="container">
+      <h2 class="section-title">The Speed-to-Lead Problem</h2>
+      <div class="pain-grid">
+        <div class="pain-card card">
+          <div class="pain-stat">78%</div>
+          <h3>Buyers Choose the First Responder</h3>
+          <p>Research shows the first agent to respond to an inquiry wins the deal 78% of the time. If you're responding in hours, you're already losing.</p>
+        </div>
+        <div class="pain-card card">
+          <div class="pain-stat">47%</div>
+          <h3>Leads Come After Hours</h3>
+          <p>Nearly half of real estate inquiries come after 6pm or on weekends — exactly when you're showing properties, at dinner, or with family.</p>
+        </div>
+        <div class="pain-card card">
+          <div class="pain-stat">10 hrs</div>
+          <h3>Weekly on Admin Tasks</h3>
+          <p>CRM updates, showing coordination, drip emails, follow-up calls — admin work eats into the time you should be spending face-to-face with clients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="solutions-section">
+    <div class="container">
+      <h2 class="section-title">AI That Sells Like You Do</h2>
+      <p class="section-sub">Built for how real estate actually works in the Okanagan.</p>
+      <div class="solutions-grid">
+        <div class="solution-card card">
+          <h3>Instant Lead Qualification</h3>
+          <p>AI voicebot answers inquiries in seconds — qualifying budget, timeline, property type, pre-approval status, and preferred areas. Hot leads get flagged to you instantly; tire-kickers get nurtured automatically.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Automated Showing Scheduling</h3>
+          <p>The AI checks your calendar and listing availability, then books showings directly. Sends confirmations, reminders, and directions to buyers. Reschedules automatically if conflicts arise.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>CRM Auto-Sync</h3>
+          <p>Every lead, call, showing, and interaction automatically logged in Follow Up Boss, kvCORE, LionDesk, or your brokerage CRM. No manual data entry, no leads falling through cracks.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Relocation Lead Nurturing</h3>
+          <p>Okanagan relocation buyers need months of nurturing. Automated drip sequences with market updates, neighborhood guides, and lifestyle content keep you top-of-mind until they're ready to move.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Post-Showing Follow-Up</h3>
+          <p>Automated feedback collection, next-step scheduling, and personalized property recommendations based on what buyers liked and didn't like about previous showings.</p>
+        </div>
+        <div class="solution-card card">
+          <h3>Review & Referral Automation</h3>
+          <p>After closing, automatically request Google reviews and trigger referral programs. Build your reputation and pipeline simultaneously — without the awkward ask.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-section">
+    <div class="container">
+      <h2 class="section-title">How It Works for Real Estate</h2>
+      <div class="how-grid">
+        <div class="how-step">
+          <div class="how-num">1</div>
+          <h3>Map Your Sales Process</h3>
+          <p>We learn how leads find you, how you qualify them, your showing workflow, and your follow-up process. Every agent works differently — we build around you.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">2</div>
+          <h3>Build Your AI Team</h3>
+          <p>Custom voicebot trained on your listings, service area, and qualification criteria. Integrations with your CRM, calendar, and lead sources — all connected.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">3</div>
+          <h3>Close More Deals</h3>
+          <p>Go live with monitoring. We track lead response time, qualification accuracy, and showing conversion — optimizing continuously for better results.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <FAQ items={faqItems} heading="Questions from Okanagan Real Estate Professionals" />
+    </div>
+  </section>
+
+  <section id="talk-to-ai" class="vert-cta">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Ready to Respond First, Every Time?</h2>
+        <p>Try our AI right now — or start with a free 4-week pilot and watch your lead response time drop to zero.</p>
+        <button class="btn-primary btn-lg" onclick="startAICall();">Talk to AI — Free</button>
+        <span class="cta-note">Free · 2 minutes · No commitment</span>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: 1rem 0; font-size: 0.85rem; color: var(--color-text-muted); }
+  .breadcrumb a { color: var(--color-text-muted); }
+  .breadcrumb a:hover { color: var(--color-primary-light); }
+  .breadcrumb .current { color: var(--color-text); }
+  .vert-hero { padding: 5rem 0 4rem; text-align: center; background: radial-gradient(ellipse at top, rgba(108, 60, 225, 0.15) 0%, transparent 55%); }
+  .hero-badge { display: inline-block; padding: 0.5rem 1.25rem; background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 999px; font-size: 0.9rem; font-weight: 600; color: var(--color-secondary); margin-bottom: 2rem; }
+  .vert-hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; }
+  .hero-sub { font-size: 1.15rem; color: var(--color-text-muted); max-width: 660px; margin: 0 auto 2.5rem; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .section-title { font-size: 2rem; text-align: center; margin-bottom: 0.75rem; }
+  .section-sub { text-align: center; color: var(--color-text-muted); margin-bottom: 3rem; font-size: 1.1rem; }
+  .pain-section { padding: 5rem 0; background: var(--color-bg-card); }
+  .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
+  .pain-card { padding: 2rem; text-align: center; }
+  .pain-stat { font-size: 2.5rem; font-weight: 800; color: var(--color-accent); margin-bottom: 0.75rem; }
+  .pain-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+  .pain-card p { color: var(--color-text-muted); line-height: 1.7; font-size: 0.95rem; }
+  .solutions-section { padding: 5rem 0; }
+  .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .solution-card { padding: 2rem; transition: border-color 0.2s; }
+  .solution-card:hover { border-color: var(--color-primary-light); }
+  .solution-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; color: var(--color-primary-light); }
+  .solution-card p { color: var(--color-text-muted); line-height: 1.7; font-size: 0.95rem; }
+  .how-section { padding: 5rem 0; background: var(--color-bg-card); }
+  .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 2rem; }
+  .how-step { text-align: center; padding: 2rem 1.5rem; }
+  .how-num { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); color: white; font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+  .how-step h3 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+  .how-step p { color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6; }
+  .faq-section { padding: 5rem 0; }
+  .vert-cta { padding: 5rem 0; background: var(--color-bg-card); }
+  .cta-card { text-align: center; background: linear-gradient(135deg, rgba(108, 60, 225, 0.15), rgba(6, 182, 212, 0.1)); border: 1px solid rgba(108, 60, 225, 0.3); border-radius: var(--radius); padding: 4rem 2rem; max-width: 650px; margin: 0 auto; }
+  .cta-card h2 { font-size: 1.75rem; margin-bottom: 1rem; }
+  .cta-card p { color: var(--color-text-muted); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .btn-lg { font-size: 1.15rem; padding: 1rem 2.5rem; cursor: pointer; }
+  .cta-note { display: block; margin-top: 1rem; font-size: 0.85rem; color: var(--color-text-muted); }
+  @media (max-width: 768px) { .pain-grid, .solutions-grid, .how-grid { grid-template-columns: 1fr; } }
+</style>
