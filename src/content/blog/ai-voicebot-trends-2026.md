@@ -2,7 +2,7 @@
 title: "AI Voicebot Trends for 2026 | Prism AI"
 description: "Discover the top AI voicebot trends for 2026, from low‑latency speech-to-speech to multilingual compliance-ready agents that win more calls."
 publishDate: 2026-02-28
-author: "Prism AI - AI Team"
+author: "Pieter van der Walt"
 category: "AI Voicebots"
 tags: ["voicebots", "ai-automation", "customer-experience", "contact-centre"]
 slug: "ai-voicebot-trends-2026"

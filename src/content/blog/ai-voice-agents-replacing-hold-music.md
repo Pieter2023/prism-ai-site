@@ -2,7 +2,7 @@
 title: "Why AI Voice Agents Are Replacing Hold Music"
 description: "Canadian businesses are ditching hold queues for AI voice agents that answer instantly, 24/7. Here is why the shift is happening now."
 publishDate: 2026-02-25
-author: "Prism AI - AI Team"
+author: "Pieter van der Walt"
 category: "AI Voicebots"
 tags: ["voicebots", "customer-service", "ai-automation"]
 slug: "ai-voice-agents-replacing-hold-music"

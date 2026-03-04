@@ -15,6 +15,18 @@
   [redirects.conditions]
     Host = "prismaiservices.netlify.app"
 
+# 301 redirect old pSEO service pages to services hub
+# Preserves link equity from ~288 programmatic pages
+[[redirects]]
+  from = "/services/ai-*"
+  to = "/services/"
+  status = 301
+
+[[redirects]]
+  from = "/services/custom-*"
+  to = "/services/"
+  status = 301
+
 # Redirect all 404s to custom 404 page
 [[redirects]]
   from = "/*"

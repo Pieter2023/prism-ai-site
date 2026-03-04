@@ -2,7 +2,7 @@
 title: "AI Voicebot Playbook 2026: Trends Canadian Businesses Should Adopt | Prism AI"
 description: "The 2026 AI voicebot trends that matter in Canada: real-time speech, multilingual support, PIPEDA-compliant flows, and tools that book more leads."
 publishDate: 2026-03-03
-author: "Prism AI"
+author: "Pieter van der Walt"
 category: "AI Voicebots"
 tags: ["voicebots", "ai-automation", "customer-experience", "canada", "contact-centre"]
 slug: "ai-voicebot-playbook-2026"

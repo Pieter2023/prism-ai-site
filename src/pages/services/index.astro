@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Prism AI Services',
+  description: 'AI voicebots and workflow automation services for Canadian businesses.',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'AI Voicebots',
+      url: 'https://prismaiservices.ca/services/ai-voicebots',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Workflow Automation',
+      url: 'https://prismaiservices.ca/services/workflow-automation',
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Our Services | AI Voicebots & Workflow Automation | Prism AI"
+  description="Prism AI specializes in two things: AI voicebots that answer your phones 24/7, and workflow automation that eliminates manual busywork. Kelowna-based, serving all of Canada."
+  jsonLd={jsonLd}
+>
+  <section class="services-hero">
+    <div class="container">
+      <h1>Our Services</h1>
+      <p class="hero-sub">Two specialties. One mission: free up your time so you can grow your business.</p>
+    </div>
+  </section>
+
+  <section class="services-list">
+    <div class="container">
+      <a href="/services/ai-voicebots" class="service-block card">
+        <div class="service-icon">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="service-info">
+          <h2>AI Voicebots</h2>
+          <p>Custom AI voice agents that answer calls, qualify leads, book appointments, and provide customer support — 24/7, with a natural human-like conversation.</p>
+          <span class="link-cta">Learn about AI Voicebots &rarr;</span>
+        </div>
+      </a>
+
+      <a href="/services/workflow-automation" class="service-block card">
+        <div class="service-icon">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+        </div>
+        <div class="service-info">
+          <h2>Workflow Automation</h2>
+          <p>End-to-end automation of your repetitive business processes — lead follow-up, CRM updates, invoicing, email sequences, and more. We connect your tools and eliminate manual busywork.</p>
+          <span class="link-cta">Learn about Workflow Automation &rarr;</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="services-cta">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Not Sure Which Service You Need?</h2>
+        <p>Talk to our AI concierge for free. It takes 2 minutes and will help you figure out the best starting point for your business.</p>
+        <a href="/#talk-to-ai" class="btn-primary" onclick="if(window.startAICall){event.preventDefault();startAICall();}">Talk to Our AI — Free</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .services-hero {
+    padding: 5rem 0 3rem;
+    text-align: center;
+    background: radial-gradient(ellipse at top, rgba(108, 60, 225, 0.12) 0%, transparent 60%);
+  }
+  .services-hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+  .hero-sub { font-size: 1.2rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto; }
+
+  .services-list { padding: 3rem 0 5rem; }
+  .services-list .container { display: flex; flex-direction: column; gap: 2rem; max-width: 800px; }
+
+  .service-block {
+    display: flex; gap: 2rem; align-items: flex-start;
+    padding: 2.5rem; text-decoration: none; color: inherit;
+  }
+  .service-block:hover { color: inherit; }
+  .service-icon { color: var(--color-primary-light); flex-shrink: 0; }
+  .service-info h2 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .service-info p { color: var(--color-text-muted); line-height: 1.7; margin-bottom: 1rem; }
+  .link-cta { color: var(--color-secondary); font-weight: 600; }
+
+  .services-cta { padding: 0 0 5rem; }
+  .cta-card {
+    text-align: center; max-width: 600px; margin: 0 auto;
+    background: linear-gradient(135deg, rgba(108, 60, 225, 0.15), rgba(6, 182, 212, 0.1));
+    border: 1px solid rgba(108, 60, 225, 0.3);
+    border-radius: var(--radius); padding: 3rem 2rem;
+  }
+  .cta-card h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .cta-card p { color: var(--color-text-muted); margin-bottom: 2rem; }
+
+  @media (max-width: 768px) {
+    .service-block { flex-direction: column; }
+  }
+</style>

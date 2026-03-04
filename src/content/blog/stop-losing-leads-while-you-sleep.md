@@ -2,7 +2,7 @@
 title: "Stop Losing Leads While You Sleep: The After-Hours Revenue Leak Costing Canadian Service Businesses Thousands"
 description: "Most service businesses lose their best leads between 5pm and 9am. Here is exactly what is happening, at it is costing you, and how AI automation seals the gap permanently."
 publishDate: 2026-02-26
-author: Prism AI - AI Team
+author: "Pieter van der Walt"
 category: AI Automation
 tags: [lead-generation, ai-automation, service-business, ai-voice-agents, business-growth]
 slug: stop-losing-leads-while-you-sleep

@@ -1,0 +1,291 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const siteUrl = 'https://prismaiservices.ca';
+const pageUrl = `${siteUrl}/services/ai-voicebots`;
+
+const faqItems = [
+  {
+    question: 'How natural do AI voicebots sound?',
+    answer: 'Our voicebots use ElevenLabs conversational AI technology, which produces remarkably natural speech. Most callers cannot tell they are speaking with an AI. The voice, tone, and pacing are customized to match your brand personality.',
+  },
+  {
+    question: 'Can a voicebot handle complex conversations?',
+    answer: 'Yes. Our voicebots are trained on your specific business context — your services, pricing, policies, and FAQs. They can handle multi-turn conversations, ask qualifying questions, and route complex inquiries to your team when needed.',
+  },
+  {
+    question: 'What happens if the AI cannot answer a question?',
+    answer: 'The voicebot gracefully hands off to a human team member via warm transfer, takes a detailed message, or schedules a callback — whatever workflow works best for your business. Nothing falls through the cracks.',
+  },
+  {
+    question: 'How long does setup take?',
+    answer: 'A standard AI voicebot can be deployed in 1-2 weeks. This includes voice customization, conversation flow design, integration with your booking or CRM system, and thorough testing before going live.',
+  },
+  {
+    question: 'Is my data secure and compliant with Canadian privacy laws?',
+    answer: 'Absolutely. All data is processed in compliance with PIPEDA and BC\'s PIPA. We do not store call recordings unless you explicitly opt in, and all data handling follows Canadian privacy best practices.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      '@id': pageUrl,
+      name: 'AI Voicebots',
+      description: 'Custom AI voice agents for Canadian businesses. 24/7 call answering, lead qualification, appointment booking, and customer support.',
+      provider: {
+        '@type': 'LocalBusiness',
+        name: 'Prism AI Services',
+        url: siteUrl,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Kelowna',
+          addressRegion: 'BC',
+          addressCountry: 'CA',
+        },
+      },
+      areaServed: [
+        { '@type': 'City', name: 'Kelowna' },
+        { '@type': 'City', name: 'West Kelowna' },
+        { '@type': 'City', name: 'Penticton' },
+        { '@type': 'City', name: 'Vernon' },
+        { '@type': 'Country', name: 'Canada' },
+      ],
+      serviceType: 'AI Voicebot Development',
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map(f => ({
+        '@type': 'Question',
+        name: f.question,
+        acceptedAnswer: { '@type': 'Answer', text: f.answer },
+      })),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: `${siteUrl}/services` },
+        { '@type': 'ListItem', position: 3, name: 'AI Voicebots', item: pageUrl },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="AI Voicebots | 24/7 Call Answering for Your Business | Prism AI"
+  description="Custom AI voicebots that answer calls, book appointments, qualify leads, and handle customer support 24/7. Natural-sounding, trained on your business. Kelowna-based."
+  canonical={pageUrl}
+  jsonLd={jsonLd}
+>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <a href="/">Home</a> <span>/</span>
+      <a href="/services">Services</a> <span>/</span>
+      <span class="current">AI Voicebots</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pillar-hero">
+    <div class="container">
+      <div class="hero-badge">AI Voicebots</div>
+      <h1>Never Miss Another Call.<br /><span class="text-gradient">Your AI Answers 24/7.</span></h1>
+      <p class="hero-sub">
+        Custom AI voice agents that answer your phones around the clock — booking appointments,
+        qualifying leads, and handling customer questions with a natural, human-like conversation.
+      </p>
+      <div class="hero-actions">
+        <a href="#demo" class="btn-primary">Try the Live Demo</a>
+        <a href="/#pricing" class="btn-secondary">See Pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem -->
+  <section class="problem-section">
+    <div class="container">
+      <h2>The Problem: Missed Calls = Missed Revenue</h2>
+      <div class="problem-grid">
+        <div class="problem-card card">
+          <div class="problem-stat">62%</div>
+          <p>of callers who reach voicemail will never call back</p>
+        </div>
+        <div class="problem-card card">
+          <div class="problem-stat">$1,200+</div>
+          <p>average revenue lost per missed lead call for service businesses</p>
+        </div>
+        <div class="problem-card card">
+          <div class="problem-stat">5-10</div>
+          <p>after-hours calls missed per week by the average SMB</p>
+        </div>
+      </div>
+      <p class="problem-context">
+        If you run a real estate agency, dental clinic, law firm, or trades company, every missed call
+        is a potential client walking straight to a competitor. Hold music, voicemail, and "we'll call you back"
+        are not cutting it anymore.
+      </p>
+    </div>
+  </section>
+
+  <!-- Solution -->
+  <section class="solution-section">
+    <div class="container">
+      <h2>The Solution: AI That Sounds Like Your Best Receptionist</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>Instant Call Answering</h3>
+          <p>Every call is answered on the first ring, 24 hours a day, 7 days a week. No hold music, no voicemail, no missed opportunities.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Lead Qualification</h3>
+          <p>Your voicebot asks the right questions to qualify leads before they reach your team — saving you hours of back-and-forth with tire-kickers.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Appointment Booking</h3>
+          <p>Integrated with your calendar or booking system, the AI schedules appointments in real time during the call. No double-bookings, no manual entry.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Customer Support</h3>
+          <p>Handle FAQs, provide business hours, give directions, explain pricing — your voicebot knows your business inside and out.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Smart Handoff</h3>
+          <p>When a call needs a human touch, the AI seamlessly transfers to your team with full context — or takes a detailed message for follow-up.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Canadian Compliance</h3>
+          <p>Built with PIPEDA and PIPA compliance in mind. Your callers' data is handled securely and in accordance with Canadian privacy regulations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="usecases-section">
+    <div class="container">
+      <h2>Built For These Industries</h2>
+      <div class="usecases-grid">
+        <div class="usecase card">
+          <h3>Real Estate</h3>
+          <p>Qualify buyer/seller leads, schedule showings, answer property questions — even at 10 PM when serious buyers are browsing.</p>
+        </div>
+        <div class="usecase card">
+          <h3>Trades &amp; Contractors</h3>
+          <p>Capture job requests while you are on site, provide quotes, and schedule estimates — without interrupting your crew.</p>
+        </div>
+        <div class="usecase card">
+          <h3>Healthcare &amp; Dental</h3>
+          <p>Book patient appointments, handle prescription refill requests, and provide clinic information — fully compliant with PIPEDA.</p>
+        </div>
+        <div class="usecase card">
+          <h3>Hospitality &amp; Tourism</h3>
+          <p>Handle reservation inquiries, answer questions about amenities, and manage seasonal booking surges without extra staff.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Demo -->
+  <section id="demo" class="demo-section">
+    <div class="container">
+      <div class="demo-card">
+        <h2>Try It Right Now</h2>
+        <p>Click the button below to have a real conversation with our AI. No sign-up needed — just talk.</p>
+        <button class="btn-primary btn-lg" onclick="startAICall();">
+          Start a Live AI Call
+        </button>
+        <span class="demo-note">Free · Takes 2 minutes · Uses your browser microphone</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ items={faqItems} heading="AI Voicebot FAQ" />
+
+  <!-- CTA -->
+  <section class="pillar-cta">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Ready to Stop Missing Calls?</h2>
+        <p>Get a free consultation and we will show you exactly how an AI voicebot would work for your business.</p>
+        <a href="/#talk-to-ai" class="btn-primary" onclick="if(window.startAICall){event.preventDefault();startAICall();}">Book Your Free Consultation</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: 1rem 0; font-size: 0.875rem; color: var(--color-text-muted); }
+  .breadcrumb a { color: var(--color-text-muted); }
+  .breadcrumb a:hover { color: var(--color-primary-light); }
+  .breadcrumb span { margin: 0 0.5rem; }
+  .breadcrumb .current { color: var(--color-text); }
+
+  .pillar-hero {
+    padding: 5rem 0 4rem; text-align: center;
+    background: radial-gradient(ellipse at top, rgba(108, 60, 225, 0.12) 0%, transparent 60%);
+  }
+  .hero-badge {
+    display: inline-block; padding: 0.5rem 1.25rem;
+    background: rgba(108, 60, 225, 0.12); border: 1px solid rgba(108, 60, 225, 0.3);
+    border-radius: 999px; font-size: 0.9rem; font-weight: 600;
+    color: var(--color-primary-light); margin-bottom: 1.5rem;
+  }
+  .pillar-hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; }
+  .hero-sub { font-size: 1.15rem; color: var(--color-text-muted); max-width: 620px; margin: 0 auto 2.5rem; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  .problem-section { background: var(--color-bg-card); }
+  .problem-section h2 { font-size: 1.75rem; text-align: center; margin-bottom: 2rem; }
+  .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+  .problem-card { text-align: center; padding: 2rem; }
+  .problem-stat { font-size: 2.5rem; font-weight: 800; color: var(--color-accent); margin-bottom: 0.5rem; }
+  .problem-card p { color: var(--color-text-muted); font-size: 0.95rem; }
+  .problem-context { text-align: center; color: var(--color-text-muted); max-width: 700px; margin: 0 auto; line-height: 1.8; font-size: 1.05rem; }
+
+  .solution-section h2 { font-size: 1.75rem; text-align: center; margin-bottom: 2.5rem; }
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .feature-card {
+    padding: 2rem; border: 1px solid var(--color-border); border-radius: var(--radius);
+    background: rgba(108, 60, 225, 0.04); transition: border-color 0.2s;
+  }
+  .feature-card:hover { border-color: var(--color-primary-light); }
+  .feature-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; color: var(--color-primary-light); }
+  .feature-card p { color: var(--color-text-muted); line-height: 1.7; font-size: 0.95rem; }
+
+  .usecases-section { background: var(--color-bg-card); }
+  .usecases-section h2 { font-size: 1.75rem; text-align: center; margin-bottom: 2.5rem; }
+  .usecases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .usecase h3 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+  .usecase p { color: var(--color-text-muted); line-height: 1.7; font-size: 0.95rem; }
+
+  .demo-section { padding: 5rem 0; }
+  .demo-card {
+    text-align: center; max-width: 550px; margin: 0 auto;
+    background: linear-gradient(135deg, rgba(108, 60, 225, 0.15), rgba(6, 182, 212, 0.1));
+    border: 1px solid rgba(108, 60, 225, 0.3); border-radius: var(--radius); padding: 3rem 2rem;
+  }
+  .demo-card h2 { font-size: 1.75rem; margin-bottom: 1rem; }
+  .demo-card p { color: var(--color-text-muted); margin-bottom: 2rem; }
+  .btn-lg { font-size: 1.15rem; padding: 1rem 2.5rem; cursor: pointer; }
+  .demo-note { display: block; margin-top: 1rem; font-size: 0.85rem; color: var(--color-text-muted); }
+
+  .pillar-cta { padding: 0 0 5rem; }
+  .cta-card {
+    text-align: center; max-width: 600px; margin: 0 auto;
+    background: linear-gradient(135deg, rgba(108, 60, 225, 0.12), rgba(6, 182, 212, 0.08));
+    border: 1px solid rgba(108, 60, 225, 0.25); border-radius: var(--radius); padding: 3rem 2rem;
+  }
+  .cta-card h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .cta-card p { color: var(--color-text-muted); margin-bottom: 2rem; }
+
+  @media (max-width: 768px) {
+    .problem-grid { grid-template-columns: 1fr; }
+  }
+</style>

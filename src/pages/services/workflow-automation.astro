@@ -1,0 +1,318 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const siteUrl = 'https://prismaiservices.ca';
+const pageUrl = `${siteUrl}/services/workflow-automation`;
+
+const faqItems = [
+  {
+    question: 'What kinds of tasks can be automated?',
+    answer: 'Almost any repetitive digital task: lead follow-up emails, CRM data entry, invoice processing, appointment reminders, social media posting, report generation, file management, team notifications, and much more. If you do it the same way every time, we can probably automate it.',
+  },
+  {
+    question: 'What tools do you integrate with?',
+    answer: 'We work with the tools you already use — Google Workspace, Microsoft 365, QuickBooks, HubSpot, Salesforce, Mailchimp, Slack, and hundreds more. We use platforms like Make.com, Zapier, and n8n, plus custom API integrations when off-the-shelf connectors do not exist.',
+  },
+  {
+    question: 'How much time will automation actually save?',
+    answer: 'Most of our clients save 10-20 hours per week after implementing 2-3 core automations. The exact savings depend on your current processes, but we map everything out during the discovery call so you know exactly what to expect.',
+  },
+  {
+    question: 'Will automation break if something in my tools changes?',
+    answer: 'We build automations with error handling and monitoring built in. If something breaks, we get alerted before you even notice. Our Growth and Enterprise plans include ongoing maintenance and optimization to keep everything running smoothly.',
+  },
+  {
+    question: 'Is my business data secure?',
+    answer: 'Yes. All automations are built with security best practices and comply with PIPEDA and BC\'s PIPA. We use encrypted connections, follow the principle of least privilege for API access, and never store your data beyond what is needed for the automation to function.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      '@id': pageUrl,
+      name: 'Workflow Automation',
+      description: 'End-to-end workflow automation for Canadian businesses. Eliminate manual data entry, automate lead follow-up, and connect your business tools.',
+      provider: {
+        '@type': 'LocalBusiness',
+        name: 'Prism AI Services',
+        url: siteUrl,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Kelowna',
+          addressRegion: 'BC',
+          addressCountry: 'CA',
+        },
+      },
+      areaServed: [
+        { '@type': 'City', name: 'Kelowna' },
+        { '@type': 'Country', name: 'Canada' },
+      ],
+      serviceType: 'Business Process Automation',
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map(f => ({
+        '@type': 'Question',
+        name: f.question,
+        acceptedAnswer: { '@type': 'Answer', text: f.answer },
+      })),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: `${siteUrl}/services` },
+        { '@type': 'ListItem', position: 3, name: 'Workflow Automation', item: pageUrl },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Workflow Automation | Eliminate Manual Busywork | Prism AI"
+  description="End-to-end workflow automation for Canadian SMBs. Automate lead follow-up, CRM updates, invoicing, and more. Save 15+ hours per week. Kelowna-based."
+  canonical={pageUrl}
+  jsonLd={jsonLd}
+>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <a href="/">Home</a> <span>/</span>
+      <a href="/services">Services</a> <span>/</span>
+      <span class="current">Workflow Automation</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pillar-hero">
+    <div class="container">
+      <div class="hero-badge">Workflow Automation</div>
+      <h1>Stop Doing Manually<br /><span class="text-gradient">What a System Can Do for You.</span></h1>
+      <p class="hero-sub">
+        We connect your business tools and automate repetitive tasks — lead follow-up, CRM updates,
+        invoicing, reporting, and more. Your team gets back 15+ hours per week to focus on what matters.
+      </p>
+      <div class="hero-actions">
+        <a href="/#talk-to-ai" class="btn-primary" onclick="if(window.startAICall){event.preventDefault();startAICall();}">Book a Free Consultation</a>
+        <a href="/#pricing" class="btn-secondary">See Pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem -->
+  <section class="problem-section">
+    <div class="container">
+      <h2>The Problem: Death by a Thousand Manual Tasks</h2>
+      <p class="problem-intro">
+        You know the feeling. Copy data from an email into your CRM. Send a follow-up. Update a spreadsheet.
+        Notify the team. Generate a report. Repeat tomorrow. And the day after that.
+      </p>
+      <div class="problem-grid">
+        <div class="problem-item">
+          <strong>15+ hours/week</strong>
+          <p>spent on manual data entry and task management by the average SMB team</p>
+        </div>
+        <div class="problem-item">
+          <strong>23% of leads</strong>
+          <p>are lost due to slow or inconsistent follow-up processes</p>
+        </div>
+        <div class="problem-item">
+          <strong>$50K+/year</strong>
+          <p>wasted on labour that could be handled by automation</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Automate -->
+  <section class="automations-section">
+    <div class="container">
+      <h2>What We Automate</h2>
+      <div class="auto-grid">
+        <div class="auto-card card">
+          <h3>Lead Follow-Up</h3>
+          <p>New lead comes in? Instant personalized email, CRM entry created, team notified, follow-up sequence started — all automatically, within seconds.</p>
+        </div>
+        <div class="auto-card card">
+          <h3>CRM &amp; Data Sync</h3>
+          <p>Keep your CRM, spreadsheets, and project management tools perfectly in sync. No more manual data entry between systems.</p>
+        </div>
+        <div class="auto-card card">
+          <h3>Invoice &amp; Payment Processing</h3>
+          <p>Auto-generate invoices from completed jobs, send payment reminders, and sync with QuickBooks or your accounting system.</p>
+        </div>
+        <div class="auto-card card">
+          <h3>Email &amp; Communication Sequences</h3>
+          <p>Nurture leads, onboard new clients, and send appointment reminders with automated email and SMS sequences triggered by real events.</p>
+        </div>
+        <div class="auto-card card">
+          <h3>Reporting &amp; Dashboards</h3>
+          <p>Auto-generate weekly reports, KPI dashboards, and team updates. No more spending Monday morning compiling numbers.</p>
+        </div>
+        <div class="auto-card card">
+          <h3>Document &amp; File Management</h3>
+          <p>Auto-organize files, generate contracts from templates, route documents for approval, and archive completed work — hands-free.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools We Work With -->
+  <section class="tools-section">
+    <div class="container">
+      <h2>Tools We Integrate With</h2>
+      <p class="tools-sub">We work with the tools you already use. No need to switch platforms.</p>
+      <div class="tools-grid">
+        <span class="tool-tag">Google Workspace</span>
+        <span class="tool-tag">Microsoft 365</span>
+        <span class="tool-tag">HubSpot</span>
+        <span class="tool-tag">Salesforce</span>
+        <span class="tool-tag">QuickBooks</span>
+        <span class="tool-tag">Mailchimp</span>
+        <span class="tool-tag">Slack</span>
+        <span class="tool-tag">Make.com</span>
+        <span class="tool-tag">Zapier</span>
+        <span class="tool-tag">n8n</span>
+        <span class="tool-tag">Airtable</span>
+        <span class="tool-tag">Notion</span>
+        <span class="tool-tag">Calendly</span>
+        <span class="tool-tag">Stripe</span>
+        <span class="tool-tag">Twilio</span>
+        <span class="tool-tag">Custom APIs</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Example Workflow -->
+  <section class="example-section">
+    <div class="container">
+      <h2>Example: Automated Lead-to-Client Pipeline</h2>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <p><strong>Lead fills out form</strong> on your website</p>
+        </div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <p><strong>CRM entry created</strong> + team notified on Slack</p>
+        </div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <p><strong>Personalized email</strong> sent within 60 seconds</p>
+        </div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <p><strong>Follow-up sequence</strong> runs over 7 days</p>
+        </div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">
+          <div class="flow-num">5</div>
+          <p><strong>Meeting booked</strong> automatically via Calendly</p>
+        </div>
+      </div>
+      <p class="flow-note">Total human effort: zero. Time from lead to first contact: under 60 seconds.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ items={faqItems} heading="Workflow Automation FAQ" />
+
+  <!-- CTA -->
+  <section class="pillar-cta">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Ready to Eliminate the Busywork?</h2>
+        <p>Get a free consultation and we will map out exactly which of your processes can be automated — and how much time you will save.</p>
+        <a href="/#talk-to-ai" class="btn-primary" onclick="if(window.startAICall){event.preventDefault();startAICall();}">Book Your Free Consultation</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: 1rem 0; font-size: 0.875rem; color: var(--color-text-muted); }
+  .breadcrumb a { color: var(--color-text-muted); }
+  .breadcrumb a:hover { color: var(--color-primary-light); }
+  .breadcrumb span { margin: 0 0.5rem; }
+  .breadcrumb .current { color: var(--color-text); }
+
+  .pillar-hero {
+    padding: 5rem 0 4rem; text-align: center;
+    background: radial-gradient(ellipse at top, rgba(108, 60, 225, 0.12) 0%, transparent 60%);
+  }
+  .hero-badge {
+    display: inline-block; padding: 0.5rem 1.25rem;
+    background: rgba(108, 60, 225, 0.12); border: 1px solid rgba(108, 60, 225, 0.3);
+    border-radius: 999px; font-size: 0.9rem; font-weight: 600;
+    color: var(--color-primary-light); margin-bottom: 1.5rem;
+  }
+  .pillar-hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; }
+  .hero-sub { font-size: 1.15rem; color: var(--color-text-muted); max-width: 620px; margin: 0 auto 2.5rem; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  .problem-section { background: var(--color-bg-card); }
+  .problem-section h2 { font-size: 1.75rem; text-align: center; margin-bottom: 1.5rem; }
+  .problem-intro { text-align: center; color: var(--color-text-muted); max-width: 650px; margin: 0 auto 2.5rem; line-height: 1.8; font-size: 1.05rem; }
+  .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+  .problem-item { text-align: center; padding: 1.5rem; border: 1px solid var(--color-border); border-radius: var(--radius); }
+  .problem-item strong { font-size: 1.5rem; color: var(--color-accent); display: block; margin-bottom: 0.5rem; }
+  .problem-item p { color: var(--color-text-muted); font-size: 0.95rem; }
+
+  .automations-section h2 { font-size: 1.75rem; text-align: center; margin-bottom: 2.5rem; }
+  .auto-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .auto-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; color: var(--color-primary-light); }
+  .auto-card p { color: var(--color-text-muted); line-height: 1.7; font-size: 0.95rem; }
+
+  .tools-section { background: var(--color-bg-card); }
+  .tools-section h2 { font-size: 1.75rem; text-align: center; margin-bottom: 0.75rem; }
+  .tools-sub { text-align: center; color: var(--color-text-muted); margin-bottom: 2rem; }
+  .tools-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; max-width: 700px; margin: 0 auto; }
+  .tool-tag {
+    padding: 0.5rem 1.25rem; background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.25); border-radius: 999px;
+    font-size: 0.9rem; color: var(--color-secondary); font-weight: 500;
+  }
+
+  .example-section h2 { font-size: 1.75rem; text-align: center; margin-bottom: 2.5rem; }
+  .flow-steps {
+    display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 1rem;
+    max-width: 900px; margin: 0 auto;
+  }
+  .flow-step {
+    text-align: center; padding: 1.25rem 1rem; border: 1px solid var(--color-border);
+    border-radius: var(--radius); background: rgba(108, 60, 225, 0.05);
+    min-width: 140px; flex: 1;
+  }
+  .flow-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white; font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;
+  }
+  .flow-step p { font-size: 0.85rem; color: var(--color-text-muted); }
+  .flow-step strong { color: var(--color-text-heading); }
+  .flow-arrow { font-size: 1.5rem; color: var(--color-primary-light); font-weight: 700; }
+  .flow-note { text-align: center; margin-top: 2rem; color: var(--color-success); font-weight: 600; font-size: 1rem; }
+
+  .pillar-cta { padding: 0 0 5rem; }
+  .cta-card {
+    text-align: center; max-width: 600px; margin: 0 auto;
+    background: linear-gradient(135deg, rgba(108, 60, 225, 0.12), rgba(6, 182, 212, 0.08));
+    border: 1px solid rgba(108, 60, 225, 0.25); border-radius: var(--radius); padding: 3rem 2rem;
+  }
+  .cta-card h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .cta-card p { color: var(--color-text-muted); margin-bottom: 2rem; }
+
+  @media (max-width: 768px) {
+    .flow-arrow { display: none; }
+    .flow-steps { flex-direction: column; }
+  }
+</style>

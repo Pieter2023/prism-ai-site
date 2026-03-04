@@ -1,48 +1,115 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const siteUrl = 'https://prismaiservices.ca';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      name: 'Pieter van der Walt',
+      jobTitle: 'Founder',
+      worksFor: {
+        '@type': 'LocalBusiness',
+        name: 'Prism AI Services',
+        url: siteUrl,
+      },
+      url: `${siteUrl}/about`,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Kelowna',
+        addressRegion: 'BC',
+        addressCountry: 'CA',
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+        { '@type': 'ListItem', position: 2, name: 'About', item: `${siteUrl}/about` },
+      ],
+    },
+  ],
+};
 ---
 
 <BaseLayout
-  title="About Prism AI | AI Automation for Kelowna & Canadian Businesses"
-  description="Prism AI helps small and mid-sized businesses in Kelowna and across Canada automate workflows, deploy AI voicebots, and scale operations with practical AI solutions."
+  title="About Pieter van der Walt | Prism AI Services | Kelowna, BC"
+  description="Meet Pieter van der Walt, founder of Prism AI Services. Based in Kelowna, BC, helping Okanagan businesses automate operations with AI voicebots and workflow automation."
+  jsonLd={jsonLd}
 >
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <a href="/">Home</a> <span>/</span>
+      <span class="current">About</span>
+    </div>
+  </nav>
+
   <section class="about-hero">
     <div class="container">
-      <h1>About Prism AI</h1>
-      <p class="hero-subtitle">Practical AI automation for Canadian businesses</p>
+      <h1>About <span class="text-gradient">Prism AI</span></h1>
+      <p class="hero-subtitle">Real AI automation, built by a real person, in a real place.</p>
     </div>
   </section>
 
   <section class="about-content">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-main">
-          <h2>Who We Are</h2>
-          <p>Prism AI is a Kelowna-based AI automation consultancy founded by Pieter van der Walt. We help small and mid-sized businesses across Canada cut through the noise of AI hype and implement solutions that actually work  saving time, reducing costs, and scaling operations.</p>
+    <div class="container about-container">
+      <div class="about-main">
+        <h2>Hey, I'm Pieter.</h2>
+        <p>
+          I'm the founder of Prism AI Services, based right here in Kelowna, BC. I started this company
+          because I kept seeing the same thing: small business owners drowning in manual work that a well-built
+          AI system could handle in seconds. Missed calls after hours. Hours spent copying data between
+          spreadsheets. Follow-ups that fell through the cracks. It did not have to be that way.
+        </p>
+        <p>
+          Before starting Prism AI, I spent years in real estate and technology, which gave me a front-row
+          seat to how much time gets wasted on repetitive tasks. When AI voice technology and automation
+          platforms matured enough to actually deliver on their promises, I knew it was time to build something
+          that helps real businesses — not just enterprise companies with six-figure budgets.
+        </p>
 
-          <p>With hands-on experience in AI voicebots, workflow automation, and business process optimization, we focus on delivering measurable results rather than buzzwords. Every solution we build is tailored to your specific business needs and designed to integrate seamlessly with your existing tools and processes.</p>
+        <h2>Why Kelowna?</h2>
+        <p>
+          I chose Kelowna because it is one of the best places to live and work in Canada — and I mean that
+          genuinely. When I am not building AI systems, you will find me mountain biking the trails above
+          the lake, exploring the wine country, or just enjoying the Okanagan lifestyle that drew so many of
+          us here. This is not just where I work. It is home.
+        </p>
+        <p>
+          Being local matters. I understand the Okanagan economy — the seasonal spikes that hit wineries and
+          tourism operators, the construction boom keeping trades companies busier than ever, the real estate
+          market that moves at all hours. When I build automation for your business, it is designed for how
+          things actually work here, not based on assumptions from a desk in Toronto.
+        </p>
 
-          <h2>What We Do</h2>
-          <p>We specialize in two core areas:</p>
-
-          <div class="service-highlight">
-            <h3>AI Voicebots</h3>
-            <p>Custom voice AI agents that handle inbound and outbound calls, qualify leads, book appointments, and provide 24/7 customer support  all sounding natural and on-brand for your business.</p>
+        <h2>What Prism AI Stands For</h2>
+        <div class="values-grid">
+          <div class="value-item">
+            <h3>Practical Over Flashy</h3>
+            <p>We build solutions that actually save you time and money — not demos that look cool but collect dust. Every project starts with "what's costing you the most time right now?"</p>
           </div>
-
-          <div class="service-highlight">
-            <h3>Workflow Automation</h3>
-            <p>End-to-end automation of repetitive business processes  from lead follow-up and CRM updates to document processing and team notifications. We connect your existing tools and eliminate manual bottlenecks.</p>
+          <div class="value-item">
+            <h3>Honest Pricing</h3>
+            <p>Transparent monthly pricing in Canadian dollars. No hidden fees, no long-term contracts, no surprise invoices. You know exactly what you are paying for.</p>
           </div>
+          <div class="value-item">
+            <h3>Canadian-First</h3>
+            <p>Built with PIPEDA and BC's PIPA compliance from day one. Your data stays secure and your business stays compliant with Canadian privacy law.</p>
+          </div>
+          <div class="value-item">
+            <h3>Real Support</h3>
+            <p>When you email pieter@prismaiservices.ca, you get a response from me — not a chatbot, not a ticket number. I stand behind every system we build.</p>
+          </div>
+        </div>
 
-          <h2>Why Prism AI</h2>
-          <p>We are not a faceless enterprise vendor. We are a hands-on team that works directly with business owners to understand their pain points and build solutions that deliver ROI from day one. Based in Kelowna, BC, we understand the unique challenges Canadian SMBs face and price our services accordingly.</p>
-
-          <div class="cta-block">
-            <h3>Ready to explore what AI can do for your business?</h3>
-            <p>Take our free AI readiness scorecard to see where automation can make the biggest impact.</p>
-            <a href="/scorecard" class="btn-primary">Take the Free Scorecard</a>
-            <a href="/audit" class="btn-secondary">Learn About Our AI Audit</a>
+        <div class="cta-block">
+          <h3>Want to See What AI Can Do for Your Business?</h3>
+          <p>Talk to our AI concierge for a free 2-minute assessment, or just reach out directly.</p>
+          <div class="cta-actions">
+            <a href="/#talk-to-ai" class="btn-primary" onclick="if(window.startAICall){event.preventDefault();startAICall();}">Talk to Our AI</a>
+            <a href="mailto:pieter@prismaiservices.ca" class="btn-secondary">Email Me Directly</a>
           </div>
         </div>
       </div>
@@ -51,73 +118,43 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
+  .breadcrumb { padding: 1rem 0; font-size: 0.875rem; color: var(--color-text-muted); }
+  .breadcrumb a { color: var(--color-text-muted); }
+  .breadcrumb a:hover { color: var(--color-primary-light); }
+  .breadcrumb span { margin: 0 0.5rem; }
+  .breadcrumb .current { color: var(--color-text); }
+
   .about-hero {
-    padding: 4rem 0 2rem;
-    text-align: center;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    padding: 4rem 0 2rem; text-align: center;
+    background: radial-gradient(ellipse at top, rgba(108, 60, 225, 0.1) 0%, transparent 55%);
   }
-  .about-hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+  .about-hero h1 { font-size: 2.5rem; margin-bottom: 0.75rem; }
+  .hero-subtitle { font-size: 1.2rem; color: var(--color-text-muted); }
+
+  .about-content { padding: 3rem 0 5rem; }
+  .about-container { max-width: 760px; }
+
+  .about-main h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--color-text-heading); }
+  .about-main h2:first-child { margin-top: 0; }
+  .about-main p { line-height: 1.8; margin-bottom: 1.25rem; color: var(--color-text-muted); font-size: 1.05rem; }
+
+  .values-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; margin: 2rem 0;
   }
-  .hero-subtitle {
-    font-size: 1.2rem;
-    opacity: 0.8;
+  .value-item {
+    padding: 1.5rem; border: 1px solid var(--color-border);
+    border-radius: var(--radius); background: rgba(108, 60, 225, 0.04);
   }
-  .about-content {
-    padding: 3rem 0;
-  }
-  .about-main h2 {
-    font-size: 1.8rem;
-    margin: 2rem 0 1rem;
-    color: #fff;
-  }
-  .about-main p {
-    line-height: 1.8;
-    margin-bottom: 1rem;
-    color: #ccc;
-  }
-  .service-highlight {
-    background: rgba(255,255,255,0.05);
-    border-left: 3px solid #6c63ff;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    border-radius: 0 8px 8px 0;
-  }
-  .service-highlight h3 {
-    margin-bottom: 0.5rem;
-    color: #fff;
-  }
+  .value-item h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--color-primary-light); }
+  .value-item p { color: var(--color-text-muted); line-height: 1.7; font-size: 0.95rem; margin: 0; }
+
   .cta-block {
-    margin-top: 3rem;
-    padding: 2rem;
-    background: rgba(108, 99, 255, 0.1);
-    border-radius: 12px;
-    text-align: center;
+    margin-top: 3rem; padding: 2.5rem; text-align: center;
+    background: linear-gradient(135deg, rgba(108, 60, 225, 0.12), rgba(6, 182, 212, 0.08));
+    border: 1px solid rgba(108, 60, 225, 0.25); border-radius: var(--radius);
   }
-  .cta-block h3 {
-    margin-bottom: 0.5rem;
-  }
-  .cta-block .btn-primary,
-  .cta-block .btn-secondary {
-    display: inline-block;
-    margin: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  .cta-block .btn-primary {
-    background: #6c63ff;
-    color: #fff;
-  }
-  .cta-block .btn-secondary {
-    border: 1px solid #6c63ff;
-    color: #6c63ff;
-  }
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
+  .cta-block h3 { font-size: 1.3rem; margin-bottom: 0.75rem; }
+  .cta-block p { color: var(--color-text-muted); margin-bottom: 1.5rem; }
+  .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 </style>
