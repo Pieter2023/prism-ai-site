@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://prismaiservices.netlify.app/sitemap-index.xml
+Sitemap: https://prismaiservices.ca/sitemap-index.xml

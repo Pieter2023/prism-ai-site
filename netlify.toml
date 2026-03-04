@@ -5,6 +5,16 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# 301 redirect from .netlify.app to primary .ca domain
+# This prevents domain authority splitting for SEO
+[[redirects]]
+  from = "/*"
+  to = "https://prismaiservices.ca/:splat"
+  status = 301
+  force = true
+  [redirects.conditions]
+    Host = "prismaiservices.netlify.app"
+
 # Redirect all 404s to custom 404 page
 [[redirects]]
   from = "/*"
