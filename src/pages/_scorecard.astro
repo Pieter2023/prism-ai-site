@@ -1,13 +1,61 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageUrl = 'https://prismaiservices.ca/scorecard/';
+const faqItems = [
+  {
+    question: 'What is the Prism AI readiness scorecard?',
+    answer: 'It is a short assessment that shows how ready your business is for AI automation and where the highest ROI opportunities are right now.'
+  },
+  {
+    question: 'How long does the scorecard take?',
+    answer: 'Most business owners complete it in under 5 minutes and receive an instant score with practical next steps.'
+  },
+  {
+    question: 'Who is this scorecard for?',
+    answer: 'It is designed for Canadian service businesses that want to improve lead response, operations, reporting, and customer communication using AI.'
+  }
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': `${pageUrl}#webpage`,
+      name: 'Free AI Readiness Scorecard - Prism AI',
+      url: pageUrl,
+      description: 'AI automation for Canadian service businesses: assess your readiness in under 5 minutes.',
+      speakable: {
+        '@type': 'SpeakableSpecification',
+        cssSelector: ['.scorecard-quick-answer p']
+      }
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map((f) => ({
+        '@type': 'Question',
+        name: f.question,
+        acceptedAnswer: { '@type': 'Answer', text: f.answer }
+      }))
+    }
+  ]
+};
 ---
 
 <BaseLayout
   title="Free AI Readiness Scorecard - Prism AI"
   description="Find out how AI-ready your business is in under 5 minutes. Get your instant score and personalised recommendations - free."
+  canonical={pageUrl}
+  jsonLd={jsonLd}
 >
   <section class="scorecard-section">
     <div class="container scorecard-container">
+
+      <div class="scorecard-quick-answer">
+        <h2>Quick answer:</h2>
+        <p>Prism AI helps Canadian service businesses identify the fastest automation wins across lead response, operations, reporting, and customer communication. This free scorecard gives you a practical starting point in under 5 minutes.</p>
+      </div>
 
       <!-- Intro state -->
       <div id="sc-intro" class="sc-fade-in">
@@ -101,6 +149,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
 
     </div>
+  </section>
+
+  <section class="scorecard-faq container">
+    <h2>Scorecard FAQ</h2>
+    {faqItems.map((item) => (
+      <div class="faq-item">
+        <h3>{item.question}</h3>
+        <p>{item.answer}</p>
+      </div>
+    ))}
+    <p class="scorecard-next-step">After your score, you can <a href="/#talk-to-ai" onclick="if(window.startAICall){event.preventDefault();startAICall();}">talk to the AI concierge</a> or review the latest insights on the <a href="/blog/">Prism AI blog</a>.</p>
   </section>
 </BaseLayout>
 
@@ -882,6 +941,46 @@ function scShowResult() {
   .sc-breakdown-card { flex-direction: column; text-align: center; }
   .sc-breakdown-icon { margin: 0 auto; }
   .sc-cta-block { padding: 2rem 1.25rem; }
+}
+
+.scorecard-quick-answer {
+  border: 1px solid var(--color-border);
+  background: rgba(6, 182, 212, 0.08);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.scorecard-quick-answer h2 {
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+  color: var(--color-secondary);
+}
+.scorecard-quick-answer p {
+  margin: 0;
+  line-height: 1.7;
+}
+.scorecard-faq {
+  max-width: 760px;
+  margin: 0 auto 4rem;
+}
+.scorecard-faq h2 {
+  margin-bottom: 1rem;
+}
+.scorecard-faq .faq-item {
+  border-top: 1px solid var(--color-border);
+  padding: 1rem 0;
+}
+.scorecard-faq .faq-item h3 {
+  margin-bottom: 0.4rem;
+  font-size: 1.05rem;
+}
+.scorecard-faq .faq-item p {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+.scorecard-next-step {
+  margin-top: 1rem;
 }
 
 .btn-lg { font-size: 1.1rem; padding: 0.9rem 2.2rem; }
