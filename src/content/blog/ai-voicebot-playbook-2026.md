@@ -78,6 +78,8 @@ Unclear escalation logic, no KPI tracking, and overly long scripts that create c
 
 - [AI Voicebot Trends 2026](/blog/ai-voicebot-trends-2026/)
 - [Why AI Voice Agents Are Replacing Hold Music](/blog/ai-voice-agents-replacing-hold-music/)
+- [AI Lead Qualification for HVAC in Kelowna](/services/ai-lead-qualification-hvac-kelowna/)
+- [AI Estimate Follow-Up for Auto Repair in Kelowna](/services/ai-estimate-follow-up-auto-repair-kelowna/)
 - [Take the Free AI Readiness Scorecard](/scorecard/)
 
 ## Sources and Further Reading
