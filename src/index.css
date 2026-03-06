@@ -1,0 +1,338 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #135bec;
+  --color-primary-light: #3b82f6;
+  --color-accent: #06b6d4;
+  --color-background-dark: #0a0f1a;
+  --color-background-darker: #070a12;
+  --font-display: 'Inter', sans-serif;
+
+  /* Glass utilities */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.15);
+}
+
+@theme {
+  --font-display: 'Inter', sans-serif;
+  --color-primary: #135bec;
+  --color-primary-light: #3b82f6;
+  --color-accent: #06b6d4;
+  --color-background-dark: #0a0f1a;
+  --color-background-darker: #070a12;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Fix mobile viewport height for address bar */
+  height: 100%;
+  height: -webkit-fill-available;
+}
+
+body {
+  font-family: var(--font-display);
+  background-color: var(--color-background-dark);
+  color: #f1f5f9;
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+  /* Safe area insets for notched phones */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(19, 91, 236, 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(19, 91, 236, 0.6);
+}
+
+/* Glass Effects - optimized for performance */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (hover: hover) {
+  .glass-card:hover {
+    border-color: rgba(19, 91, 236, 0.3);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  }
+}
+
+.glass-primary {
+  background: rgba(19, 91, 236, 0.08);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(19, 91, 236, 0.2);
+}
+
+/* Voicebot Widget Prominence */
+@keyframes widget-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(19, 91, 236, 0.5); }
+  50% { box-shadow: 0 0 0 16px rgba(19, 91, 236, 0); }
+}
+
+/* Glow Effects */
+.glow-soft {
+  box-shadow: 0 0 60px -15px rgba(19, 91, 236, 0.4);
+}
+
+.glow-accent {
+  box-shadow: 0 0 40px -10px rgba(6, 182, 212, 0.4);
+}
+
+.glow-text {
+  text-shadow: 0 0 40px rgba(19, 91, 236, 0.5);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #135bec 0%, #06b6d4 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-subtle {
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated Gradient Border */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(19, 91, 236, 0.5), rgba(6, 182, 212, 0.3), rgba(139, 92, 246, 0.3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Button Styles */
+.btn-primary {
+  background: linear-gradient(135deg, #135bec 0%, #1d4ed8 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+@media (hover: hover) {
+  .btn-primary:hover::before {
+    left: 100%;
+  }
+}
+
+/* Grid Pattern Background */
+.grid-pattern {
+  background-image: 
+    linear-gradient(rgba(19, 91, 236, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(19, 91, 236, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Animated Background */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(5deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+.material-symbols-filled {
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+/* Section Divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(19, 91, 236, 0.3), rgba(6, 182, 212, 0.3), transparent);
+}
+
+/* Noise Texture Overlay */
+.noise-overlay {
+  position: relative;
+}
+
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Mobile dynamic viewport height utility */
+.min-h-screen-safe {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Mobile performance: remove backdrop-filter entirely (most expensive CSS property on mobile) */
+@media (max-width: 768px) {
+  .glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(15, 20, 35, 0.85);
+  }
+
+  .glass-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(15, 20, 35, 0.9);
+  }
+
+  .glass-primary {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(19, 91, 236, 0.15);
+  }
+
+  /* Reduce large background blur orbs on mobile */
+  [class*="blur-[100px]"],
+  [class*="blur-[120px]"],
+  [class*="blur-[150px]"],
+  [class*="blur-[200px]"] {
+    filter: blur(40px) !important;
+    -webkit-filter: blur(40px) !important;
+    opacity: 0.5;
+  }
+}
+
+/* Audit quiz slider */
+.audit-slider {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.audit-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #135bec;
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(19, 91, 236, 0.4);
+}
+
+.audit-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #135bec;
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(19, 91, 236, 0.4);
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-slow,
+  .animate-pulse-glow,
+  .animate-gradient {
+    animation: none;
+  }
+}
+
+/* Ensure all interactive elements have proper touch targets (min 44px) */
+@media (pointer: coarse) {
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}

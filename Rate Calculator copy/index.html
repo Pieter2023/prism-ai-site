@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deal Copilot — Price Right, Scope Tight</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=10">
+</head>
+<body>
+  <header>
+    <h1>Deal Copilot</h1>
+    <p class="tagline">Price right. Scope tight. Get paid.</p>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-tab="floor" role="tab" aria-selected="true">My Floor</button>
+    <button class="tab" data-tab="check" role="tab" aria-selected="false">Deal Check</button>
+    <button class="tab" data-tab="scope" role="tab" aria-selected="false">Scope Guard</button>
+    <button class="tab" data-tab="send" role="tab" aria-selected="false">Send It</button>
+  </nav>
+
+  <main>
+
+    <!-- ============ TAB 1: MY FLOOR ============ -->
+    <section id="floor" class="tab-panel active" role="tabpanel">
+      <div class="panel-intro">
+        <h2>Your sustainability floor</h2>
+        <p>The minimum hourly rate to sustain your business. Below this, you're losing money compared to a salaried role.</p>
+      </div>
+
+      <form id="floor-form">
+        <div class="form-grid">
+          <div class="field">
+            <label for="targetIncome">Annual target take-home</label>
+            <div class="input-wrap has-prefix">
+              <span class="prefix">$</span>
+              <input type="number" id="targetIncome" value="150000" min="0" step="5000">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="monthlyOverhead">Monthly overhead</label>
+            <div class="input-wrap has-prefix">
+              <span class="prefix">$</span>
+              <input type="number" id="monthlyOverhead" value="2000" min="0" step="100">
+            </div>
+            <span class="hint">Tools, APIs, hosting, hardware</span>
+          </div>
+
+          <div class="field">
+            <label for="taxRate">Tax + savings buffer (%)</label>
+            <input type="number" id="taxRate" value="35" min="0" max="60" step="1">
+            <span class="hint">BC combined rate ~30-35%</span>
+          </div>
+
+          <div class="field">
+            <label for="billableHours">Billable hours / week</label>
+            <input type="number" id="billableHours" value="20" min="1" max="60" step="1">
+            <span class="hint">Realistic: 15-25 if selling + building + supporting</span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Calculate my floor</button>
+      </form>
+
+      <div id="floor-result" class="result-card" hidden>
+        <div class="floor-rate">
+          <span class="label">Your floor rate</span>
+          <span class="value" id="floorRateDisplay">$0</span>
+          <span class="unit">/ hour</span>
+        </div>
+        <p class="floor-note" id="floorNote"></p>
+      </div>
+
+      <div class="nav-hint">
+        Next: <button type="button" class="link-btn" data-goto="check">Check a deal &rarr;</button>
+      </div>
+    </section>
+
+    <!-- ============ TAB 2: DEAL CHECK ============ -->
+    <section id="check" class="tab-panel" role="tabpanel">
+      <div class="panel-intro">
+        <h2>Check this deal</h2>
+        <p>Quick gut check before you quote. Are you leaving money on the table?</p>
+      </div>
+
+      <form id="deal-form">
+        <div class="form-grid">
+          <div class="field">
+            <label for="serviceType">Service type</label>
+            <select id="serviceType">
+              <option value="ai_platform">AI Platform / Reporting System</option>
+              <option value="voicebot">Voicebot / Conversational AI</option>
+              <option value="automation">AI Automation / Workflow</option>
+              <option value="custom">Custom / Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="complexity">Complexity</label>
+            <select id="complexity">
+              <option value="low">Low — simple, few integrations</option>
+              <option value="medium" selected>Medium — standard project</option>
+              <option value="high">High — multi-integration, compliance</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="clientName">Client name</label>
+            <input type="text" id="clientName" placeholder="e.g. Innovative Fitness">
+          </div>
+
+          <div class="field full-width">
+            <label for="projectSummary">Project summary (one line)</label>
+            <input type="text" id="projectSummary" placeholder="e.g. AI-powered clinical reporting platform for fitness trainers">
+          </div>
+
+          <div class="field">
+            <label for="proposedFee">Your proposed fee (CAD)</label>
+            <div class="input-wrap has-prefix">
+              <span class="prefix">$</span>
+              <input type="number" id="proposedFee" min="0" step="500" placeholder="12000">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="estimatedHours">Estimated hours</label>
+            <input type="number" id="estimatedHours" min="1" step="5" placeholder="40">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Check this deal</button>
+      </form>
+
+      <div id="deal-result" hidden>
+        <div class="verdict-card" id="verdictCard">
+          <div class="verdict-badge" id="verdictBadge">CHECKING</div>
+          <div class="verdict-details">
+            <div class="verdict-row">
+              <span class="label">Implied hourly</span>
+              <span class="value" id="impliedHourly">&mdash;</span>
+            </div>
+            <div class="verdict-row">
+              <span class="label">Your floor</span>
+              <span class="value" id="floorComparison">&mdash;</span>
+            </div>
+            <div class="verdict-row">
+              <span class="label">Market build range</span>
+              <span class="value" id="marketRange">&mdash;</span>
+            </div>
+            <div class="verdict-row">
+              <span class="label">You proposed</span>
+              <span class="value" id="proposedDisplay">&mdash;</span>
+            </div>
+          </div>
+          <p class="verdict-advice" id="verdictAdvice"></p>
+        </div>
+
+        <details class="market-ref">
+          <summary>Market reference ranges (Canadian market)</summary>
+          <div class="market-grid">
+            <div class="market-band">
+              <span class="band-label">Freelancer / generalist</span>
+              <span class="band-value" id="refFreelancer">&mdash;</span>
+            </div>
+            <div class="market-band highlight">
+              <span class="band-label">Solo specialist (you)</span>
+              <span class="band-value" id="refYou">&mdash;</span>
+            </div>
+            <div class="market-band">
+              <span class="band-label">Studio / consultancy</span>
+              <span class="band-value" id="refStudio">&mdash;</span>
+            </div>
+            <div class="market-band">
+              <span class="band-label">Monthly support range</span>
+              <span class="band-value" id="refMonthly">&mdash;</span>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <div class="nav-hint">
+        Next: <button type="button" class="link-btn" data-goto="scope">Define scope &rarr;</button>
+      </div>
+    </section>
+
+    <!-- ============ TAB 3: SCOPE GUARD ============ -->
+    <section id="scope" class="tab-panel" role="tabpanel">
+      <div class="panel-intro">
+        <h2>Scope guard</h2>
+        <p>Define boundaries before you quote. Templates auto-fill based on your service type &mdash; edit for this specific deal.</p>
+      </div>
+
+      <div class="scope-project-label" id="scopeLabel"></div>
+
+      <form id="scope-form">
+        <div class="field">
+          <label for="scopeInclusions">In scope</label>
+          <textarea id="scopeInclusions" rows="7" placeholder="What's included in this project..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="scopeExclusions">Out of scope</label>
+          <textarea id="scopeExclusions" rows="5" placeholder="What's explicitly excluded..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="scopeAcceptance">Acceptance criteria (pass / fail)</label>
+          <textarea id="scopeAcceptance" rows="5" placeholder="How do we know it's done..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="scopeChangeOrder">Change control clause</label>
+          <textarea id="scopeChangeOrder" rows="3"></textarea>
+        </div>
+
+        <button type="button" class="btn btn-secondary" id="copyScopeBtn">Copy scope summary</button>
+      </form>
+
+      <div class="nav-hint">
+        Next: <button type="button" class="link-btn" data-goto="send">Generate emails &rarr;</button>
+      </div>
+    </section>
+
+    <!-- ============ TAB 4: SEND IT ============ -->
+    <section id="send" class="tab-panel" role="tabpanel">
+      <div class="panel-intro">
+        <h2>Send it</h2>
+        <p>Copy-ready emails for each deal stage. Feel free to edit before copying.</p>
+      </div>
+
+      <div class="field" style="margin-bottom: 20px;">
+        <label for="emailStage">Deal stage</label>
+        <select id="emailStage">
+          <option value="first_reply">First Reply &mdash; sell paid discovery</option>
+          <option value="proposal">Proposal &mdash; fixed-price with tiers</option>
+          <option value="change_order">Change Order &mdash; scope addition</option>
+          <option value="retainer">Monthly Support &mdash; pitch retainer</option>
+        </select>
+      </div>
+
+      <div class="email-output">
+        <div class="field">
+          <label>Subject line</label>
+          <div class="output-row">
+            <input type="text" id="emailSubject">
+            <button type="button" class="btn btn-copy" id="copySubjectBtn">Copy</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Email body</label>
+          <div class="output-row">
+            <textarea id="emailBody" rows="22"></textarea>
+            <button type="button" class="btn btn-copy" id="copyBodyBtn">Copy</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Built for consultants who build fast and need to price right.</p>
+  </footer>
+
+  <script src="app.js?v=10"></script>
+</body>
+</html>
