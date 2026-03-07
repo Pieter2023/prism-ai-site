@@ -5,48 +5,26 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# 301 redirect from .netlify.app to primary .ca domain
-# This prevents domain authority splitting for SEO
+# Ensure technical SEO files are served directly
 [[redirects]]
-  from = "/*"
-  to = "https://prismaiservices.ca/:splat"
-  status = 301
-  force = true
-  [redirects.conditions]
-    Host = "prismaiservices.netlify.app"
-
-# 301 redirect old pSEO service pages to services hub
-# Preserves link equity from ~288 programmatic pages
-[[redirects]]
-  from = "/services/ai-*"
-  to = "/services/"
-  status = 301
+  from = "/robots.txt"
+  to = "/robots.txt"
+  status = 200
 
 [[redirects]]
-  from = "/services/custom-*"
-  to = "/services/"
-  status = 301
-
-# 301 redirect legacy pages removed in Phase 3
-[[redirects]]
-  from = "/products"
-  to = "/services/"
-  status = 301
+  from = "/sitemap.xml"
+  to = "/sitemap-index.xml"
+  status = 200
 
 [[redirects]]
-  from = "/scorecard"
-  to = "/"
-  status = 301
+  from = "/sitemap-index.xml"
+  to = "/sitemap-index.xml"
+  status = 200
 
 [[redirects]]
-  from = "/audit"
-  to = "/"
-  status = 301
-
-[[redirects]]
-  from = "/audit/quiz"
-  to = "/"
-  status = 301
+  from = "/sitemap-0.xml"
+  to = "/sitemap-0.xml"
+  status = 200
 
 # Redirect all 404s to custom 404 page
 [[redirects]]
