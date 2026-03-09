@@ -47,7 +47,7 @@ export const POST: APIRoute = async ({ request }) => {
       },
       body: JSON.stringify({
         from: 'PRISM AI Scorecard <onboarding@resend.dev>',
-        to: ['pieterhouseofrealtors@gmail.com'],
+        to: ['pieter@prismaiservices.ca'],
         reply_to: data.email,
         subject: `📊 Scorecard: ${data.name} @ ${data.company} — ${data.grade} (${data.pct}%)`,
         html: emailBody,
