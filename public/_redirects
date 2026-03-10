@@ -1,0 +1,5 @@
+/robots.txt /robots.txt 200
+/sitemap.xml /sitemap-index.xml 200
+/sitemap-index.xml /sitemap-index.xml 200
+/sitemap-0.xml /sitemap-0.xml 200
+/* /404 404
