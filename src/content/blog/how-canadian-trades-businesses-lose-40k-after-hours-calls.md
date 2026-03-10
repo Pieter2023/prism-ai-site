@@ -1,8 +1,10 @@
 ---
 title: "How Canadian Trades Businesses Lose $40K a Year to Missed After-Hours Calls"
 description: "Canadian trades businesses can lose $40K a year to missed after-hours calls. See the math and how an AI receptionist captures those leads."
-pubDate: 2026-03-10
+publishDate: 2026-03-10
 author: "PRISM AI"
+category: Trades & Contracting
+slug: how-canadian-trades-businesses-lose-40k-after-hours-calls
 tags: ["ai automation", "canadian small business", "trades", "hvac", "plumbing", "electrical contractors", "after-hours calls", "lead capture", "call answering", "ai receptionist", "ai voice agent", "customer service", "revenue leakage", "appointment booking"]
 image: "/blog/placeholder.jpg"
 ---
