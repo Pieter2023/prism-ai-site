@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const pageUrl = 'https://prismaiservices.ca/services/ai-maintenance-request-triage-property-management-kelowna/';
+const faqItems = [
+  { question: 'How can AI triage maintenance requests for Kelowna property managers?', answer: 'AI can classify urgency, collect unit details, and route each request to the correct vendor or internal team in real time.' },
+  { question: 'Can urgent maintenance issues be escalated automatically?', answer: 'Yes. Emergency criteria can trigger immediate escalation to on-call staff with full request context.' },
+  { question: 'What metrics should teams monitor?', answer: 'Track first response time, resolution SLA compliance, tenant satisfaction signals, and repeat-request frequency.' }
+];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Service', name: 'AI Maintenance Request Triage for Property Management in Kelowna', provider: { '@type': 'Organization', name: 'Prism AI', url: 'https://prismaiservices.ca' }, areaServed: { '@type': 'City', name: 'Kelowna' }, serviceType: 'Maintenance triage automation', url: pageUrl, description: 'Prism AI helps Kelowna property managers automate maintenance request triage and escalation workflows.' },
+    { '@type': 'FAQPage', mainEntity: faqItems.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })) },
+    { '@type': 'WebPage', '@id': `${pageUrl}#webpage`, name: 'AI Maintenance Request Triage for Property Management in Kelowna | Prism AI', url: pageUrl, speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.quick-answer p'] } }
+  ]
+};
+---
+
+<BaseLayout title="AI Maintenance Request Triage for Property Management in Kelowna | Prism AI" description="Prism AI helps Kelowna property managers automate maintenance request triage, routing, and escalation to improve response speed." canonical={pageUrl} jsonLd={jsonLd}>
+  <section class="container page">
+    <h1>AI Maintenance Request Triage for Property Management in Kelowna</h1>
+    <div class="quick-answer"><p>Prism AI helps Kelowna property managers automate maintenance request triage so urgent issues are escalated immediately, routine tasks are routed efficiently, and tenants get faster, more consistent responses.</p></div>
+
+    <h2>What is AI maintenance request triage?</h2>
+    <p>It is an automation layer that captures request details, identifies urgency, and routes each ticket to the best next action without manual sorting delays.</p>
+
+    <h2>How does it work for Kelowna property teams?</h2>
+    <p>We map your request categories, escalation logic, and vendor routing rules, then deploy AI workflows across web, SMS, and email intake channels.</p>
+
+    <h2>Rollout checklist</h2>
+    <ul><li>Define emergency vs routine classification rules</li><li>Map vendor and internal escalation routing</li><li>Automate tenant status updates</li><li>Track SLA response and completion rates weekly</li></ul>
+
+    <p>Use the <a href="/audit">Free AI Business Audit</a> to pinpoint where response delays are hurting tenant experience.</p>
+  </section>
+
+  <FAQ items={faqItems} heading="AI Property Management Maintenance Triage FAQ for Kelowna" />
+</BaseLayout>
+
+<style>.page{padding:3rem 0 2rem;max-width:860px}.quick-answer{border:1px solid var(--color-border);padding:1rem 1.25rem;border-radius:12px;background:rgba(6,182,212,.08);margin:1rem 0 1.5rem}</style>
