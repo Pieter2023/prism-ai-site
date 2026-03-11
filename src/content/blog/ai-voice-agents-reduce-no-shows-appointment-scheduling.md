@@ -3,10 +3,9 @@ title: "How AI Voice Agents Cut No-Shows and Fill Your Calendar Automatically"
 description: "Canadian service businesses lose thousands to missed appointments yearly. Learn how AI voice agents automate scheduling, send reminders, and reduce no-shows by up to 40%."
 publishDate: 2026-03-09
 author: "Prism AI - AI Team"
-category: "AI Voice Agents"
-tags: ["ai-voice-agents", "canadian-small-business", "appointment-scheduling", "no-shows", "service-industry", "dental", "healthcare"]
-slug: "ai-voice-agents-reduce-no-shows-appointment-scheduling"
-image: "/blog/placeholder.jpg"
+category: AI Voice Agents
+tags: [ai-voice-agents, canadian-small-business, appointment-scheduling, no-shows, service-industry, dental, healthcare]
+slug: ai-voice-agents-reduce-no-shows-appointment-scheduling
 ---
 
 Your receptionist just called in sick. Again. It is 9:00 AM on a Tuesday, your phone is ringing off the hook, and three people are already on hold waiting to book appointments. Meanwhile, yesterday's confirmation calls never went out, and you are staring at four empty slots in this afternoon's schedule that will cost you $600 in lost revenue.
