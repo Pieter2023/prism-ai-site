@@ -83,6 +83,7 @@ Unclear escalation logic, no KPI tracking, and overly long scripts that create c
 - [AI Intake Triage for Legal in Kelowna](/services/ai-intake-triage-legal-kelowna/)
 - [AI No-Show Reduction for Dental in Kelowna](/services/ai-no-show-reduction-dental-kelowna/)
 - [AI Maintenance Request Triage for Property Management in Kelowna](/services/ai-maintenance-request-triage-property-management-kelowna/)
+- [AI Follow-Up Automation for Dental in Kelowna](/services/ai-follow-up-automation-dental-kelowna/)
 - [AI Estimate Follow-Up for Auto Repair in Kelowna](/services/ai-estimate-follow-up-auto-repair-kelowna/)
 - [Take the Free AI Readiness Scorecard](/scorecard/)
 

@@ -38,7 +38,7 @@ const jsonLd = {
       description: 'Custom AI voice agents for Canadian businesses. 24/7 call answering, lead qualification, appointment booking, and customer support.',
       provider: {
         '@type': 'LocalBusiness',
-        name: 'Prism AI Services',
+        name: 'Prism AI',
         url: siteUrl,
         address: {
           '@type': 'PostalAddress',
@@ -63,6 +63,16 @@ const jsonLd = {
         name: f.question,
         acceptedAnswer: { '@type': 'Answer', text: f.answer },
       })),
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${pageUrl}#webpage`,
+      name: 'AI Voicebots | Prism AI',
+      url: pageUrl,
+      speakable: {
+        '@type': 'SpeakableSpecification',
+        cssSelector: ['.quick-answer p']
+      }
     },
     {
       '@type': 'BreadcrumbList',
@@ -100,6 +110,10 @@ const jsonLd = {
         Custom AI voice agents that answer your phones around the clock — booking appointments,
         qualifying leads, and handling customer questions with a natural, human-like conversation.
       </p>
+      <div class="quick-answer">
+        <h2>Quick answer:</h2>
+        <p>Prism AI builds AI voice agents for Canadian service businesses to answer calls 24/7, capture qualified leads, and route urgent enquiries without missed-opportunity delays.</p>
+      </div>
       <div class="hero-actions">
         <a href="#demo" class="btn-primary">Try the Live Demo</a>
         <a href="/#pricing" class="btn-secondary">See Pricing</a>
@@ -240,6 +254,17 @@ const jsonLd = {
   .pillar-hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; }
   .hero-sub { font-size: 1.15rem; color: var(--color-text-muted); max-width: 620px; margin: 0 auto 2.5rem; line-height: 1.7; }
   .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .quick-answer {
+    max-width: 860px;
+    margin: 0 auto 2rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    background: rgba(6, 182, 212, 0.08);
+    text-align: left;
+  }
+  .quick-answer h2 { font-size: 1rem; margin-bottom: 0.35rem; color: var(--color-secondary); }
+  .quick-answer p { margin: 0; line-height: 1.7; }
 
   .problem-section { background: var(--color-bg-card); }
   .problem-section h2 { font-size: 1.75rem; text-align: center; margin-bottom: 2rem; }

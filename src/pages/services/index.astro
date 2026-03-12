@@ -1,12 +1,31 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
+const pageUrl = 'https://prismaiservices.ca/services/';
+const faqItems = [
+  {
+    question: 'What services does Prism AI offer to Canadian businesses?',
+    answer: 'Prism AI focuses on two core services: AI voice agents for call handling and workflow automation for repetitive business operations.'
+  },
+  {
+    question: 'How do I choose between AI voice agents and workflow automation?',
+    answer: 'If missed calls are your biggest leak, start with AI voice agents. If manual admin and handoffs are your bottleneck, start with workflow automation.'
+  },
+  {
+    question: 'Can Prism AI combine both services in one project?',
+    answer: 'Yes. Many clients start with one service and then layer in the second once the first workflow proves ROI.'
+  }
+];
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  name: 'Prism AI Services',
-  description: 'AI voicebots and workflow automation services for Canadian businesses.',
-  itemListElement: [
+  '@graph': [
+    {
+      '@type': 'ItemList',
+      '@id': `${pageUrl}#itemlist`,
+      name: 'Prism AI Services',
+      description: 'AI voice agents and workflow automation services for Canadian businesses.',
+      itemListElement: [
     {
       '@type': 'ListItem',
       position: 1,
@@ -20,6 +39,26 @@ const jsonLd = {
       url: 'https://prismaiservices.ca/services/workflow-automation',
     },
   ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map((f) => ({
+        '@type': 'Question',
+        name: f.question,
+        acceptedAnswer: { '@type': 'Answer', text: f.answer },
+      })),
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${pageUrl}#webpage`,
+      name: 'Our Services | Prism AI',
+      url: pageUrl,
+      speakable: {
+        '@type': 'SpeakableSpecification',
+        cssSelector: ['.quick-answer p']
+      }
+    }
+  ]
 };
 ---
 
@@ -32,6 +71,10 @@ const jsonLd = {
     <div class="container">
       <h1>Our Services</h1>
       <p class="hero-sub">Two specialties. One mission: free up your time so you can grow your business.</p>
+      <div class="quick-answer">
+        <h2>Quick answer:</h2>
+        <p>Prism AI helps Canadian service businesses with AI voice agents for 24/7 call handling and workflow automation for repetitive operations, so teams can respond faster and scale without extra admin overhead.</p>
+      </div>
     </div>
   </section>
 
@@ -80,6 +123,17 @@ const jsonLd = {
   }
   .services-hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
   .hero-sub { font-size: 1.2rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto; }
+  .quick-answer {
+    max-width: 860px;
+    margin: 1.25rem auto 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    background: rgba(6, 182, 212, 0.08);
+    text-align: left;
+  }
+  .quick-answer h2 { font-size: 1rem; margin-bottom: 0.35rem; color: var(--color-secondary); }
+  .quick-answer p { margin: 0; line-height: 1.7; }
 
   .services-list { padding: 3rem 0 5rem; }
   .services-list .container { display: flex; flex-direction: column; gap: 2rem; max-width: 800px; }
