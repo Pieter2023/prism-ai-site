@@ -7,20 +7,20 @@ const pageUrl = `${siteUrl}/services/ai-voicebots`;
 
 const faqItems = [
   {
-    question: 'How natural do AI voicebots sound?',
-    answer: 'Our voicebots use ElevenLabs conversational AI technology, which produces remarkably natural speech. Most callers cannot tell they are speaking with an AI. The voice, tone, and pacing are customized to match your brand personality.',
+    question: 'How natural do AI voice agents sound?',
+    answer: 'Our AI voice agents use ElevenLabs conversational AI technology, which produces remarkably natural speech. Most callers cannot tell they are speaking with an AI. The voice, tone, and pacing are customized to match your brand personality.',
   },
   {
-    question: 'Can a voicebot handle complex conversations?',
-    answer: 'Yes. Our voicebots are trained on your specific business context — your services, pricing, policies, and FAQs. They can handle multi-turn conversations, ask qualifying questions, and route complex inquiries to your team when needed.',
+    question: 'Can an AI voice agent handle complex conversations?',
+    answer: 'Yes. Our AI voice agents are trained on your specific business context — your services, pricing, policies, and FAQs. They can handle multi-turn conversations, ask qualifying questions, and route complex inquiries to your team when needed.',
   },
   {
     question: 'What happens if the AI cannot answer a question?',
-    answer: 'The voicebot gracefully hands off to a human team member via warm transfer, takes a detailed message, or schedules a callback — whatever workflow works best for your business. Nothing falls through the cracks.',
+    answer: 'The AI voice agent gracefully hands off to a human team member via warm transfer, takes a detailed message, or schedules a callback — whatever workflow works best for your business. Nothing falls through the cracks.',
   },
   {
     question: 'How long does setup take?',
-    answer: 'A standard AI voicebot can be deployed in 1-2 weeks. This includes voice customization, conversation flow design, integration with your booking or CRM system, and thorough testing before going live.',
+    answer: 'A standard AI voice agent can be deployed in 1-2 weeks. This includes voice customization, conversation flow design, integration with your booking or CRM system, and thorough testing before going live.',
   },
   {
     question: 'Is my data secure and compliant with Canadian privacy laws?',
@@ -34,7 +34,7 @@ const jsonLd = {
     {
       '@type': 'Service',
       '@id': pageUrl,
-      name: 'AI Voicebots',
+      name: 'AI Voice Agents',
       description: 'Custom AI voice agents for Canadian businesses. 24/7 call answering, lead qualification, appointment booking, and customer support.',
       provider: {
         '@type': 'LocalBusiness',
@@ -54,7 +54,7 @@ const jsonLd = {
         { '@type': 'City', name: 'Vernon' },
         { '@type': 'Country', name: 'Canada' },
       ],
-      serviceType: 'AI Voicebot Development',
+      serviceType: 'AI Voice Agent Development',
     },
     {
       '@type': 'FAQPage',
@@ -67,7 +67,7 @@ const jsonLd = {
     {
       '@type': 'WebPage',
       '@id': `${pageUrl}#webpage`,
-      name: 'AI Voicebots | Prism AI',
+      name: 'AI Voice Agents | Prism AI',
       url: pageUrl,
       speakable: {
         '@type': 'SpeakableSpecification',
@@ -79,7 +79,7 @@ const jsonLd = {
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
         { '@type': 'ListItem', position: 2, name: 'Services', item: `${siteUrl}/services` },
-        { '@type': 'ListItem', position: 3, name: 'AI Voicebots', item: pageUrl },
+        { '@type': 'ListItem', position: 3, name: 'AI Voice Agents', item: pageUrl },
       ],
     },
   ],
@@ -87,8 +87,8 @@ const jsonLd = {
 ---
 
 <BaseLayout
-  title="AI Voicebots | 24/7 Call Answering for Your Business | Prism AI"
-  description="Custom AI voicebots that answer calls, book appointments, qualify leads, and handle customer support 24/7. Natural-sounding, trained on your business. Kelowna-based."
+  title="AI Voice Agents | 24/7 Call Answering for Your Business | Prism AI"
+  description="Custom AI voice agents that answer calls, book appointments, qualify leads, and handle customer support 24/7. Natural-sounding, trained on your business. Kelowna-based."
   canonical={pageUrl}
   jsonLd={jsonLd}
 >
@@ -97,14 +97,14 @@ const jsonLd = {
     <div class="container">
       <a href="/">Home</a> <span>/</span>
       <a href="/services">Services</a> <span>/</span>
-      <span class="current">AI Voicebots</span>
+      <span class="current">AI Voice Agents</span>
     </div>
   </nav>
 
   <!-- Hero -->
   <section class="pillar-hero">
     <div class="container">
-      <div class="hero-badge">AI Voicebots</div>
+      <div class="hero-badge">AI Voice Agents</div>
       <h1>Never Miss Another Call.<br /><span class="text-gradient">Your AI Answers 24/7.</span></h1>
       <p class="hero-sub">
         Custom AI voice agents that answer your phones around the clock — booking appointments,
@@ -158,7 +158,7 @@ const jsonLd = {
         </div>
         <div class="feature-card">
           <h3>Lead Qualification</h3>
-          <p>Your voicebot asks the right questions to qualify leads before they reach your team — saving you hours of back-and-forth with tire-kickers.</p>
+          <p>Your AI voice agent asks the right questions to qualify leads before they reach your team — saving you hours of back-and-forth with tire-kickers.</p>
         </div>
         <div class="feature-card">
           <h3>Appointment Booking</h3>
@@ -166,7 +166,7 @@ const jsonLd = {
         </div>
         <div class="feature-card">
           <h3>Customer Support</h3>
-          <p>Handle FAQs, provide business hours, give directions, explain pricing — your voicebot knows your business inside and out.</p>
+          <p>Handle FAQs, provide business hours, give directions, explain pricing — your AI voice agent knows your business inside and out.</p>
         </div>
         <div class="feature-card">
           <h3>Smart Handoff</h3>
@@ -220,14 +220,14 @@ const jsonLd = {
   </section>
 
   <!-- FAQ -->
-  <FAQ items={faqItems} heading="AI Voicebot FAQ" />
+  <FAQ items={faqItems} heading="AI Voice Agent FAQ" />
 
   <!-- CTA -->
   <section class="pillar-cta">
     <div class="container">
       <div class="cta-card">
         <h2>Ready to Stop Missing Calls?</h2>
-        <p>Get a free consultation and we will show you exactly how an AI voicebot would work for your business.</p>
+        <p>Get a free consultation and we will show you exactly how an AI voice agent would work for your business.</p>
         <a href="/#talk-to-ai" class="btn-primary" onclick="if(window.startAICall){event.preventDefault();startAICall();}">Book Your Free Consultation</a>
       </div>
     </div>
