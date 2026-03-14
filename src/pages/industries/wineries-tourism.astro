@@ -7,8 +7,8 @@ const pageUrl = new URL('/industries/wineries-tourism', siteUrl).href;
 
 const faqItems = [
   {
-    question: 'Can an AI voicebot handle tasting room reservations in multiple languages?',
-    answer: 'Yes. Our AI voicebots support English, French, Mandarin, and other languages commonly spoken by Okanagan tourists. The bot can book tasting room slots, answer questions about wine varieties, provide directions, and even upsell wine club memberships — all in the caller\'s preferred language, 24/7.',
+    question: 'Can an AI voice agent handle tasting room reservations in multiple languages?',
+    answer: 'Yes. Our AI voice agents support English, French, Mandarin, and other languages commonly spoken by Okanagan tourists. The bot can book tasting room slots, answer questions about wine varieties, provide directions, and even upsell wine club memberships — all in the caller\'s preferred language, 24/7.',
   },
   {
     question: 'How does AI automation help during peak tourism season?',
@@ -20,18 +20,18 @@ const faqItems = [
   },
   {
     question: 'What does a typical winery AI setup cost?',
-    answer: 'Most wineries and tourism operators start with our 4-week free pilot to prove ROI before committing. After that, plans start at $497 CAD/month for a single AI voicebot or automation workflow. Multi-location or complex setups are quoted custom. No long-term contracts — cancel anytime.',
+    answer: 'Most wineries and tourism operators start with our fixed-fee starter implementation package to prove ROI before committing. After that, project packages start at $4,500 with optional management retainers from $497/month for a single AI voice agent or automation workflow. Multi-location or complex setups are quoted custom. No long-term contracts — cancel anytime.',
   },
   {
     question: 'How long does it take to get set up?',
-    answer: 'We can have a winery voicebot or booking automation live within 2 weeks. The process starts with a discovery call to map your current workflow, then we build and test before going live. We handle all the technical setup — no IT team required on your end.',
+    answer: 'We can have a winery AI voice agent or booking automation live within 2 weeks. The process starts with a discovery call to map your current workflow, then we build and test before going live. We handle all the technical setup — no IT team required on your end.',
   },
 ];
 
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'AI Voicebots & Automation for Wineries and Tourism',
+  name: 'AI Voice Agents & Automation for Wineries and Tourism',
   description: 'Multilingual AI voice concierges, automated tasting room bookings, and wine club management for Okanagan wineries and tourism operators.',
   provider: { '@type': 'Organization', name: 'Prism AI Services', url: siteUrl },
   areaServed: [
@@ -65,8 +65,8 @@ const breadcrumbSchema = {
 ---
 
 <BaseLayout
-  title="AI for Okanagan Wineries & Tourism | Voicebots & Automation | Prism AI"
-  description="Multilingual AI voicebots and workflow automation built for Okanagan wineries and tourism operators. Automate tasting room bookings, wine club management, and guest inquiries 24/7."
+  title="AI for Okanagan Wineries & Tourism | AI Voice Agents & Automation | Prism AI"
+  description="Multilingual AI voice agents and workflow automation built for Okanagan wineries and tourism operators. Automate tasting room bookings, wine club management, and guest inquiries 24/7."
   canonical={pageUrl}
 >
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
@@ -87,7 +87,7 @@ const breadcrumbSchema = {
       <h1>Never Miss a Booking. <span class="text-gradient">Even at 11pm on a Saturday.</span></h1>
       <p class="hero-sub">
         The Okanagan welcomes over 2 million visitors a year. Your tasting room phone shouldn't go to voicemail
-        when they're trying to book. Our AI voicebots handle reservations, answer questions in multiple languages,
+        when they're trying to book. Our AI voice agents handle reservations, answer questions in multiple languages,
         and keep your wine club growing — while your team focuses on pouring.
       </p>
       <div class="hero-actions">
@@ -129,7 +129,7 @@ const breadcrumbSchema = {
       <div class="solutions-grid">
         <div class="solution-card card">
           <h3>Multilingual Voice Concierge</h3>
-          <p>AI voicebot that answers calls in English, French, Mandarin, and more. Books tasting room reservations, provides directions, and answers FAQs about your wines and events — 24/7.</p>
+          <p>AI voice agent that answers calls in English, French, Mandarin, and more. Books tasting room reservations, provides directions, and answers FAQs about your wines and events — 24/7.</p>
         </div>
         <div class="solution-card card">
           <h3>Automated Booking Management</h3>
@@ -168,7 +168,7 @@ const breadcrumbSchema = {
         <div class="how-step">
           <div class="how-num">2</div>
           <h3>Build & Train Your AI</h3>
-          <p>We build your voicebot with your wine list, hours, booking rules, and brand voice. It knows the difference between a Pinot Noir and a Pinot Gris.</p>
+          <p>We build your AI voice agent with your wine list, hours, booking rules, and brand voice. It knows the difference between a Pinot Noir and a Pinot Gris.</p>
         </div>
         <div class="how-step">
           <div class="how-num">3</div>
@@ -191,7 +191,7 @@ const breadcrumbSchema = {
     <div class="container">
       <div class="cta-card">
         <h2>Ready to Stop Missing Bookings?</h2>
-        <p>Try our AI concierge right now — or start with a free 4-week pilot to see real results before you commit.</p>
+        <p>Try our AI concierge right now — or start with a fixed-fee starter implementation package to see real results before you commit.</p>
         <button class="btn-primary btn-lg" onclick="startAICall();">Talk to AI — Free</button>
         <span class="cta-note">Free · 2 minutes · No commitment</span>
       </div>

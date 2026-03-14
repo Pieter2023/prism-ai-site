@@ -9,7 +9,7 @@ const posts = (await getCollection('blog')).sort(
 
 const categories = [...new Set(posts.map(p => p.data.category))];
 const title = 'Blog | Prism AI';
-const description = 'Insights on AI voicebots, business automation, and how Canadian businesses are using AI to grow faster and serve customers better.';
+const description = 'Insights on AI voice agents, business automation, and how Canadian businesses are using AI to grow faster and serve customers better.';
 const canonicalUrl = 'https://prismaiservices.ca/blog/';
 ---
 
@@ -17,7 +17,7 @@ const canonicalUrl = 'https://prismaiservices.ca/blog/';
   <section class="blog-hero">
     <div class="container">
       <h1>Prism AI <span class="text-gradient">Blog</span></h1>
-      <p>The latest on AI voicebots, business automation, and the future of customer interaction.</p>
+      <p>The latest on AI voice agents, business automation, and the future of customer interaction.</p>
     </div>
   </section>
 

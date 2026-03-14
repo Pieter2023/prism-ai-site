@@ -7,12 +7,12 @@ const pageUrl = new URL('/industries/healthcare-dental', siteUrl).href;
 
 const faqItems = [
   {
-    question: 'Is the AI voicebot PIPEDA and PIPA compliant for handling patient data?',
+    question: 'Is the AI voice agent PIPEDA and PIPA compliant for handling patient data?',
     answer: 'Yes. Patient privacy is our top priority. All our systems are built to comply with PIPEDA (federal) and BC\'s Personal Information Protection Act (PIPA). Patient data is encrypted in transit and at rest, processed within Canadian infrastructure, access-controlled, and never shared with third parties. We provide a full compliance documentation package for your records.',
   },
   {
     question: 'Can the AI handle appointment booking and reminders?',
-    answer: 'Absolutely. The AI voicebot books appointments by checking your real-time schedule, confirms with patients via voice or text, sends automated reminders at 48 hours and 2 hours before the appointment, and handles rescheduling. Clinics using our system typically see a 35-45% reduction in no-shows.',
+    answer: 'Absolutely. The AI voice agent books appointments by checking your real-time schedule, confirms with patients via voice or text, sends automated reminders at 48 hours and 2 hours before the appointment, and handles rescheduling. Clinics using our system typically see a 35-45% reduction in no-shows.',
   },
   {
     question: 'How does the after-hours triage work?',
@@ -24,14 +24,14 @@ const faqItems = [
   },
   {
     question: 'What does setup look like for a medical or dental practice?',
-    answer: 'We start with a free 4-week pilot. During discovery, we map your patient intake process, appointment types, triage protocols, and compliance requirements. Build takes about 2 weeks. We handle all technical setup — your staff doesn\'t need to be tech-savvy. Plans start at $497 CAD/month after the pilot.',
+    answer: 'We start with a fixed-fee implementation package. During discovery, we map your patient intake process, appointment types, triage protocols, and compliance requirements. Build takes about 2 weeks. We handle all technical setup — your staff does not need to be tech-savvy. Project packages start at $4,500 with optional management retainers from $497/month.',
   },
 ];
 
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'AI Voicebots & Automation for Healthcare and Dental Practices',
+  name: 'AI Voice Agents & Automation for Healthcare and Dental Practices',
   description: 'PIPEDA-compliant AI appointment booking, patient intake automation, and after-hours triage for Kelowna healthcare and dental practices.',
   provider: { '@type': 'Organization', name: 'Prism AI Services', url: siteUrl },
   areaServed: [
@@ -66,7 +66,7 @@ const breadcrumbSchema = {
 
 <BaseLayout
   title="AI for Kelowna Healthcare & Dental | PIPEDA-Compliant Automation | Prism AI"
-  description="PIPEDA-compliant AI voicebots and automation for Kelowna healthcare and dental practices. Reduce no-shows by 40%, automate patient intake, and provide after-hours triage support."
+  description="PIPEDA-compliant AI voice agents and automation for Kelowna healthcare and dental practices. Reduce no-shows by 40%, automate patient intake, and provide after-hours triage support."
   canonical={pageUrl}
 >
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
@@ -137,7 +137,7 @@ const breadcrumbSchema = {
         </div>
         <div class="solution-card card">
           <h3>After-Hours Triage</h3>
-          <p>AI voicebot follows your clinical protocols to assess urgency. True emergencies route to on-call or 911. Non-urgent concerns get logged and scheduled. Every interaction documented for your records.</p>
+          <p>AI voice agent follows your clinical protocols to assess urgency. True emergencies route to on-call or 911. Non-urgent concerns get logged and scheduled. Every interaction documented for your records.</p>
         </div>
         <div class="solution-card card">
           <h3>Prescription & Refill Management</h3>
@@ -211,7 +211,7 @@ const breadcrumbSchema = {
     <div class="container">
       <div class="cta-card">
         <h2>Ready to Reduce No-Shows and Phone Queue Wait Times?</h2>
-        <p>Try our AI right now — or start with a free 4-week pilot with full PIPEDA compliance documentation.</p>
+        <p>Try our AI right now — or start with a fixed-fee starter implementation package with full PIPEDA compliance documentation.</p>
         <button class="btn-primary btn-lg" onclick="startAICall();">Talk to AI — Free</button>
         <span class="cta-note">Free · 2 minutes · No commitment</span>
       </div>

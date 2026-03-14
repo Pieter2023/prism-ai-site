@@ -7,12 +7,12 @@ const pageUrl = new URL('/industries/trades-contractors', siteUrl).href;
 
 const faqItems = [
   {
-    question: 'How does the AI voicebot handle emergency vs. non-emergency calls?',
-    answer: 'We train the voicebot to distinguish between urgent calls (burst pipe, no heat, electrical emergency) and routine inquiries (quote requests, scheduling). Emergency calls can be routed directly to your on-call phone, while routine calls are handled by the AI — booking appointments, taking details, and sending you a summary.',
+    question: 'How does the AI voice agent handle emergency vs. non-emergency calls?',
+    answer: 'We train the AI voice agent to distinguish between urgent calls (burst pipe, no heat, electrical emergency) and routine inquiries (quote requests, scheduling). Emergency calls can be routed directly to your on-call phone, while routine calls are handled by the AI — booking appointments, taking details, and sending you a summary.',
   },
   {
     question: 'Will the AI sound natural to my customers?',
-    answer: 'Yes. Our voicebots use advanced natural language AI that sounds conversational, not robotic. We customize the voice, tone, and vocabulary to match your brand. Callers often don\'t realize they\'re speaking with AI — they just know their call got answered on the first ring.',
+    answer: 'Yes. Our AI voice agents use advanced natural language AI that sounds conversational, not robotic. We customize the voice, tone, and vocabulary to match your brand. Callers often don\'t realize they\'re speaking with AI — they just know their call got answered on the first ring.',
   },
   {
     question: 'Can the AI give quotes or just take messages?',
@@ -24,14 +24,14 @@ const faqItems = [
   },
   {
     question: 'What does it cost to get started?',
-    answer: 'We offer a free 4-week pilot — we build and deploy one voicebot or automation workflow at no cost, with predefined success metrics. After that, plans start at $497 CAD/month. No long-term contracts. Most trades businesses see ROI within the first month from captured calls alone.',
+    answer: 'We offer a fixed-fee starter implementation package — we build and deploy one AI voice agent or automation workflow at no cost, with predefined success metrics. After that, project packages start at $4,500 with optional management retainers from $497/month. No long-term contracts. Most trades businesses see ROI within the first month from captured calls alone.',
   },
 ];
 
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'AI Voicebots & Automation for Trades and Contractors',
+  name: 'AI Voice Agents & Automation for Trades and Contractors',
   description: '24/7 AI receptionists, automated dispatch, and workflow automation for Kelowna trades businesses — HVAC, plumbing, electrical, roofing, and more.',
   provider: { '@type': 'Organization', name: 'Prism AI Services', url: siteUrl },
   areaServed: [
@@ -66,7 +66,7 @@ const breadcrumbSchema = {
 
 <BaseLayout
   title="AI for Kelowna Trades & Contractors | 24/7 AI Receptionist | Prism AI"
-  description="Stop missing calls on the job site. AI voicebots and workflow automation for Kelowna HVAC, plumbing, electrical, roofing, and trades businesses. 24/7 call answering, automated dispatch, and quote follow-up."
+  description="Stop missing calls on the job site. AI voice agents and workflow automation for Kelowna HVAC, plumbing, electrical, roofing, and trades businesses. 24/7 call answering, automated dispatch, and quote follow-up."
   canonical={pageUrl}
 >
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
@@ -163,7 +163,7 @@ const breadcrumbSchema = {
         <div class="how-step">
           <div class="how-num">2</div>
           <h3>We Build Your AI</h3>
-          <p>Custom voicebot trained on your services, pricing, service area, and scheduling rules. Integrates with your existing tools — no rip-and-replace.</p>
+          <p>Custom AI voice agent trained on your services, pricing, service area, and scheduling rules. Integrates with your existing tools — no rip-and-replace.</p>
         </div>
         <div class="how-step">
           <div class="how-num">3</div>
@@ -184,7 +184,7 @@ const breadcrumbSchema = {
     <div class="container">
       <div class="cta-card">
         <h2>Stop Losing Jobs to Voicemail</h2>
-        <p>Try our AI right now — or start with a free 4-week pilot and see exactly how many calls you've been missing.</p>
+        <p>Try our AI right now — or start with a fixed-fee starter implementation package and see exactly how many calls you've been missing.</p>
         <button class="btn-primary btn-lg" onclick="startAICall();">Talk to AI — Free</button>
         <span class="cta-note">Free · 2 minutes · No commitment</span>
       </div>
