@@ -1,8 +1,10 @@
 ---
 title: "2026 Voice Agent Trends Canadian SMBs Can Act On Now"
 description: "Explore the 2026 AI voice agent trends that matter to Canadian SMBs, from real-time speech to bilingual service and measurable ROI."
-pubDate: 2026-03-12
-author: "PRISM AI"
+publishDate: 2026-03-12
+author: "Prism AI - AI Team"
+category: AI Voice Agents
+slug: voice-agent-trends-canadian-smb-2026
 tags: ["ai automation", "canadian small business", "ai voice agents", "voicebots", "contact centre", "customer service", "lead capture", "after-hours calls", "appointment booking", "bilingual support", "crm automation", "call analytics", "pipeda", "canadian smb"]
 image: "/blog/placeholder.jpg"
 ---
