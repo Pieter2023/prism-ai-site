@@ -5,7 +5,7 @@ publishDate: 2026-03-02
 author: "Prism AI - AI Team"
 category: "AI Voice Agents"
 tags: ["ai-voice-agents", "canadian-smb", "lead-conversion", "automation"]
-slug: "ai-voicebot-trends-2026"
+slug: "ai-voice-agent-trends-2026"
 ---
 
 AI voice agents in 2026 are no longer a novelty feature. They are becoming standard operating infrastructure for service businesses that rely on inbound calls.

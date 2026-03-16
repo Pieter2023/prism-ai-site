@@ -2,4 +2,9 @@
 /sitemap.xml /sitemap-index.xml 200
 /sitemap-index.xml /sitemap-index.xml 200
 /sitemap-0.xml /sitemap-0.xml 200
+/services/ai-voicebots /services/ai-voice-agents 301
+/services/ai-voicebots/ /services/ai-voice-agents/ 301
+/blog/ai-voicebot-playbook-2026/ /blog/ai-voice-agent-playbook-2026/ 301
+/blog/ai-voicebot-trends-2026/ /blog/ai-voice-agent-trends-2026/ 301
+/blog/ai-voicebot-roi-benchmarks-canadian-smb-2026/ /blog/ai-voice-agent-roi-benchmarks-canadian-smb-2026/ 301
 /* /404 404

@@ -6,7 +6,7 @@ author: "Prism AI - AI Team"
 tags: ["ai-voice-agents", "canadian-small-business", "customer-service", "after-hours-calls", "lead-capture", "call-automation", "roi"]
 image: "/blog/placeholder.jpg"
 category: "AI Voice Agents"
-slug: "ai-voicebot-roi-benchmarks-canadian-smb-2026"
+slug: "ai-voice-agent-roi-benchmarks-canadian-smb-2026"
 ---
 
 If you run a Canadian small business, you don’t have time to gamble on tech that “might” pay off. You need proof it saves time, captures more leads, and pays for itself quickly. That’s the practical promise of modern AI voice agents — and the reason more companies are adopting conversational AI for phone calls.

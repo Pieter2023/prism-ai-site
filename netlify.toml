@@ -26,6 +26,32 @@
   to = "/sitemap-0.xml"
   status = 200
 
+# Legacy terminology URL redirects (SEO-safe 301)
+[[redirects]]
+  from = "/services/ai-voicebots"
+  to = "/services/ai-voice-agents"
+  status = 301
+
+[[redirects]]
+  from = "/services/ai-voicebots/"
+  to = "/services/ai-voice-agents/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/ai-voicebot-playbook-2026/"
+  to = "/blog/ai-voice-agent-playbook-2026/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/ai-voicebot-trends-2026/"
+  to = "/blog/ai-voice-agent-trends-2026/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/ai-voicebot-roi-benchmarks-canadian-smb-2026/"
+  to = "/blog/ai-voice-agent-roi-benchmarks-canadian-smb-2026/"
+  status = 301
+
 # Redirect all 404s to custom 404 page
 [[redirects]]
   from = "/*"
