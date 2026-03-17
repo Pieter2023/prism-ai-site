@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const pageUrl = 'https://prismaiservices.ca/services/ai-lead-reactivation-real-estate-kelowna/';
+const faqItems = [
+  { question: 'How can AI reactivate old real-estate leads in Kelowna?', answer: 'AI reactivation workflows send targeted follow-ups based on timing, intent, and property preferences to restart conversations with cold leads.' },
+  { question: 'Will AI reactivation feel spammy?', answer: 'No, when done correctly. We use spaced, value-led messaging with clear opt-out handling and intent-based branching.' },
+  { question: 'What KPIs matter for lead reactivation?', answer: 'Track reply rate, reactivated-opportunity rate, booked-call rate, and conversion-to-deal from reactivated contacts.' }
+];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Service', name: 'AI Lead Reactivation for Real Estate in Kelowna', provider: { '@type': 'Organization', name: 'Prism AI', url: 'https://prismaiservices.ca' }, areaServed: { '@type': 'City', name: 'Kelowna' }, serviceType: 'Real estate lead reactivation automation', url: pageUrl, description: 'Prism AI helps Kelowna real estate teams reactivate cold leads with AI follow-up workflows.' },
+    { '@type': 'FAQPage', mainEntity: faqItems.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })) },
+    { '@type': 'WebPage', '@id': `${pageUrl}#webpage`, name: 'AI Lead Reactivation for Real Estate in Kelowna | Prism AI', url: pageUrl, speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.quick-answer p'] } }
+  ]
+};
+---
+
+<BaseLayout title="AI Lead Reactivation for Real Estate in Kelowna | Prism AI" description="Prism AI helps Kelowna real estate teams reactivate cold leads and convert more dormant opportunities with AI follow-up automation." canonical={pageUrl} jsonLd={jsonLd}>
+  <section class="container page">
+    <h1>AI Lead Reactivation for Real Estate in Kelowna</h1>
+    <div class="quick-answer"><p>Prism AI helps Kelowna real estate teams reactivate old leads using AI follow-up sequences that restart conversations, surface active intent, and convert dormant contacts into booked calls.</p></div>
+
+    <h2>What is AI lead reactivation?</h2>
+    <p>It is a structured workflow that re-engages cold CRM contacts with personalized timing and messaging so your team can prioritize people who are ready to move now.</p>
+
+    <h2>How does it work for Kelowna real-estate teams?</h2>
+    <p>We segment your database by lead age and intent, then run AI-driven outreach paths with automated responses, qualification, and handoff to your agents when prospects re-engage.</p>
+
+    <h2>Implementation checklist</h2>
+    <ul><li>Segment old leads by timeline and property intent</li><li>Set reactivation cadence and message variants</li><li>Automate handoff when leads show fresh intent</li><li>Track booked-call and deal conversion weekly</li></ul>
+
+    <p>Start with the <a href="/audit">Free AI Business Audit</a> to identify where dormant leads are costing pipeline value.</p>
+  </section>
+
+  <FAQ items={faqItems} heading="AI Lead Reactivation FAQ for Kelowna Real Estate" />
+</BaseLayout>
+
+<style>.page{padding:3rem 0 2rem;max-width:860px}.quick-answer{border:1px solid var(--color-border);padding:1rem 1.25rem;border-radius:12px;background:rgba(6,182,212,.08);margin:1rem 0 1.5rem}</style>
