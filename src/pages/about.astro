@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const siteUrl = 'https://prismaiservices.ca';
+const pageUrl = `${siteUrl}/about`;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -15,7 +16,7 @@ const jsonLd = {
         name: 'Prism AI',
         url: siteUrl,
       },
-      url: `${siteUrl}/about`,
+      url: pageUrl,
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Kelowna',
@@ -27,7 +28,7 @@ const jsonLd = {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
-        { '@type': 'ListItem', position: 2, name: 'About', item: `${siteUrl}/about` },
+        { '@type': 'ListItem', position: 2, name: 'About', item: pageUrl },
       ],
     },
   ],
@@ -37,6 +38,7 @@ const jsonLd = {
 <BaseLayout
   title="About Pieter van der Walt | Prism AI | Kelowna, BC"
   description="Meet Pieter van der Walt, founder of Prism AI. Based in Kelowna, BC, helping Okanagan businesses automate operations with AI voice agents and workflow automation."
+  canonical={pageUrl}
   jsonLd={jsonLd}
 >
   <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -50,6 +52,10 @@ const jsonLd = {
     <div class="container">
       <h1>About <span class="text-gradient">Prism AI</span></h1>
       <p class="hero-subtitle">Real AI automation, built by a real person, in a real place.</p>
+      <div class="quick-answer">
+        <h2>Quick answer:</h2>
+        <p>Prism AI helps Canadian service businesses implement fixed-fee AI voice agent and workflow automation systems, with practical delivery, clear pricing, and direct founder-led support from Kelowna, BC.</p>
+      </div>
     </div>
   </section>
 
@@ -92,7 +98,7 @@ const jsonLd = {
           </div>
           <div class="value-item">
             <h3>Honest Pricing</h3>
-            <p>Transparent monthly pricing in Canadian dollars. No hidden fees, no long-term contracts, no surprise invoices. You know exactly what you are paying for.</p>
+            <p>Fixed-fee project packages in Canadian dollars, with optional monthly retainers. No hidden fees, no surprise invoices, and no vague scope creep. You know exactly what you are paying for.</p>
           </div>
           <div class="value-item">
             <h3>Canadian-First</h3>
@@ -130,6 +136,17 @@ const jsonLd = {
   }
   .about-hero h1 { font-size: 2.5rem; margin-bottom: 0.75rem; }
   .hero-subtitle { font-size: 1.2rem; color: var(--color-text-muted); }
+  .quick-answer {
+    max-width: 860px;
+    margin: 1.25rem auto 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    background: rgba(6, 182, 212, 0.08);
+    text-align: left;
+  }
+  .quick-answer h2 { font-size: 1rem; margin-bottom: 0.35rem; color: var(--color-secondary); }
+  .quick-answer p { margin: 0; line-height: 1.7; }
 
   .about-content { padding: 3rem 0 5rem; }
   .about-container { max-width: 760px; }

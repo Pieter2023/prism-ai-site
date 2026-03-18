@@ -5,7 +5,7 @@ publishDate: 2026-03-12
 author: "Prism AI - AI Team"
 category: AI Voice Agents
 slug: voice-agent-trends-canadian-smb-2026
-tags: ["ai automation", "canadian small business", "ai voice agents", "voicebots", "contact centre", "customer service", "lead capture", "after-hours calls", "appointment booking", "bilingual support", "crm automation", "call analytics", "pipeda", "canadian smb"]
+tags: ["ai-automation", "canadian-small-business", "ai-voice-agents", "contact-centre", "customer-service", "lead-capture", "after-hours-calls", "appointment-booking", "bilingual-support", "crm-automation", "call-analytics", "pipeda", "canadian-smb"]
 image: "/blog/placeholder.jpg"
 ---
 
