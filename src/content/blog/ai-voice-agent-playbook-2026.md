@@ -86,7 +86,7 @@ Unclear escalation logic, no KPI tracking, and overly long scripts that create c
 - [AI Follow-Up Automation for Dental in Kelowna](/services/ai-follow-up-automation-dental-kelowna/)
 - [AI Estimate Follow-Up for Auto Repair in Kelowna](/services/ai-estimate-follow-up-auto-repair-kelowna/)
 - [AI Lead Reactivation for Real Estate in Kelowna](/services/ai-lead-reactivation-real-estate-kelowna/)
-- [Take the Free AI Readiness Scorecard](/scorecard/)
+- [Take the Free AI Readiness Scorecard](/audit)
 
 ## Sources and Further Reading
 

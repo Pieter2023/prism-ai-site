@@ -154,6 +154,6 @@ For Canadian small businesses competing against larger chains with dedicated cal
 
 The businesses that adopt these tools in 2026 will capture market share from those that do not. Not because they are spending more, but because they are losing less.
 
-Not sure where to start? [Take our free AI Readiness Scorecard](/scorecard)—it takes 3 minutes and tells you exactly which processes in your business are ready to automate, including your appointment scheduling workflow.
+Not sure where to start? [Take our free AI Readiness Scorecard](/audit)—it takes 3 minutes and tells you exactly which processes in your business are ready to automate, including your appointment scheduling workflow.
 
 Ready to stop losing revenue to empty calendar slots? [Book a free demo](/services/ai-voice-agents) and we will show you exactly how an AI voice agent would handle calls for your specific business.

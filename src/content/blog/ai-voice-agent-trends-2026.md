@@ -90,7 +90,7 @@ Usually no. Smaller teams benefit most from immediate response automation becaus
 - Read: [Stop Losing Leads While You Sleep](/blog/stop-losing-leads-while-you-sleep/)
 - Implement: [AI Lead Qualification for HVAC in Kelowna](/services/ai-lead-qualification-hvac-kelowna/)
 - Implement: [AI Workflow Automation for Accounting in Kelowna](/services/ai-workflow-automation-accounting-kelowna/)
-- Act: [Take the Free AI Readiness Scorecard](/scorecard/)
+- Act: [Take the Free AI Readiness Scorecard](/audit)
 
 ## Sources and Further Reading
 

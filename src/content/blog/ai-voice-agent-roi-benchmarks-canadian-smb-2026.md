@@ -227,7 +227,7 @@ This is how you make sure the project doesn’t drift.
 
 ## CTA: Start with a 3‑minute scorecard
 
-Not sure where to start? [Take our free AI Readiness Scorecard](/scorecard) — it takes 3 minutes and tells you exactly which processes in your business are ready to automate.
+Not sure where to start? [Take our free AI Readiness Scorecard](/audit) — it takes 3 minutes and tells you exactly which processes in your business are ready to automate.
 
 Want to hear a AI voice agent on your own business line? [Book a free demo](/services/ai-voice-agents) and we’ll build one live.
 
@@ -237,4 +237,4 @@ Want to hear a AI voice agent on your own business line? [Book a free demo](/ser
 
 The question is no longer “Do AI voice agents work?” The real question is **how quickly you can make them pay for themselves**. With a focused rollout and the right KPIs, most Canadian SMBs can see ROI within the first few months.
 
-Ready to automate the chaos? [Let’s talk](/scorecard).
+Ready to automate the chaos? [Let’s talk](/audit).

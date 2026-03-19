@@ -185,7 +185,7 @@ If after-hours calls are slipping through, you don’t need a bigger team — yo
 
 Start with a simple audit and a real plan: [Free AI Business Audit](/audit). We’ll review your call volume, your booking flow, and where the leaks actually are. Want to hear it in action? [Book a free demo](/services/ai-voice-agents) and we’ll build one live on your line.
 
-Not sure where to start? [Take our free AI Readiness Scorecard](/scorecard) — it takes 3 minutes and tells you exactly which processes in your business are ready to automate.
+Not sure where to start? [Take our free AI Readiness Scorecard](/audit) — it takes 3 minutes and tells you exactly which processes in your business are ready to automate.
 
 ---
 
