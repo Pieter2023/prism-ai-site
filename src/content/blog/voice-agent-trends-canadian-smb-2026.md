@@ -5,7 +5,7 @@ publishDate: 2026-03-12
 author: "Prism AI - AI Team"
 category: AI Voice Agents
 slug: voice-agent-trends-canadian-smb-2026
-tags: ["ai automation", "canadian small business", "ai voice agents", "voicebots", "contact centre", "customer service", "lead capture", "after-hours calls", "appointment booking", "bilingual support", "crm automation", "call analytics", "pipeda", "canadian smb"]
+tags: ["ai-automation", "canadian-small-business", "ai-voice-agents", "contact-centre", "customer-service", "lead-capture", "after-hours-calls", "appointment-booking", "bilingual-support", "crm-automation", "call-analytics", "pipeda", "canadian-smb"]
 image: "/blog/placeholder.jpg"
 ---
 
@@ -164,7 +164,7 @@ When these pieces are in place, the technology fades into the background and you
 
 If you’re not sure which calls to automate first, start with clarity. The fastest wins come from focusing on one high‑volume pain point and building a tight workflow around it.
 
-Not sure where to start? [Take our free AI Readiness Scorecard](/scorecard) — it takes 3 minutes and tells you exactly which processes in your business are ready to automate.
+Not sure where to start? [Take our free AI Readiness Scorecard](/audit) — it takes 3 minutes and tells you exactly which processes in your business are ready to automate.
 
 Want to hear what an AI voice agent sounds like on your own phone line? [Book a free demo](/services/ai-voice-agents) and we’ll build one live.
 

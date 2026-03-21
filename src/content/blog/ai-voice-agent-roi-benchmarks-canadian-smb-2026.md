@@ -6,7 +6,7 @@ author: "Prism AI - AI Team"
 tags: ["ai-voice-agents", "canadian-small-business", "customer-service", "after-hours-calls", "lead-capture", "call-automation", "roi"]
 image: "/blog/placeholder.jpg"
 category: "AI Voice Agents"
-slug: "ai-voicebot-roi-benchmarks-canadian-smb-2026"
+slug: "ai-voice-agent-roi-benchmarks-canadian-smb-2026"
 ---
 
 If you run a Canadian small business, you don’t have time to gamble on tech that “might” pay off. You need proof it saves time, captures more leads, and pays for itself quickly. That’s the practical promise of modern AI voice agents — and the reason more companies are adopting conversational AI for phone calls.
@@ -227,7 +227,7 @@ This is how you make sure the project doesn’t drift.
 
 ## CTA: Start with a 3‑minute scorecard
 
-Not sure where to start? [Take our free AI Readiness Scorecard](/scorecard) — it takes 3 minutes and tells you exactly which processes in your business are ready to automate.
+Not sure where to start? [Take our free AI Readiness Scorecard](/audit) — it takes 3 minutes and tells you exactly which processes in your business are ready to automate.
 
 Want to hear a AI voice agent on your own business line? [Book a free demo](/services/ai-voice-agents) and we’ll build one live.
 
@@ -237,4 +237,4 @@ Want to hear a AI voice agent on your own business line? [Book a free demo](/ser
 
 The question is no longer “Do AI voice agents work?” The real question is **how quickly you can make them pay for themselves**. With a focused rollout and the right KPIs, most Canadian SMBs can see ROI within the first few months.
 
-Ready to automate the chaos? [Let’s talk](/scorecard).
+Ready to automate the chaos? [Let’s talk](/audit).

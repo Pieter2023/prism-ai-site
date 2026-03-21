@@ -5,7 +5,7 @@ publishDate: 2026-03-02
 author: "Prism AI - AI Team"
 category: "AI Voice Agents"
 tags: ["ai-voice-agents", "canadian-smb", "lead-conversion", "automation"]
-slug: "ai-voicebot-trends-2026"
+slug: "ai-voice-agent-trends-2026"
 ---
 
 AI voice agents in 2026 are no longer a novelty feature. They are becoming standard operating infrastructure for service businesses that rely on inbound calls.
@@ -90,7 +90,7 @@ Usually no. Smaller teams benefit most from immediate response automation becaus
 - Read: [Stop Losing Leads While You Sleep](/blog/stop-losing-leads-while-you-sleep/)
 - Implement: [AI Lead Qualification for HVAC in Kelowna](/services/ai-lead-qualification-hvac-kelowna/)
 - Implement: [AI Workflow Automation for Accounting in Kelowna](/services/ai-workflow-automation-accounting-kelowna/)
-- Act: [Take the Free AI Readiness Scorecard](/scorecard/)
+- Act: [Take the Free AI Readiness Scorecard](/audit)
 
 ## Sources and Further Reading
 

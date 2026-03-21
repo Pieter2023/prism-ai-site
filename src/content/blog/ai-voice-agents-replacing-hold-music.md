@@ -63,7 +63,7 @@ The question is no longer whether AI voice agents will replace hold music. It is
 
 If you are considering AI voice automation, start by measuring your current response gap and lead leakage.
 
-- Take the [Free AI Readiness Scorecard](/scorecard/) to identify your highest-impact automation opportunities
+- Take the [Free AI Readiness Scorecard](/audit) to identify your highest-impact automation opportunities
 - See how this plays out in practice in [Stop Losing Leads While You Sleep](/blog/stop-losing-leads-while-you-sleep/)
 - If you are ready to implement, start a quick consult from the [homepage AI concierge](/#voice-agent)
 
