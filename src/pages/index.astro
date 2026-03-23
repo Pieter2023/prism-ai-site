@@ -28,6 +28,8 @@ const jsonLd = {
   name: 'Prism AI',
   description: 'Prism AI provides AI automation for Canadian service businesses, including workflow automation, chatbots, lead generation, and voice agents.',
   url: 'https://prismaiservices.ca',
+  telephone: '+1-778-xxx-xxxx',
+  email: 'pieter@prismaiservices.ca',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Kelowna',
@@ -39,6 +41,16 @@ const jsonLd = {
     { '@type': 'Place', name: 'Vancouver, BC' },
     { '@type': 'Place', name: 'British Columbia' },
     { '@type': 'Place', name: 'Canada' },
+  ],
+  priceRange: '$$$',
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '09:00',
+    closes: '17:00'
+  },
+  sameAs: [
+    'https://www.linkedin.com/company/prism-ai-services',
   ],
 };
 ---
@@ -76,6 +88,12 @@ const jsonLd = {
           <span class="stat-desc">Always-on automation</span>
         </div>
       </div>
+      
+      <!-- GEO Quick Answer Block -->
+      <div class="quick-answer">
+        <h2>Quick answer: What does Prism AI do?</h2>
+        <p>Prism AI builds AI voice agents and workflow automation for Canadian service businesses. We help Kelowna and BC-based companies capture after-hours leads, automate repetitive admin, and book appointments without adding staff. Our fixed-fee projects start at $4,500 with optional management retainers from $497/month.</p>
+      </div>
     </div>
   </section>
 
@@ -84,7 +102,7 @@ const jsonLd = {
       <div class="scorecard-cta-card">
         <p class="scorecard-kicker">Not sure where to start?</p>
         <h2>Get your free AI readiness score in 5 minutes.</h2>
-        <a href="/scorecard" class="btn-primary">Take the Free Scorecard</a>
+        <a href="/audit" class="btn-primary">Take the Free AI Audit</a>
       </div>
     </div>
   </section>
@@ -315,6 +333,29 @@ const jsonLd = {
   .stat-desc {
     font-size: 0.85rem;
     color: var(--color-text-muted);
+  }
+
+  /* GEO Quick Answer Block */
+  .quick-answer {
+    max-width: 860px;
+    margin: 3rem auto 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    background: rgba(6, 182, 212, 0.08);
+    text-align: left;
+  }
+  .quick-answer h2 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+  .quick-answer p {
+    margin: 0;
+    line-height: 1.7;
+    color: var(--color-text);
+    font-size: 1.05rem;
   }
 
   .scorecard-cta {
