@@ -11,7 +11,7 @@ function getResend(): Resend {
   return _resend;
 }
 
-const FROM = process.env.EMAIL_FROM || 'Prism AI <onboarding@resend.dev>';
+const FROM = process.env.FROM_EMAIL || process.env.EMAIL_FROM || 'Prism AI <onboarding@resend.dev>';
 
 function esc(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -94,7 +94,13 @@ export async function sendContactInquiry(data: {
   company?: string | null;
   message: string;
 }) {
-  const adminEmail = process.env.AUDIT_NOTIFICATION_EMAIL;
+  // Fall back through several env-var names + a hard default so the admin
+  // notification always has somewhere to go.
+  const adminEmail =
+    process.env.CONTACT_NOTIFICATION_EMAIL ||
+    process.env.AUDIT_NOTIFICATION_EMAIL ||
+    'pieter@prismaiservices.ca';
+
   const resend = getResend();
 
   const escName = esc(data.name);
@@ -102,8 +108,8 @@ export async function sendContactInquiry(data: {
   const escCompany = esc(data.company || '—');
   const escMessage = esc(data.message).replace(/\n/g, '<br/>');
 
-  // Admin notification to Pieter
-  if (adminEmail) {
+  // Admin notification — surface errors so they appear in function logs.
+  try {
     await resend.emails.send({
       from: FROM,
       to: adminEmail,
@@ -123,28 +129,35 @@ export async function sendContactInquiry(data: {
         </div>
       `,
     });
+  } catch (err) {
+    console.error('Contact admin email failed:', err);
+    throw err;
   }
 
-  // Auto-reply to sender
-  await resend.emails.send({
-    from: FROM,
-    to: data.email,
-    replyTo: 'pieter@prismaiservices.ca',
-    subject: `We got your note — Prism AI`,
-    html: `
-      <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
-        <h2 style="color:#3b5cff">Thanks — we'll be in touch.</h2>
-        <p>Hi ${escName},</p>
-        <p>Your inquiry landed safely. Pieter will personally reply within one business day with questions or next steps.</p>
-        <p>If it's urgent, reach us directly:</p>
-        <ul>
-          <li>Phone: <a href="tel:+12367774093">+1 236 777 4093</a></li>
-          <li>Email: <a href="mailto:pieter@prismaiservices.ca">pieter@prismaiservices.ca</a></li>
-        </ul>
-        <p style="color:#999;font-size:12px;margin-top:40px">Prism AI Services · Kelowna, British Columbia</p>
-      </div>
-    `,
-  });
+  // Auto-reply to sender — log but don't fail the whole request if this bounces.
+  try {
+    await resend.emails.send({
+      from: FROM,
+      to: data.email,
+      replyTo: 'pieter@prismaiservices.ca',
+      subject: `We got your note — Prism AI`,
+      html: `
+        <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
+          <h2 style="color:#3b5cff">Thanks — we'll be in touch.</h2>
+          <p>Hi ${escName},</p>
+          <p>Your inquiry landed safely. Pieter will personally reply within one business day with questions or next steps.</p>
+          <p>If it's urgent, reach us directly:</p>
+          <ul>
+            <li>Phone: <a href="tel:+12367774093">+1 236 777 4093</a></li>
+            <li>Email: <a href="mailto:pieter@prismaiservices.ca">pieter@prismaiservices.ca</a></li>
+          </ul>
+          <p style="color:#999;font-size:12px;margin-top:40px">Prism AI Services · Kelowna, British Columbia</p>
+        </div>
+      `,
+    });
+  } catch (err) {
+    console.error('Contact auto-reply failed (continuing):', err);
+  }
 }
 
 export async function sendDeliveryPaymentLink(data: {
