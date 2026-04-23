@@ -1,268 +1,244 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import PrismLogo from './PrismLogo';
 import { openVoicebot } from '../utils/voicebot';
 
 interface NavLink {
-  name: string;
-  href: string;
-  isRoute?: boolean;
+  to: string;
+  label: string;
   badge?: string;
 }
 
-const navLinks: NavLink[] = [
-  { name: 'How It Works', href: '#process' },
-  { name: 'Use Cases', href: '#use-cases' },
-  { name: 'Pricing', href: '#pricing' },
-  { name: 'Blog', href: '#blog' },
-  { name: 'FAQ', href: '#faq' },
-  { name: 'AI Audit', href: '/audit', isRoute: true, badge: 'Free' },
+const links: NavLink[] = [
+  { to: '/services', label: 'Services' },
+  { to: '/pricing', label: 'Pricing' },
+  { to: '/blog', label: 'Blog' },
+  { to: '/about', label: 'About' },
+  { to: '/audit', label: 'Audit', badge: 'Free' },
+  { to: '/contact', label: 'Contact' },
 ];
 
-const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
-  }, [isOpen]);
+  }, [mobileOpen]);
 
-  const handleNavClick = useCallback((e: React.MouseEvent, link: NavLink) => {
-    if (link.isRoute) return; // Let Link handle it
-
-    e.preventDefault();
-    setIsOpen(false);
-
-    if (location.pathname === '/') {
-      // On home page, scroll to section
-      const el = document.querySelector(link.href);
-      el?.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      // On other pages, navigate to home + hash
-      navigate('/' + link.href);
-    }
-  }, [location.pathname, navigate]);
-
-  // Handle hash scroll after navigation from other pages
+  // Close mobile menu on route change
   useEffect(() => {
-    if (location.pathname === '/' && location.hash) {
-      setTimeout(() => {
-        const el = document.querySelector(location.hash);
-        el?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    }
-  }, [location]);
+    setMobileOpen(false);
+  }, [location.pathname]);
 
-  const handleLogoClick = () => {
-    if (location.pathname === '/') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      navigate('/');
-    }
+  const isActive = (to: string) => {
+    if (to === '/') return location.pathname === '/';
+    // /services is aliased to /pricing
+    if (to === '/services') return location.pathname === '/services' || location.pathname === '/pricing';
+    return location.pathname.startsWith(to);
   };
 
   return (
-    <motion.nav
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`fixed top-0 w-full z-50 px-4 sm:px-6 py-4 transition-all duration-500 ${
-        scrolled ? 'py-3' : 'py-5'
-      }`}
+    <header
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        padding: scrolled ? '10px 0' : '18px 0',
+        transition: 'padding 280ms ease, background 280ms ease, border-color 280ms ease',
+        background: scrolled ? 'rgba(7,8,11,0.72)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(14px) saturate(140%)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(14px) saturate(140%)' : 'none',
+        borderBottom: scrolled ? '1px solid var(--line)' : '1px solid transparent',
+      }}
     >
       <div
-        className={`max-w-5xl mx-auto flex items-center justify-between px-6 py-3 rounded-2xl transition-all duration-500 ${
-          scrolled
-            ? 'glass shadow-2xl shadow-primary/5'
-            : 'bg-transparent'
-        }`}
+        className="container"
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
       >
-        {/* Logo */}
-        <motion.div
-          className="flex items-center gap-2.5 cursor-pointer"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={handleLogoClick}
+        <button
+          onClick={() => navigate('/')}
+          style={{ cursor: 'pointer' }}
+          aria-label="Prism AI home"
         >
-          <div className="relative">
-            <div className="size-9 bg-gradient-to-br from-primary to-primary-light rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/30">
-              <span className="material-symbols-outlined text-xl">deployed_code</span>
-            </div>
-            <div className="absolute inset-0 bg-primary rounded-xl blur-xl opacity-40" />
-          </div>
-          <span className="text-lg font-black tracking-tight text-white uppercase">
-            Prism<span className="gradient-text">AI</span>
-          </span>
-        </motion.div>
+          <PrismLogo size={26} />
+        </button>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-1">
-          {navLinks.map((link, index) => (
-            link.isRoute ? (
-              <motion.div
-                key={link.name}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index, duration: 0.5 }}
+        <nav className="nav-desktop" style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          {links.map((l) => {
+            const active = isActive(l.to);
+            return (
+              <Link
+                key={l.to}
+                to={l.to}
+                style={{
+                  padding: '8px 14px',
+                  fontSize: 14,
+                  color: active ? 'var(--fg-0)' : 'var(--fg-1)',
+                  fontWeight: 400,
+                  letterSpacing: '-0.005em',
+                  borderRadius: 999,
+                  transition: 'color 180ms ease',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--fg-0)')}
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.color = active ? 'var(--fg-0)' : 'var(--fg-1)')
+                }
               >
-                <Link
-                  to={link.href}
-                  className="relative px-4 py-2 text-sm font-medium text-slate-400 hover:text-white transition-colors group inline-flex items-center gap-1.5"
-                >
-                  {link.name}
-                  {link.badge && (
-                    <span className="px-1.5 py-0.5 text-[10px] font-bold uppercase bg-accent/15 text-accent border border-accent/25 rounded-full leading-none">
-                      {link.badge}
-                    </span>
-                  )}
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-4/5 transition-all duration-300 rounded-full" />
-                </Link>
-              </motion.div>
-            ) : (
-              <motion.a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link)}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index, duration: 0.5 }}
-                className="relative px-4 py-2 text-sm font-medium text-slate-400 hover:text-white transition-colors group"
-              >
-                {link.name}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-4/5 transition-all duration-300 rounded-full" />
-              </motion.a>
-            )
-          ))}
-        </div>
+                {l.label}
+                {l.badge && (
+                  <span
+                    style={{
+                      fontFamily: 'var(--mono)',
+                      fontSize: 9,
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      color: 'var(--accent)',
+                      border: '1px solid rgba(59,92,255,0.3)',
+                      borderRadius: 999,
+                      padding: '1px 6px',
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {l.badge}
+                  </span>
+                )}
+              </Link>
+            );
+          })}
+        </nav>
 
-        {/* CTA Button - opens voicebot */}
-        <motion.button
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          whileHover={{ scale: 1.05, boxShadow: '0 0 40px -10px rgba(19, 91, 236, 0.5)' }}
-          whileTap={{ scale: 0.95 }}
-          onClick={openVoicebot}
-          className="hidden md:flex btn-primary text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all glow-soft items-center gap-2"
-        >
-          <span className="material-symbols-outlined text-lg">mic</span>
-          Talk to AI
-        </motion.button>
-
-        {/* Mobile Toggle */}
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          className="md:hidden text-white p-2 rounded-xl glass"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <motion.span
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.3 }}
-            className="material-symbols-outlined"
+        <div className="nav-cta" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <a
+            href="tel:+12367774093"
+            className="btn btn-ghost btn-sm nav-phone"
+            title="Call us"
           >
-            {isOpen ? 'close' : 'menu'}
-          </motion.span>
-        </motion.button>
+            <span style={{ fontFamily: 'var(--mono)', fontSize: 12 }}>+1 236 777 4093</span>
+          </a>
+          <button className="btn btn-accent btn-sm" onClick={openVoicebot}>
+            <span className="material-symbols-outlined" style={{ fontSize: 16 }}>mic</span>
+            Talk to AI
+          </button>
+
+          <button
+            className="nav-mobile-toggle"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path
+                d={mobileOpen ? 'M5 5l10 10M15 5L5 15' : 'M3 6h14M3 10h14M3 14h14'}
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            {/* Backdrop overlay - tap to close */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-30 md:hidden"
-              onClick={() => setIsOpen(false)}
-              onTouchEnd={() => setIsOpen(false)}
-            />
-            <motion.div
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-              className="absolute top-24 left-4 right-4 glass-card rounded-2xl p-6 shadow-2xl z-40 md:hidden border border-white/10"
+      {mobileOpen && (
+        <div
+          className="nav-mobile-menu"
+          style={{
+            marginTop: 12,
+            borderTop: '1px solid var(--line)',
+            padding: '20px var(--gutter)',
+            background: 'rgba(7,8,11,0.96)',
+            backdropFilter: 'blur(14px)',
+          }}
+        >
+          {links.map((l) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              onClick={() => setMobileOpen(false)}
+              style={{
+                display: 'block',
+                width: '100%',
+                textAlign: 'left',
+                padding: '14px 0',
+                borderBottom: '1px solid var(--line)',
+                fontSize: 18,
+                fontFamily: 'var(--serif)',
+                color: 'var(--fg-0)',
+              }}
             >
-              <div className="flex flex-col gap-2">
-                {navLinks.map((link, index) => (
-                  link.isRoute ? (
-                    <motion.div
-                      key={link.name}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.05 * index }}
-                    >
-                      <Link
-                        to={link.href}
-                        onClick={() => setIsOpen(false)}
-                        className="text-lg font-medium text-slate-300 active:text-white active:bg-white/5 px-4 py-3 rounded-xl transition-all flex items-center justify-between"
-                      >
-                        <span className="flex items-center gap-2">
-                          {link.name}
-                          {link.badge && (
-                            <span className="px-1.5 py-0.5 text-[10px] font-bold uppercase bg-accent/15 text-accent border border-accent/25 rounded-full leading-none">
-                              {link.badge}
-                            </span>
-                          )}
-                        </span>
-                        <span className="material-symbols-outlined text-primary">
-                          arrow_forward
-                        </span>
-                      </Link>
-                    </motion.div>
-                  ) : (
-                    <motion.a
-                      key={link.name}
-                      href={link.href}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.05 * index }}
-                      onClick={(e) => handleNavClick(e, link)}
-                      className="text-lg font-medium text-slate-300 active:text-white active:bg-white/5 px-4 py-3 rounded-xl transition-all flex items-center justify-between"
-                    >
-                      {link.name}
-                      <span className="material-symbols-outlined text-primary">
-                        arrow_forward
-                      </span>
-                    </motion.a>
-                  )
-                ))}
-                <motion.button
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  onClick={() => { setIsOpen(false); openVoicebot(); }}
-                  className="btn-primary text-white px-5 py-4 rounded-xl text-base font-bold mt-4 w-full glow-soft flex items-center justify-center gap-2"
+              {l.label}
+              {l.badge && (
+                <span
+                  style={{
+                    marginLeft: 8,
+                    fontFamily: 'var(--mono)',
+                    fontSize: 10,
+                    color: 'var(--accent)',
+                  }}
                 >
-                  <span className="material-symbols-outlined">mic</span>
-                  Talk to AI
-                </motion.button>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </motion.nav>
-  );
-};
+                  {l.badge}
+                </span>
+              )}
+            </Link>
+          ))}
+          <button
+            className="btn btn-accent"
+            style={{ width: '100%', marginTop: 20 }}
+            onClick={() => {
+              setMobileOpen(false);
+              openVoicebot();
+            }}
+          >
+            <span className="material-symbols-outlined" style={{ fontSize: 16 }}>mic</span>
+            Talk to AI
+          </button>
+          <a
+            href="tel:+12367774093"
+            style={{
+              display: 'block',
+              marginTop: 14,
+              textAlign: 'center',
+              fontFamily: 'var(--mono)',
+              fontSize: 13,
+              color: 'var(--fg-1)',
+            }}
+          >
+            +1 236 777 4093
+          </a>
+        </div>
+      )}
 
-export default Navbar;
+      <style>{`
+        @media (max-width: 980px) {
+          .nav-desktop { display: none !important; }
+          .nav-phone { display: none !important; }
+        }
+        @media (min-width: 981px) {
+          .nav-mobile-toggle { display: none !important; }
+          .nav-mobile-menu { display: none !important; }
+        }
+        .nav-mobile-toggle {
+          width: 38px; height: 38px;
+          display: inline-flex; align-items: center; justify-content: center;
+          color: var(--fg-0);
+          border: 1px solid var(--line);
+          border-radius: 10px;
+        }
+      `}</style>
+    </header>
+  );
+}

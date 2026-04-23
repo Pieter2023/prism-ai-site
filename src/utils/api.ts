@@ -58,3 +58,14 @@ export async function fetchSubmissionStatus(id: string): Promise<{ status: strin
   if (!res.ok) throw new Error('Submission not found');
   return res.json();
 }
+
+export interface ContactInquiryPayload {
+  name: string;
+  email: string;
+  company?: string;
+  message: string;
+}
+
+export function sendContactInquiry(data: ContactInquiryPayload): Promise<{ ok: true }> {
+  return request<{ ok: true }>('/contact', data);
+}

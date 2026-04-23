@@ -1,48 +1,33 @@
 import { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
+import Footer from './components/Footer';
+import LandingPage from './pages/LandingPage';
 
-// Lazy load below-fold sections to reduce initial bundle on mobile
-const Process = lazy(() => import('./components/Process'));
-const UseCases = lazy(() => import('./components/UseCases'));
-const FAQ = lazy(() => import('./components/FAQ'));
-const Pricing = lazy(() => import('./components/Pricing'));
-const Blog = lazy(() => import('./components/Blog'));
-const Contact = lazy(() => import('./components/Contact'));
 const AuditPage = lazy(() => import('./pages/AuditPage'));
-
-function HomePage() {
-  return (
-    <>
-      <main>
-        <Hero />
-        <Suspense>
-          <Process />
-          <UseCases />
-          <Pricing />
-          <Blog />
-          <FAQ />
-        </Suspense>
-      </main>
-      <Suspense>
-        <Contact />
-      </Suspense>
-    </>
-  );
-}
+const PricingPage = lazy(() => import('./pages/PricingPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const BlogPage = lazy(() => import('./pages/BlogPage'));
 
 function App() {
   return (
-    <div className="bg-[#0a0f1a] min-h-screen text-slate-100 selection:bg-primary/30 selection:text-white font-display overflow-x-hidden">
+    <div style={{ minHeight: '100vh', background: 'var(--ink-0)', color: 'var(--fg-0)' }}>
       <Navbar />
       <Suspense>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/services" element={<Navigate to="/pricing" replace />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/blog" element={<BlogPage />} />
           <Route path="/audit" element={<AuditPage />} />
           <Route path="/audit/results/:id" element={<AuditPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
+      <Footer />
     </div>
   );
 }

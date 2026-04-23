@@ -88,6 +88,65 @@ export async function sendUserConfirmation(data: {
   });
 }
 
+export async function sendContactInquiry(data: {
+  name: string;
+  email: string;
+  company?: string | null;
+  message: string;
+}) {
+  const adminEmail = process.env.AUDIT_NOTIFICATION_EMAIL;
+  const resend = getResend();
+
+  const escName = esc(data.name);
+  const escEmail = esc(data.email);
+  const escCompany = esc(data.company || '—');
+  const escMessage = esc(data.message).replace(/\n/g, '<br/>');
+
+  // Admin notification to Pieter
+  if (adminEmail) {
+    await resend.emails.send({
+      from: FROM,
+      to: adminEmail,
+      replyTo: data.email,
+      subject: `New inquiry: ${data.name}${data.company ? ` (${data.company})` : ''}`,
+      html: `
+        <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
+          <h2 style="color:#3b5cff">New project inquiry</h2>
+          <table style="border-collapse:collapse;width:100%;margin:16px 0">
+            <tr><td style="padding:8px;border:1px solid #ddd"><strong>Name</strong></td><td style="padding:8px;border:1px solid #ddd">${escName}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #ddd"><strong>Email</strong></td><td style="padding:8px;border:1px solid #ddd"><a href="mailto:${escEmail}">${escEmail}</a></td></tr>
+            <tr><td style="padding:8px;border:1px solid #ddd"><strong>Company</strong></td><td style="padding:8px;border:1px solid #ddd">${escCompany}</td></tr>
+          </table>
+          <h3>Message</h3>
+          <div style="padding:16px;background:#f5f5f5;border-radius:6px;white-space:pre-wrap">${escMessage}</div>
+          <p style="color:#999;font-size:12px;margin-top:32px">Reply directly to this email — it will go to the sender.</p>
+        </div>
+      `,
+    });
+  }
+
+  // Auto-reply to sender
+  await resend.emails.send({
+    from: FROM,
+    to: data.email,
+    replyTo: 'pieter@prismaiservices.ca',
+    subject: `We got your note — Prism AI`,
+    html: `
+      <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
+        <h2 style="color:#3b5cff">Thanks — we'll be in touch.</h2>
+        <p>Hi ${escName},</p>
+        <p>Your inquiry landed safely. Pieter will personally reply within one business day with questions or next steps.</p>
+        <p>If it's urgent, reach us directly:</p>
+        <ul>
+          <li>Phone: <a href="tel:+12367774093">+1 236 777 4093</a></li>
+          <li>Email: <a href="mailto:pieter@prismaiservices.ca">pieter@prismaiservices.ca</a></li>
+        </ul>
+        <p style="color:#999;font-size:12px;margin-top:40px">Prism AI Services · Kelowna, British Columbia</p>
+      </div>
+    `,
+  });
+}
+
 export async function sendDeliveryPaymentLink(data: {
   contactEmail: string;
   contactName: string;
