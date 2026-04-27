@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Prism AI — Custom AI automation for growing businesses">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#1a2660" stop-opacity="0.55"/>
+      <stop offset="60%" stop-color="#07080b" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#07080b" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="ai" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3b5cff"/>
+      <stop offset="50%" stop-color="#3ec6ff"/>
+      <stop offset="100%" stop-color="#ffb865"/>
+    </linearGradient>
+    <linearGradient id="spectrum" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6b5cff"/>
+      <stop offset="18%" stop-color="#3b5cff"/>
+      <stop offset="40%" stop-color="#3ec6ff"/>
+      <stop offset="58%" stop-color="#5df0c0"/>
+      <stop offset="78%" stop-color="#ffb865"/>
+      <stop offset="100%" stop-color="#ff6a8b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#07080b"/>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Spectrum bar across the top -->
+  <rect x="0" y="0" width="1200" height="3" fill="url(#spectrum)"/>
+
+  <!-- Prism glyph (scaled from 32x32 viewBox) -->
+  <g transform="translate(96, 96) scale(4)">
+    <path d="M16 16 L11.21 29.16 A14 14 0 0 1 2.21 18.43 Z" fill="#6b5cff"/>
+    <path d="M16 16 L2.21 18.43  A14 14 0 0 1 7.00 5.27  Z" fill="#3b5cff"/>
+    <path d="M16 16 L7.00 5.27   A14 14 0 0 1 20.79 2.84 Z" fill="#3ec6ff"/>
+    <path d="M16 16 L20.79 2.84  A14 14 0 0 1 29.79 13.57 Z" fill="#5df0c0"/>
+    <path d="M16 16 L29.79 13.57 A14 14 0 0 1 25.00 26.73 Z" fill="#ffb865"/>
+    <path d="M16 16 L25.00 26.73 A14 14 0 0 1 11.21 29.16 Z" fill="#ff6a8b"/>
+    <circle cx="16" cy="16" r="7" fill="#07080b"/>
+  </g>
+
+  <!-- Wordmark inline next to glyph -->
+  <text x="260" y="160"
+        font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="84" font-weight="600" fill="#f4f4f5" letter-spacing="-1.5">Prism<tspan
+        font-family="Instrument Serif, 'Times New Roman', Georgia, serif"
+        font-style="italic" font-weight="400" fill="url(#ai)" dx="6">ai</tspan></text>
+
+  <!-- Eyebrow -->
+  <text x="96" y="380"
+        font-family="Geist Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
+        font-size="22" letter-spacing="3" fill="#3b5cff"
+        text-transform="uppercase">AI &amp; AUTOMATION · KELOWNA BC</text>
+
+  <!-- Headline -->
+  <text x="96" y="460"
+        font-family="Instrument Serif, 'Times New Roman', Georgia, serif"
+        font-size="86" fill="#f4f4f5" letter-spacing="-2">Practical AI that actually</text>
+  <text x="96" y="548"
+        font-family="Instrument Serif, 'Times New Roman', Georgia, serif"
+        font-style="italic" font-size="86" fill="url(#ai)" letter-spacing="-2">runs your business.</text>
+</svg>

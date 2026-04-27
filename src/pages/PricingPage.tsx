@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
 
 type Tier = {
@@ -218,6 +218,66 @@ export default function PricingPage() {
             ))}
           </div>
           <style>{`@media (max-width: 980px) { .tier-grid { grid-template-columns: 1fr !important; } }`}</style>
+
+          <Link
+            to="/websites"
+            className="reveal"
+            style={{
+              marginTop: 32,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 24,
+              padding: '20px 28px',
+              background: 'var(--ink-1)',
+              border: '1px solid var(--line)',
+              borderRadius: 'var(--r-lg)',
+              transition: 'border-color 200ms ease, background 200ms ease',
+              flexWrap: 'wrap',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'var(--line-strong)';
+              e.currentTarget.style.background = 'var(--ink-2)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'var(--line)';
+              e.currentTarget.style.background = 'var(--ink-1)';
+            }}
+          >
+            <div>
+              <div
+                className="mono"
+                style={{
+                  fontSize: 11,
+                  color: 'var(--accent)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.14em',
+                }}
+              >
+                New service
+              </div>
+              <div
+                style={{
+                  fontFamily: 'var(--serif)',
+                  fontSize: 22,
+                  letterSpacing: '-0.01em',
+                  marginTop: 6,
+                  color: 'var(--fg-0)',
+                }}
+              >
+                Need a website too? See our Website Building service →
+              </div>
+              <div className="caption" style={{ marginTop: 6 }}>
+                Essential $4,500 · Professional $7,500 · Premium $10–12.5k CAD · Care plan $350/mo
+              </div>
+            </div>
+            <span
+              className="btn btn-ghost btn-sm"
+              style={{ pointerEvents: 'none', flexShrink: 0 }}
+            >
+              View Websites
+            </span>
+          </Link>
         </div>
       </section>
 

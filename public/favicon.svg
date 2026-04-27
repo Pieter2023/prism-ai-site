@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Prism AI">
+  <path d="M16 16 L11.21 29.16 A14 14 0 0 1 2.21 18.43 Z" fill="#6b5cff"/>
+  <path d="M16 16 L2.21 18.43  A14 14 0 0 1 7.00 5.27  Z" fill="#3b5cff"/>
+  <path d="M16 16 L7.00 5.27   A14 14 0 0 1 20.79 2.84 Z" fill="#3ec6ff"/>
+  <path d="M16 16 L20.79 2.84  A14 14 0 0 1 29.79 13.57 Z" fill="#5df0c0"/>
+  <path d="M16 16 L29.79 13.57 A14 14 0 0 1 25.00 26.73 Z" fill="#ffb865"/>
+  <path d="M16 16 L25.00 26.73 A14 14 0 0 1 11.21 29.16 Z" fill="#ff6a8b"/>
+  <circle cx="16" cy="16" r="7" fill="#07080b"/>
+</svg>

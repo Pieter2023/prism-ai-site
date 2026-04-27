@@ -29,3 +29,22 @@ dist-ssr
 # Environment variables
 .env
 .env.local
+
+# Claude / agent working files (not part of the deployed site)
+.claude/
+codex-skills/
+output/
+memory/
+
+# VPS / OpenClaw artefacts that shouldn't live in this repo
+# (Decommissioned Apr 27 2026 — kept on disk for archival, not in git)
+xbot-v2/
+xbot-image-workflow.py
+test-image-workflow.sh
+oc-fix.sh
+CONTEXT_SNAPSHOT*.md
+OpenClaw-Context-Snapshot-*.md
+Prism-AI-Phase-*.docx
+
+# Misc local working files
+"Rate Calculator copy/.claude/"
