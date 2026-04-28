@@ -272,7 +272,13 @@ function Hero() {
 
 function BrowserMock() {
   return (
-    <div className="browser">
+    <a
+      href="https://dawsoncreekdentalcentre.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="browser browser-link"
+      aria-label="Visit dawsoncreekdentalcentre.com — a recent build by Prism AI"
+    >
       <div className="browser-bar">
         <span className="browser-dot" />
         <span className="browser-dot" />
@@ -282,108 +288,91 @@ function BrowserMock() {
             <rect x="3" y="11" width="18" height="11" rx="2" />
             <path d="M7 11V7a5 5 0 0110 0v4" />
           </svg>
-          yourbusiness.ca
+          dawsoncreekdentalcentre.com
+        </span>
+        <span className="real-preview-live">
+          <span className="real-preview-live-dot" />
+          Live
         </span>
       </div>
-      <div className="mock">
-        <div className="mock-nav">
-          <div className="mock-logo">
-            Maple &amp; Stone{' '}
-            <span style={{ color: 'var(--fg-2)', fontFamily: 'var(--mono)', fontSize: 10, marginLeft: 8 }}>
-              DENTAL
+      <div className="real-preview">
+        <img
+          src="/case-studies/dawson-creek/chair-1.jpg"
+          alt="Operatory at Dawson Creek Dental & Hygiene Centre"
+          className="real-preview-bg"
+          loading="lazy"
+        />
+        <div className="real-preview-shade" />
+        <div className="real-preview-content">
+          <div className="real-preview-nav">
+            <div className="real-preview-logo">
+              Dawson Creek
+              <span className="real-preview-logo-sub">Dental &amp; Hygiene</span>
+            </div>
+            <span className="real-preview-cta">
+              Book
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+                <path
+                  d="M2 6h8M7 3l3 3-3 3"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </span>
           </div>
-          <div className="mock-nav-links">
-            <span>Services</span>
-            <span>Team</span>
-            <span>Reviews</span>
-            <span>Contact</span>
-          </div>
-          <span className="mock-cta">Book now</span>
-        </div>
-        <div className="mock-hero">
-          <div>
-            <h3 className="mock-h1">
-              A modern dental home for{' '}
-              <span className="italic-accent" style={{ fontStyle: 'italic' }}>
-                your whole family
-              </span>
-              .
+          <div className="real-preview-headline">
+            <div className="real-preview-chip">
+              <span className="real-preview-chip-dot" />
+              Accepting new patients · Mile Zero, BC
+            </div>
+            <h3 className="real-preview-h1">
+              A lifetime of <span className="real-preview-italic">confident</span> smiles,
+              <br />
+              invested here.
             </h3>
-            <p className="mock-sub">
-              Implants, Invisalign, cosmetic, and family dentistry — with senior-friendly financing
-              and same-week openings.
+            <p className="real-preview-sub">
+              Big-city implant, cosmetic and orthodontic care — delivered with small-town warmth
+              by Dr. Cung Nguyen and the DCDH team.
             </p>
-            <div className="mock-row">
-              <span className="mock-pill">Request appointment →</span>
-              <span className="mock-pill ghost">Our services</span>
+          </div>
+          <div className="real-preview-meta">
+            <div>
+              <span className="k">Est.</span>
+              <span className="v">1985</span>
+            </div>
+            <div>
+              <span className="k">Chairs</span>
+              <span className="v">06</span>
+            </div>
+            <div>
+              <span className="k">Dr.</span>
+              <span className="v">Cung Nguyen</span>
+            </div>
+            <div>
+              <span className="k">Bites</span>
+              <span className="v">2022 CIR</span>
             </div>
           </div>
-          <div className="mock-card">
-            <div className="mock-tile" />
-            <div className="mock-line long" />
-            <div className="mock-line med" />
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginTop: 6 }}>
-              <div
-                style={{
-                  background: 'var(--ink-2)',
-                  borderRadius: 6,
-                  padding: 8,
-                  border: '1px solid var(--line)',
-                }}
-              >
-                <div className="mock-line short" />
-                <div
-                  style={{
-                    marginTop: 6,
-                    fontFamily: 'var(--serif)',
-                    fontSize: 18,
-                    letterSpacing: '-0.02em',
-                  }}
-                >
-                  Implants
-                </div>
-              </div>
-              <div
-                style={{
-                  background: 'var(--ink-2)',
-                  borderRadius: 6,
-                  padding: 8,
-                  border: '1px solid var(--line)',
-                }}
-              >
-                <div className="mock-line short" />
-                <div
-                  style={{
-                    marginTop: 6,
-                    fontFamily: 'var(--serif)',
-                    fontSize: 18,
-                    letterSpacing: '-0.02em',
-                  }}
-                >
-                  Invisalign
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="mock-stats">
-          {(
-            [
-              ['12k+', 'Patients'],
-              ['4.9★', 'Google rating'],
-              ['20 yrs', 'Local'],
-              ['Same-wk', 'Openings'],
-            ] as const
-          ).map(([k, v]) => (
-            <div key={v}>
-              <div className="mock-stat-k">{k}</div>
-              <div className="mock-stat-v">{v}</div>
-            </div>
-          ))}
         </div>
       </div>
-    </div>
+      <div className="real-preview-foot">
+        <span>Built by Prism AI · Recent client work</span>
+        <span className="real-preview-foot-link">
+          Visit live site
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+            <path
+              d="M3 9l6-6M4 3h5v5"
+              stroke="currentColor"
+              strokeWidth="1.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      </div>
+    </a>
   );
 }
 
@@ -705,16 +694,39 @@ function CaseStudy() {
         </div>
 
         <div className="case reveal">
-          <div className="case-img">
-            <div
-              className="browser"
-              style={{ width: '100%', maxWidth: 480, boxShadow: '0 30px 80px -30px rgba(0,0,0,0.6)' }}
+          <div className="case-img case-img-photos">
+            <a
+              href="https://dawsoncreekdentalcentre.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="case-photo-link"
+              aria-label="Visit dawsoncreekdentalcentre.com"
             >
-              <div className="browser-bar">
-                <span className="browser-dot" />
-                <span className="browser-dot" />
-                <span className="browser-dot" />
-                <span className="browser-url">
+              <div className="case-photo-grid">
+                <div className="case-photo case-photo-main">
+                  <img
+                    src="/case-studies/dawson-creek/exterior.jpg"
+                    alt="Dawson Creek Dental & Hygiene Centre exterior on Mile Zero, BC"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="case-photo">
+                  <img
+                    src="/case-studies/dawson-creek/reception-1.jpg"
+                    alt="Reception at Dawson Creek Dental & Hygiene Centre"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="case-photo">
+                  <img
+                    src="/case-studies/dawson-creek/cung-portrait.jpg"
+                    alt="Dr. Cung Nguyen"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div className="case-photo-caption">
+                <span className="case-photo-url">
                   <svg
                     width="10"
                     height="10"
@@ -726,63 +738,22 @@ function CaseStudy() {
                     <rect x="3" y="11" width="18" height="11" rx="2" />
                     <path d="M7 11V7a5 5 0 0110 0v4" />
                   </svg>
-                  dawsoncreekdental.ca
+                  dawsoncreekdentalcentre.com
+                </span>
+                <span className="case-photo-visit">
+                  Visit live site
+                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+                    <path
+                      d="M3 9l6-6M4 3h5v5"
+                      stroke="currentColor"
+                      strokeWidth="1.4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </span>
               </div>
-              <div className="mock" style={{ padding: '20px 22px 24px' }}>
-                <div className="mock-nav">
-                  <div className="mock-logo" style={{ fontSize: 14 }}>
-                    Dawson Creek Dental
-                  </div>
-                  <span className="mock-cta" style={{ height: 22, fontSize: 10 }}>
-                    Book →
-                  </span>
-                </div>
-                <div style={{ marginTop: 18 }}>
-                  <div
-                    style={{
-                      fontFamily: 'var(--serif)',
-                      fontSize: 26,
-                      lineHeight: 1.05,
-                      letterSpacing: '-0.02em',
-                    }}
-                  >
-                    Implants. Invisalign.{' '}
-                    <span className="italic-accent" style={{ fontStyle: 'italic' }}>
-                      Family.
-                    </span>
-                  </div>
-                  <div className="mock-line long" style={{ marginTop: 14 }} />
-                  <div className="mock-line med" style={{ marginTop: 8 }} />
-                  <div
-                    style={{
-                      marginTop: 14,
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(3, 1fr)',
-                      gap: 6,
-                    }}
-                  >
-                    {['Implants', 'Invisalign', 'Senior Care'].map((s) => (
-                      <div
-                        key={s}
-                        style={{
-                          background: 'var(--ink-0)',
-                          border: '1px solid var(--line)',
-                          borderRadius: 6,
-                          padding: '8px 6px',
-                          fontSize: 10,
-                          fontFamily: 'var(--mono)',
-                          textAlign: 'center',
-                          color: 'var(--fg-1)',
-                        }}
-                      >
-                        {s}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+            </a>
           </div>
           <div className="case-meta">
             <div
