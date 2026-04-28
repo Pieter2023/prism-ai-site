@@ -219,6 +219,29 @@ function Hero() {
         </div>
 
         <div className="fade-up" style={{ marginTop: 72, animationDelay: '0.7s' }}>
+          <div
+            style={{
+              marginBottom: 20,
+              paddingBottom: 18,
+              borderBottom: '1px solid var(--line)',
+              maxWidth: 880,
+            }}
+          >
+            <div className="eyebrow-accent">Our latest work</div>
+            <div
+              style={{
+                fontFamily: 'var(--serif)',
+                fontSize: 'clamp(22px, 2.4vw, 30px)',
+                letterSpacing: '-0.02em',
+                lineHeight: 1.2,
+                marginTop: 10,
+              }}
+            >
+              Dawson Creek Dental &amp; Hygiene Centre — a recent build for Dr. Cung Nguyen on
+              Mile Zero, BC.{' '}
+              <span style={{ color: 'var(--fg-2)' }}>Published 27 April 2026.</span>
+            </div>
+          </div>
           <BrowserMock />
         </div>
 
