@@ -48,3 +48,10 @@ Prism-AI-Phase-*.docx
 
 # Misc local working files
 "Rate Calculator copy/.claude/"
+
+# Operational docs that live alongside the repo but aren't part of the site
+blog-automation-prompt.md
+github-mobile-approval-guide.md
+SETUP-blog-automation.md
+.github/blog-pr-body.md
+

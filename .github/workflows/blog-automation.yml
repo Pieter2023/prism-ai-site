@@ -1,0 +1,58 @@
+name: Blog automation
+
+on:
+  schedule:
+    # Monday 14:00 UTC. That's roughly 06:00 PT during PDT (Mar–Nov)
+    # and 06:00 PT during PST (Nov–Mar) — close enough for a Monday-morning slot.
+    # Adjust the cron if you want a different day/time.
+    - cron: '0 14 * * 1'
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Why are you triggering manually?'
+        required: false
+        default: 'Manual run'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  draft-blog-post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Anthropic SDK
+        run: npm install --no-save @anthropic-ai/sdk@latest
+
+      - name: Generate blog post draft
+        id: generate
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL: ${{ secrets.ANTHROPIC_MODEL || 'claude-sonnet-4-5' }}
+        run: node .github/scripts/generate-blog-post.mjs
+
+      - name: Open pull request
+        if: success()
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ steps.generate.outputs.branch }}
+          base: main
+          commit-message: 'blog: ${{ steps.generate.outputs.title }}'
+          title: 'blog: ${{ steps.generate.outputs.title }}'
+          body-path: ${{ steps.generate.outputs.pr_body_path }}
+          delete-branch: true
+          add-paths: |
+            src/content/blog/*.md
+            content/topic-backlog.md
