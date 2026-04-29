@@ -33,7 +33,7 @@ This file is the source of truth for blog topics. The blog automation reads it b
 
 ## Buying guide / comparison
 
-- [ ] AI receptionist vs. answering service vs. voicemail: which one for your trade?
+- [x] AI receptionist vs. answering service vs. voicemail: which one for your trade? — covered 2026-04-29
 - [ ] Three website tiers, one decision: how to pick between $4,500, $7,500, and $12,500
 - [ ] Calendar booking tools compared for a Kelowna service business: Cal.com, Calendly, Google native
 
