@@ -2,8 +2,8 @@ name: Blog automation
 
 on:
   schedule:
-    # Monday 14:00 UTC. That's roughly 06:00 PT during PDT (Mar–Nov)
-    # and 06:00 PT during PST (Nov–Mar) — close enough for a Monday-morning slot.
+    # Monday 14:00 UTC. That's 07:00 PT during PDT (Mar–Nov)
+    # and 06:00 PT during PST (Nov–Mar). GitHub may delay scheduled runs.
     # Adjust the cron if you want a different day/time.
     - cron: '0 14 * * 1'
   workflow_dispatch:
@@ -23,14 +23,14 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6.0.2
         with:
           fetch-depth: 0
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6.4.0
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Install Anthropic SDK
         run: npm install --no-save @anthropic-ai/sdk@latest
@@ -43,8 +43,10 @@ jobs:
         run: node .github/scripts/generate-blog-post.mjs
 
       - name: Open pull request
+        id: create_pr
         if: success()
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v8.1.1
+        continue-on-error: true
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ steps.generate.outputs.branch }}
@@ -56,3 +58,40 @@ jobs:
           add-paths: |
             src/content/blog/*.md
             content/topic-backlog.md
+
+      - name: Open pull request fallback
+        if: steps.create_pr.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_BRANCH: ${{ steps.generate.outputs.branch }}
+          PR_TITLE: 'blog: ${{ steps.generate.outputs.title }}'
+          PR_BODY_PATH: ${{ steps.generate.outputs.pr_body_path }}
+        run: |
+          set -euo pipefail
+
+          existing_url="$(gh pr list --head "$PR_BRANCH" --base main --state open --json url --jq '.[0].url // ""')"
+          if [ -n "$existing_url" ]; then
+            echo "Pull request already exists: $existing_url"
+            exit 0
+          fi
+
+          body_args=(--body "Automated weekly blog draft. Review the generated post and Netlify preview before merging.")
+          if [ -f "$PR_BODY_PATH" ]; then
+            body_args=(--body-file "$PR_BODY_PATH")
+          fi
+
+          for attempt in 1 2 3; do
+            if gh pr create \
+              --base main \
+              --head "$PR_BRANCH" \
+              --title "$PR_TITLE" \
+              "${body_args[@]}"; then
+              exit 0
+            fi
+
+            echo "Fallback PR creation failed on attempt $attempt."
+            sleep $((attempt * 10))
+          done
+
+          echo "Fallback PR creation failed after 3 attempts."
+          exit 1
