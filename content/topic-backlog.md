@@ -23,7 +23,7 @@ This file is the source of truth for blog topics. The blog automation reads it b
 
 - [ ] What an AI receptionist actually does (and what it doesn't)
 - [x] n8n in plain English: the open-source tool I use for client automations — covered 2026-04-29
-- [ ] Chatbot vs. AI receptionist vs. voice agent: what the labels actually mean
+- [x] Chatbot vs. AI receptionist vs. voice agent: what the labels actually mean — covered 2026-05-11
 
 ## Cost & ROI
 
@@ -36,13 +36,13 @@ This file is the source of truth for blog topics. The blog automation reads it b
 - [x] AI receptionist vs. answering service vs. voicemail: which one for your trade? — covered 2026-05-04
 - [ ] Three website tiers, one decision: how to pick between $4,500, $7,500, and $12,500
 - [ ] Calendar booking tools compared for a Kelowna service business: Cal.com, Calendly, Google native
-- [ ] Chatbot vs AI receptionist vs voice agent: The three categories every BC business owner confuses and how to pick the right one
 
 ## Local angle (BC / Kelowna)
 
 - [ ] BC's PIPA and your AI receptionist: what you can and can't record
 - [ ] CASL after a decade: what Kelowna small businesses still get wrong about email outreach
 - [ ] BDC LIFT program local angle: How BC businesses can use the new $500M federal AI financing to fund automation
+- [ ] How Vancouver small businesses are using AI to cut 12–18 hours of admin per week
 
 ## Case study (composite)
 
@@ -51,6 +51,7 @@ This file is the source of truth for blog topics. The blog automation reads it b
 ## Industry Trends
 
 - [ ] Voice AI statistics breakdown: What 97% enterprise adoption and $80B in savings actually means for a Kelowna small business
+- [ ] AI adoption acceleration: what "57% of SMBs believe AI will improve daily work" means for BC trades and service shops
 
 ---
 
